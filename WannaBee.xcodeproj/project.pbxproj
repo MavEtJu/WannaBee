@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E8D49D451F02872E005EB7BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D441F02872E005EB7BE /* main.m */; };
+		E8D49D4D1F02878E005EB7BE /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D4C1F02878E005EB7BE /* RemoteAPI.m */; };
+		E8D49D521F029130005EB7BE /* database.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D511F029130005EB7BE /* database.m */; };
+		E8D49D551F029141005EB7BE /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D541F029141005EB7BE /* dbConfig.m */; };
+		E8D49D581F029153005EB7BE /* dbItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D571F029153005EB7BE /* dbItem.m */; };
+		E8D49D5B1F029163005EB7BE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D5A1F029163005EB7BE /* dbObject.m */; };
+		E8D49D5E1F0292ED005EB7BE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D49D5D1F0292ED005EB7BE /* libsqlite3.tbd */; };
+		E8D49D611F029567005EB7BE /* dbItemsInPouch.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D601F029567005EB7BE /* dbItemsInPouch.m */; };
+		E8D49D641F029692005EB7BE /* dbSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D631F029692005EB7BE /* dbSet.m */; };
+		E8D49D671F02A641005EB7BE /* dbItemInSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D661F02A641005EB7BE /* dbItemInSet.m */; };
+		E8D49D6A1F02ACBE005EB7BE /* dbPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D691F02ACBE005EB7BE /* dbPlace.m */; };
+		E8D49D6D1F02ACCC005EB7BE /* dbItemInPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D6C1F02ACCC005EB7BE /* dbItemInPlace.m */; };
+		E8D49D6F1F03164F005EB7BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D49D6E1F03164F005EB7BE /* CoreLocation.framework */; };
+		E8D49D721F0321B1005EB7BE /* WannabeeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D711F0321B1005EB7BE /* WannabeeLocationManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8D49D3F1F02872E005EB7BE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E8D49D411F02872E005EB7BE /* Wannabee */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Wannabee; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8D49D441F02872E005EB7BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E8D49D4B1F02878E005EB7BE /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
+		E8D49D4C1F02878E005EB7BE /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
+		E8D49D4F1F0290CD005EB7BE /* Wannabee-prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wannabee-prefix.h"; sourceTree = "<group>"; };
+		E8D49D501F029130005EB7BE /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		E8D49D511F029130005EB7BE /* database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = database.m; sourceTree = "<group>"; };
+		E8D49D531F029141005EB7BE /* dbConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbConfig.h; sourceTree = "<group>"; };
+		E8D49D541F029141005EB7BE /* dbConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbConfig.m; sourceTree = "<group>"; };
+		E8D49D561F029153005EB7BE /* dbItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItem.h; sourceTree = "<group>"; };
+		E8D49D571F029153005EB7BE /* dbItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItem.m; sourceTree = "<group>"; };
+		E8D49D591F029163005EB7BE /* dbObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
+		E8D49D5A1F029163005EB7BE /* dbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObject.m; sourceTree = "<group>"; };
+		E8D49D5D1F0292ED005EB7BE /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E8D49D5F1F029567005EB7BE /* dbItemsInPouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItemsInPouch.h; sourceTree = "<group>"; };
+		E8D49D601F029567005EB7BE /* dbItemsInPouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItemsInPouch.m; sourceTree = "<group>"; };
+		E8D49D621F029692005EB7BE /* dbSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSet.h; sourceTree = "<group>"; };
+		E8D49D631F029692005EB7BE /* dbSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSet.m; sourceTree = "<group>"; };
+		E8D49D651F02A641005EB7BE /* dbItemInSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItemInSet.h; sourceTree = "<group>"; };
+		E8D49D661F02A641005EB7BE /* dbItemInSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItemInSet.m; sourceTree = "<group>"; };
+		E8D49D681F02ACBE005EB7BE /* dbPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbPlace.h; sourceTree = "<group>"; };
+		E8D49D691F02ACBE005EB7BE /* dbPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPlace.m; sourceTree = "<group>"; };
+		E8D49D6B1F02ACCC005EB7BE /* dbItemInPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItemInPlace.h; sourceTree = "<group>"; };
+		E8D49D6C1F02ACCC005EB7BE /* dbItemInPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItemInPlace.m; sourceTree = "<group>"; };
+		E8D49D6E1F03164F005EB7BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E8D49D701F0321B1005EB7BE /* WannabeeLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WannabeeLocationManager.h; sourceTree = "<group>"; };
+		E8D49D711F0321B1005EB7BE /* WannabeeLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WannabeeLocationManager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8D49D3E1F02872E005EB7BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8D49D6F1F03164F005EB7BE /* CoreLocation.framework in Frameworks */,
+				E8D49D5E1F0292ED005EB7BE /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8D49D381F02872E005EB7BE = {
+			isa = PBXGroup;
+			children = (
+				E8D49D4F1F0290CD005EB7BE /* Wannabee-prefix.h */,
+				E8D49D4E1F0290B0005EB7BE /* Database */,
+				E8D49D431F02872E005EB7BE /* Wannabee */,
+				E8D49D421F02872E005EB7BE /* Products */,
+				E8D49D5C1F0292ED005EB7BE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E8D49D421F02872E005EB7BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8D49D411F02872E005EB7BE /* Wannabee */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8D49D431F02872E005EB7BE /* Wannabee */ = {
+			isa = PBXGroup;
+			children = (
+				E8D49D441F02872E005EB7BE /* main.m */,
+				E8D49D4B1F02878E005EB7BE /* RemoteAPI.h */,
+				E8D49D4C1F02878E005EB7BE /* RemoteAPI.m */,
+				E8D49D701F0321B1005EB7BE /* WannabeeLocationManager.h */,
+				E8D49D711F0321B1005EB7BE /* WannabeeLocationManager.m */,
+			);
+			path = Wannabee;
+			sourceTree = "<group>";
+		};
+		E8D49D4E1F0290B0005EB7BE /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				E8D49D501F029130005EB7BE /* database.h */,
+				E8D49D511F029130005EB7BE /* database.m */,
+				E8D49D591F029163005EB7BE /* dbObject.h */,
+				E8D49D5A1F029163005EB7BE /* dbObject.m */,
+				E8D49D531F029141005EB7BE /* dbConfig.h */,
+				E8D49D541F029141005EB7BE /* dbConfig.m */,
+				E8D49D561F029153005EB7BE /* dbItem.h */,
+				E8D49D571F029153005EB7BE /* dbItem.m */,
+				E8D49D5F1F029567005EB7BE /* dbItemsInPouch.h */,
+				E8D49D601F029567005EB7BE /* dbItemsInPouch.m */,
+				E8D49D621F029692005EB7BE /* dbSet.h */,
+				E8D49D631F029692005EB7BE /* dbSet.m */,
+				E8D49D651F02A641005EB7BE /* dbItemInSet.h */,
+				E8D49D661F02A641005EB7BE /* dbItemInSet.m */,
+				E8D49D681F02ACBE005EB7BE /* dbPlace.h */,
+				E8D49D691F02ACBE005EB7BE /* dbPlace.m */,
+				E8D49D6B1F02ACCC005EB7BE /* dbItemInPlace.h */,
+				E8D49D6C1F02ACCC005EB7BE /* dbItemInPlace.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		E8D49D5C1F0292ED005EB7BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8D49D6E1F03164F005EB7BE /* CoreLocation.framework */,
+				E8D49D5D1F0292ED005EB7BE /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E8D49D401F02872E005EB7BE /* WannaBee */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8D49D481F02872E005EB7BE /* Build configuration list for PBXNativeTarget "WannaBee" */;
+			buildPhases = (
+				E8D49D3D1F02872E005EB7BE /* Sources */,
+				E8D49D3E1F02872E005EB7BE /* Frameworks */,
+				E8D49D3F1F02872E005EB7BE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WannaBee;
+			productName = Wannabee;
+			productReference = E8D49D411F02872E005EB7BE /* Wannabee */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8D49D391F02872E005EB7BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Edwin Groothuis";
+				TargetAttributes = {
+					E8D49D401F02872E005EB7BE = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = NRQ2A5FE8M;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E8D49D3C1F02872E005EB7BE /* Build configuration list for PBXProject "WannaBee" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E8D49D381F02872E005EB7BE;
+			productRefGroup = E8D49D421F02872E005EB7BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8D49D401F02872E005EB7BE /* WannaBee */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8D49D3D1F02872E005EB7BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8D49D4D1F02878E005EB7BE /* RemoteAPI.m in Sources */,
+				E8D49D551F029141005EB7BE /* dbConfig.m in Sources */,
+				E8D49D5B1F029163005EB7BE /* dbObject.m in Sources */,
+				E8D49D521F029130005EB7BE /* database.m in Sources */,
+				E8D49D671F02A641005EB7BE /* dbItemInSet.m in Sources */,
+				E8D49D641F029692005EB7BE /* dbSet.m in Sources */,
+				E8D49D581F029153005EB7BE /* dbItem.m in Sources */,
+				E8D49D6D1F02ACCC005EB7BE /* dbItemInPlace.m in Sources */,
+				E8D49D6A1F02ACBE005EB7BE /* dbPlace.m in Sources */,
+				E8D49D721F0321B1005EB7BE /* WannabeeLocationManager.m in Sources */,
+				E8D49D451F02872E005EB7BE /* main.m in Sources */,
+				E8D49D611F029567005EB7BE /* dbItemsInPouch.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E8D49D461F02872E005EB7BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E8D49D471F02872E005EB7BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		E8D49D491F02872E005EB7BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E8D49D4A1F02872E005EB7BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8D49D3C1F02872E005EB7BE /* Build configuration list for PBXProject "WannaBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8D49D461F02872E005EB7BE /* Debug */,
+				E8D49D471F02872E005EB7BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8D49D481F02872E005EB7BE /* Build configuration list for PBXNativeTarget "WannaBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8D49D491F02872E005EB7BE /* Debug */,
+				E8D49D4A1F02872E005EB7BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8D49D391F02872E005EB7BE /* Project object */;
+}

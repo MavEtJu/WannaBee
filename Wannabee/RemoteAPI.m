@@ -68,7 +68,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -106,7 +106,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -155,7 +155,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -194,7 +194,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -221,8 +221,8 @@
 
 - (int)api_users__sets:(NSInteger)set_id
 {
-    NSLog(@"api_users__sets:%ld", set_id);
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/users/%@/sets/%ld", self.host, self.user_id, set_id]];
+    NSLog(@"api_users__sets:%d", set_id);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/users/%@/sets/%d", self.host, self.user_id, set_id]];
 
     NSMutableURLRequest *req = [self newRequest:url];
 
@@ -235,7 +235,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -268,7 +268,7 @@
     }];
 
     dbSet *set = [dbSet getBySetId:set_id];
-    NSLog(@"%@: Imported %ld items", set.name, [items count]);
+    NSLog(@"%@: Imported %d items", set.name, [items count]);
 
     return 0;
 }
@@ -289,7 +289,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -314,8 +314,8 @@
 
 - (int)api_places__items:(NSInteger)place_id
 {
-    NSLog(@"api_places__items:%ld", place_id);
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/places/%ld/items", self.host, place_id]];
+    NSLog(@"api_places__items:%d", place_id);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/places/%d/items", self.host, place_id]];
 
     NSMutableURLRequest *req = [self newRequest:url];
 
@@ -328,7 +328,7 @@
         return 1;
     }
     if (response.statusCode != 200) {
-        NSLog(@"Return value: %ld", response.statusCode);
+        NSLog(@"Return value: %d", response.statusCode);
         return 1;
     }
 
@@ -347,7 +347,7 @@
         iip.number = [number integerValue];
         [iip create];
     }];
-    NSLog(@"Imported %ld items to %@", [items count], place.name);
+    NSLog(@"Imported %d items to %@", [items count], place.name);
     
     return 0;
     

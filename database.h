@@ -79,7 +79,7 @@ typedef NSInteger NSId;
 #define DB_FINISH \
     sqlite3_finalize(req);
 #define DB_GET_LAST_ID(__id__) \
-    __id__ = sqlite3_last_insert_rowid(db.db);
+    __id__ = (NSInteger)sqlite3_last_insert_rowid(db.db);
 #define DB_IF_STEP \
     if (sqlite3_step(req) == SQLITE_ROW)
 #define DB_WHILE_STEP \

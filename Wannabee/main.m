@@ -91,15 +91,15 @@ void showitems(NSArray *as, NSString *title)
             }
             if ([o isKindOfClass:[dbItemInSet class]] == YES) {
                 dbItemInSet *iis = (dbItemInSet *)o;
-                NSLog(@"Number in set: %ld", iis.number);
+                NSLog(@"Number in set: %d", iis.number);
             }
             if ([o isKindOfClass:[dbItemInPouch class]] == YES) {
                 dbItemInPouch *iip = (dbItemInPouch *)o;
-                NSLog(@"Number in pouch: %ld", iip.number);
+                NSLog(@"Number in pouch: %d", iip.number);
             }
             if ([o isKindOfClass:[dbItemInPlace class]] == YES) {
                 dbItemInPlace *iip = (dbItemInPlace *)o;
-                NSLog(@"Number in place: %ld", iip.number);
+                NSLog(@"Number in place: %d", iip.number);
             }
         }];
         NSLog(@"");
