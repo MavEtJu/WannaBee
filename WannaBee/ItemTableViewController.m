@@ -55,6 +55,8 @@
     if ([o isKindOfClass:[dbItem class]] == YES) {
         dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
         cell.textLabel.text = item.name;
+        dbSet *set = [dbSet get:item.set_id];
+        cell.detailTextLabel.text = set.name;
         return cell;
     }
 
