@@ -118,11 +118,13 @@
     NSArray<dbSet *> *sets = [dbSet all];
     [sets enumerateObjectsUsingBlock:^(dbSet * _Nonnull set, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<dbItem *> *itemsInSet = [dbItem allInSet:set];
-        if ([itemsInSet count] == 0 || [itemsInSet count] < set.items_in_set) {
+        if (set.needsRefresh == YES || [itemsInSet count] == 0 || [itemsInSet count] < set.items_in_set) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 hud.detailsLabel.text = [NSString stringWithFormat:@"%d / %d - %@", 1 + idx, [sets count], set.name];
             }];
             [api api_users__sets:set.set_id];
+            set.needs_refresh = NO;
+            [set dbUpdateNeedsRefresh];
             [NSThread sleepForTimeInterval:0.5];
         }
     }];

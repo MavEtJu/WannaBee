@@ -13,7 +13,9 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) NSInteger set_id;
 @property (nonatomic) NSInteger items_in_set;
+@property (nonatomic) BOOL needs_refresh;
 
+- (void)dbUpdateNeedsRefresh;
 + (dbSet *)get:(NSId)_id;
 + (dbSet *)getBySetId:(NSInteger)set_id;
 + (dbSet *)getBySetName:(NSString *)name;

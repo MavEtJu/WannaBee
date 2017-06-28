@@ -13,14 +13,28 @@
 - (void)create
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into sets(set_name, set_id, items_in_set) values(?, ?, ?)");
+        DB_PREPARE(@"insert into sets(set_name, set_id, items_in_set, needs_refresh) values(?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_INT (2, self.set_id);
         SET_VAR_INT (3, self.items_in_set);
+        SET_VAR_BOOL(4, self.needs_refresh);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id)
+        DB_FINISH;
+    }
+}
+
+- (void)dbUpdateNeedsRefresh
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update sets set needs_refresh = ? where id = ?");
+
+        SET_VAR_INT (1, self.needs_refresh);
+        SET_VAR_INT (2, self._id);
+
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }
@@ -29,7 +43,7 @@
 {
     NSMutableArray<dbSet *> *ss = [NSMutableArray arrayWithCapacity:10];
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, set_name, set_id, items_in_set from sets "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, set_name, set_id, items_in_set, needs_refresh from sets "];
     if (where != nil)
         [sql appendString:where];
 
@@ -42,6 +56,7 @@
             TEXT_FETCH(1, c.name);
             INT_FETCH (2, c.set_id);
             INT_FETCH (3, c.items_in_set);
+            BOOL_FETCH(4, c.needs_refresh);
 
             [ss addObject:c];
         }

@@ -171,6 +171,7 @@
             set = [[dbSet alloc] init];
             set.name = set_name;
             set.set_id = [set_id integerValue];
+            set.needs_refresh = NO;
             [set create];
         }
     }];
@@ -212,6 +213,7 @@
             set.name = name;
             set.set_id = [set_id integerValue];
             set.items_in_set = [items_in_set integerValue];
+            set.needs_refresh = NO;
             [set create];
         }
     }];
