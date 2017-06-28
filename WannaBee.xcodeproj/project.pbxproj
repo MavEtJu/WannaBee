@@ -37,6 +37,9 @@
 		E8EF64551F036C20000E9111 /* SetsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64541F036C20000E9111 /* SetsTableViewController.m */; };
 		E8EF64591F036E0D000E9111 /* TableViewCellPlain.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64581F036E0D000E9111 /* TableViewCellPlain.m */; };
 		E8EF645C1F036E1C000E9111 /* TableViewCellSubtitle.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF645B1F036E1C000E9111 /* TableViewCellSubtitle.m */; };
+		E8EF64611F038A49000E9111 /* logo 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF645E1F038A49000E9111 /* logo 76x76.png */; };
+		E8EF64621F038A49000E9111 /* logo 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF645F1F038A49000E9111 /* logo 120x120.png */; };
+		E8EF64631F038A49000E9111 /* logo 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64601F038A49000E9111 /* logo 152x152.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,9 @@
 		E8EF64581F036E0D000E9111 /* TableViewCellPlain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellPlain.m; sourceTree = "<group>"; };
 		E8EF645A1F036E1C000E9111 /* TableViewCellSubtitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellSubtitle.h; sourceTree = "<group>"; };
 		E8EF645B1F036E1C000E9111 /* TableViewCellSubtitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellSubtitle.m; sourceTree = "<group>"; };
+		E8EF645E1F038A49000E9111 /* logo 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 76x76.png"; path = "WannaBee/images/logo 76x76.png"; sourceTree = "<group>"; };
+		E8EF645F1F038A49000E9111 /* logo 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 120x120.png"; path = "WannaBee/images/logo 120x120.png"; sourceTree = "<group>"; };
+		E8EF64601F038A49000E9111 /* logo 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 152x152.png"; path = "WannaBee/images/logo 152x152.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 				E8EF640D1F034576000E9111 /* Database */,
 				E8EF63D31F0344D9000E9111 /* WannaBee */,
 				E8EF64291F0345A2000E9111 /* GUI */,
+				E8EF645D1F038A32000E9111 /* Images */,
 				E8EF63F31F0344D9000E9111 /* WannaBeeTests */,
 				E8EF63FE1F0344D9000E9111 /* WannaBeeUITests */,
 				E8EF63D21F0344D9000E9111 /* Products */,
@@ -279,6 +286,16 @@
 			name = "New Group";
 			sourceTree = "<group>";
 		};
+		E8EF645D1F038A32000E9111 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E8EF645E1F038A49000E9111 /* logo 76x76.png */,
+				E8EF645F1F038A49000E9111 /* logo 120x120.png */,
+				E8EF64601F038A49000E9111 /* logo 152x152.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,8 +405,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EF64611F038A49000E9111 /* logo 76x76.png in Resources */,
 				E8EF64311F03460E000E9111 /* schema.sql in Resources */,
 				E8EF643B1F034BF9000E9111 /* Default-568h@2x.png in Resources */,
+				E8EF64621F038A49000E9111 /* logo 120x120.png in Resources */,
+				E8EF64631F038A49000E9111 /* logo 152x152.png in Resources */,
 				E8EF64461F036279000E9111 /* Settings.bundle in Resources */,
 				E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */,
 				E8EF64391F034ABF000E9111 /* empty.db in Resources */,
@@ -575,6 +595,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -588,6 +609,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
