@@ -58,6 +58,11 @@
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
++ (dbItemInPouch *)getByItem:(dbItem *)item
+{
+    return [[self dbAllXXX:@"where item_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:item._id]]] firstObject];
+}
+
 + (void)deleteAll
 {
     [self deleteAll:@"items_in_pouch"];

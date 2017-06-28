@@ -55,6 +55,11 @@
     return [self dbAllXXX:nil keys:nil values:nil];
 }
 
++ (NSArray<dbItemInPlace *> *)allItemsInPlace:(dbPlace *)place
+{
+    return [self dbAllXXX:@"where place_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:place._id]]];
+}
+
 + (dbItemInPlace *)get:(NSId)_id
 {
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
@@ -79,7 +84,7 @@
 
         DB_CHECK_OKAY;
         DB_FINISH;
-    }    
+    }
 }
 
 @end

@@ -15,6 +15,7 @@
 
 + (NSArray<dbItemInPouch *> *)all;
 + (dbItemInPouch *)get:(NSId)_id;
++ (dbItemInPouch *)getByItem:(dbItem *)item;
 + (void)deleteAll;
 
 @end

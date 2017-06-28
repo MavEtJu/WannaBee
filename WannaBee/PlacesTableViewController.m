@@ -103,8 +103,12 @@
     dbPlace *place = [self.places objectAtIndex:indexPath.row];
 
     cell.textLabel.text = place.name;
-    NSInteger count = [[dbItem allInPlace:place] count];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@", count, count == 1 ? @"" : @"s"];
+    NSInteger unique = [[dbItem allInPlace:place] count];
+    NSInteger total = [[dbItemInPlace allItemsInPlace:place] count];
+    if (total == unique)
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@", unique, unique == 1 ? @"" : @"s"];
+    else
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@, %d unique", total, total == 1 ? @"" : @"s", unique];
 
     return cell;
 }

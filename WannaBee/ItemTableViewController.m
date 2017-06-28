@@ -54,7 +54,8 @@
 
     if ([o isKindOfClass:[dbItem class]] == YES) {
         dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
-        cell.textLabel.text = item.name;
+        dbItemInPouch *iip = [dbItemInPouch getByItem:item];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%d)", item.name, iip.number];
         dbSet *set = [dbSet get:item.set_id];
         cell.detailTextLabel.text = set.name;
         return cell;
