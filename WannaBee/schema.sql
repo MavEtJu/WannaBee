@@ -21,7 +21,8 @@ create table sets(
     id integer primary key,
     set_name text,
     set_id integer,
-    items_in_set integer
+    items_in_set integer,
+    needs_refresh bool
 );
 
 create table items_in_sets(
@@ -41,6 +42,11 @@ create table items_in_places(
     item_id integer,
     place_id integer,
     number integer
+);
+
+create table wishlist(
+    id integer primary key,
+    item_id integer
 );
 
 -- Items in places, not in sets
