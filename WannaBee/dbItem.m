@@ -60,6 +60,11 @@
     return [self dbAllXXX:@"where set_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:set._id]]];
 }
 
++ (NSArray<dbItem *> *)allInPouch
+{
+    return [self dbAllXXX:@"where id in (select item_id from items_in_pouch)" keys:nil values:nil];
+}
+
 + (dbItem *)get:(NSId)_id
 {
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];

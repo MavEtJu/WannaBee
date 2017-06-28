@@ -14,10 +14,42 @@
 {
     self = [super init];
 
-    sqlite3 *db;
-    sqlite3_open([@"/Users/edwin/dev/wannabee/database.db" UTF8String], &db);
+    NSFileManager *fm = [NSFileManager defaultManager];
+
+    NSArray<NSString *> *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *apsupDirectory = [paths objectAtIndex:0];
+    NSString *dataDistributionDirectory = [[NSBundle mainBundle] resourcePath];
+
+    NSError *error = nil;
+    [fm createDirectoryAtPath:apsupDirectory withIntermediateDirectories:YES attributes:nil error:&error];
+
+    NSString *database = [NSString stringWithFormat:@"%@/database.db", apsupDirectory];
+    NSString *empty = [NSString stringWithFormat:@"%@/empty.db", dataDistributionDirectory];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"erasedatabase"] == YES) {
+        [fm removeItemAtPath:database error:&error];
+        NSLog(@"Nuking database");
+    }
+
+    if ([fm fileExistsAtPath:database] == YES) {
+        NSLog(@"database: database.db already exists");
+    } else {
+        if ([fm fileExistsAtPath:empty] == NO) {
+            NSLog(@"database: empty.db couldn't be found");
+        } else {
+            NSLog(@"database: installing empty.db as database.db");
+            [fm copyItemAtPath:empty toPath:database error:&error];
+            if (error != nil)
+                NSLog(@"database: unable to copy: %@", [error description]);
+        }
+    }
+
+    sqlite3 *db = nil;
+    sqlite3_open([database UTF8String], &db);
     NSAssert(db != nil, @"db");
     self.db = db;
+    
+    NSLog(@"database: Using %@", database);
 
     return self;
 }
