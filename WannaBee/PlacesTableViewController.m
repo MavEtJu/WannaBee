@@ -113,4 +113,17 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbPlace *place = [self.places objectAtIndex:indexPath.row];
+
+    PlaceTableViewController *newController = [[PlaceTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [newController showPlace:place];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = @"Place";
+    [self.tabBarController presentViewController:newController animated:YES completion:nil];
+
+
+}
+
 @end

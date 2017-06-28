@@ -35,6 +35,7 @@
 #import "WannaBeenTabBarController.h"
 #import "ItemTableViewController.h"
 #import "PouchTableViewController.h"
+#import "PlaceTableViewController.h"
 #import "PlacesTableViewController.h"
 #import "SetsTableViewController.h"
 #import "NewerTableViewController.h"

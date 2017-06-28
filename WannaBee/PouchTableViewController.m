@@ -14,6 +14,14 @@
 
 @implementation PouchTableViewController
 
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+
+    self.title = @"Pouch";
+
+    return self;
+}
 
 - (void)viewDidLoad
 {

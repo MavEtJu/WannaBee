@@ -41,6 +41,7 @@
 		E8EF64621F038A49000E9111 /* logo 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF645F1F038A49000E9111 /* logo 120x120.png */; };
 		E8EF64631F038A49000E9111 /* logo 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64601F038A49000E9111 /* logo 152x152.png */; };
 		E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */; };
+		E8EF646A1F04735D000E9111 /* PlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64691F04735D000E9111 /* PlaceTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		E8EF64601F038A49000E9111 /* logo 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 152x152.png"; path = "WannaBee/images/logo 152x152.png"; sourceTree = "<group>"; };
 		E8EF64651F03C1F5000E9111 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = contrib/MBProgressHUD.h; sourceTree = "<group>"; };
 		E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = contrib/MBProgressHUD.m; sourceTree = "<group>"; };
+		E8EF64681F04735D000E9111 /* PlaceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTableViewController.h; sourceTree = "<group>"; };
+		E8EF64691F04735D000E9111 /* PlaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +262,8 @@
 				E8EF64481F0364FA000E9111 /* PouchTableViewController.m */,
 				E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */,
 				E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */,
+				E8EF64681F04735D000E9111 /* PlaceTableViewController.h */,
+				E8EF64691F04735D000E9111 /* PlaceTableViewController.m */,
 				E8EF64531F036C20000E9111 /* SetsTableViewController.h */,
 				E8EF64541F036C20000E9111 /* SetsTableViewController.m */,
 				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
@@ -468,6 +473,7 @@
 				E8EF64321F03460E000E9111 /* WannabeeLocationManager.m in Sources */,
 				E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */,
 				E8EF63D61F0344D9000E9111 /* main.m in Sources */,
+				E8EF646A1F04735D000E9111 /* PlaceTableViewController.m in Sources */,
 				E8EF64551F036C20000E9111 /* SetsTableViewController.m in Sources */,
 				E8EF64251F03458B000E9111 /* dbItemsInPouch.m in Sources */,
 				E8EF64201F03458B000E9111 /* database.m in Sources */,
