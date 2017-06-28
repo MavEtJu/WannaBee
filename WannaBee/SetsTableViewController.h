@@ -10,4 +10,6 @@
 
 @interface SetsTableViewController : UITableViewController
 
+- (void)refreshData;
+
 @end

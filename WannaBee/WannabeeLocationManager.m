@@ -18,7 +18,7 @@
 
     self.lm = [[CLLocationManager alloc] init];
     self.lm.distanceFilter = kCLDistanceFilterNone;
-    self.lm.desiredAccuracy = kCLLocationAccuracyBest;
+    self.lm.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
     self.lm.delegate = self;
     [self.lm startUpdatingLocation];
 
@@ -33,6 +33,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    if (self.last.latitude == newLocation.coordinate.latitude && self.last.longitude == newLocation.coordinate.longitude)
+        return;
     NSLog(@"New location: %f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     self.last = newLocation.coordinate;
 }

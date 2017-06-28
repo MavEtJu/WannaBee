@@ -17,5 +17,6 @@
 + (dbItemInPlace *)getByItemId:(NSId)item_id place_id:(NSId)place_id;
 + (dbItemInPlace *)get:(NSId)_id;
 + (void)deleteByPlace:(NSId)place_id;
++ (void)deleteAll;
 
 @end

@@ -68,4 +68,9 @@
     return [[self dbAllXXX:@"where name = ?" keys:@"s" values:@[place_name]] firstObject];
 }
 
++ (void)deleteAll
+{
+    [self deleteAll:@"places"];
+}
+
 @end

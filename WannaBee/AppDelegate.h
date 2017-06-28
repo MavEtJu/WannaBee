@@ -19,3 +19,4 @@
 
 @end
 
+extern AppDelegate *appDelegate;

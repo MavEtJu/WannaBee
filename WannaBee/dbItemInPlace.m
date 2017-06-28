@@ -65,6 +65,11 @@
     return [[self dbAllXXX:@"where item_id = ? and place_id = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:item_id], [NSNumber numberWithInteger:place_id]]] firstObject];
 }
 
++ (void)deleteAll
+{
+    [self deleteAll:@"items_in_places"];
+}
+
 + (void)deleteByPlace:(NSId)place_id
 {
     @synchronized(db) {

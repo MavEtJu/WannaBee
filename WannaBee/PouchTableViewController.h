@@ -10,4 +10,6 @@
 
 @interface PouchTableViewController : ItemTableViewController
 
+- (void)refreshData;
+
 @end

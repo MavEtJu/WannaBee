@@ -23,12 +23,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_ITEM];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshData)
+                  forControlEvents:UIControlEventValueChanged];
+
+    [self refreshData];
+}
+
+- (void)refreshData
+{
+    [self.refreshControl beginRefreshing];
 
     self.newerItemsInPlaces = [database newerItemsInPlaces];
     self.newerItemsInPouch = [database newerItemsInPouch];
     self.unseenItemsInPlaces = [database newItemsInPlaces];
 
-    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_ITEM];
+    [self.refreshControl endRefreshing];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -130,9 +148,9 @@
         else
             cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item, place];
         if (mynumber == 0)
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found %d", newnumber];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d", newnumber];
         else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found %d which is smaller than %d", newnumber, mynumber];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", newnumber, mynumber];
 
         return cell;
     }

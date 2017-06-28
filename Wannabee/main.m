@@ -11,6 +11,7 @@
 database *db = nil;
 WannabeeLocationManager *locationManager = nil;
 RemoteAPI *api = nil;
+AppDelegate *appDelegate = nil;
 
 void showitems(NSArray *as, NSString *title);
 

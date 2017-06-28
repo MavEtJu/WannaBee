@@ -9,6 +9,9 @@
 #import "Wannabee-prefix.h"
 
 @interface AppDelegate ()
+{
+    MBProgressHUD *hud;
+}
 
 @end
 
@@ -17,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    appDelegate = self;
+
     // Database object
     db = [[database alloc] init];
 
@@ -79,6 +84,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
+    hud = [MBProgressHUD showHUDAddedTo:_pouchVC.view animated:YES];
     [self performSelectorInBackground:@selector(loadData) withObject:nil];
 
     // Override point for customization after application launch.
@@ -90,40 +96,69 @@
     NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
     NSString *password = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
 
-    if (username == nil || [username isEqualToString:@""] == YES)
+    if (username == nil || [username isEqualToString:@""] == YES ||
+        password == nil || [password isEqualToString:@""] == YES) {
+        NSLog(@"@No username or password yet");
         return;
-    if (password == nil || [password isEqualToString:@""] == YES)
-        return;
+    }
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        hud.label.text = @"Authenticating";
+    }];
 
     if (api.token == nil || api.user_id == nil)
         [api api_login:username password:password];
 
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        hud.label.text = @"Download sets";
+    }];
     [api api_users__sets];
-    [api api_users__pouch];
 
     NSArray<dbSet *> *sets = [dbSet all];
     [sets enumerateObjectsUsingBlock:^(dbSet * _Nonnull set, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<dbItem *> *itemsInSet = [dbItem allInSet:set];
         if ([itemsInSet count] == 0 || [itemsInSet count] < set.items_in_set) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                hud.detailsLabel.text = [NSString stringWithFormat:@"%d / %d - %@", 1 + idx, [sets count], set.name];
+            }];
             [api api_users__sets:set.set_id];
             [NSThread sleepForTimeInterval:0.5];
         }
     }];
 
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        hud.label.text = @"Downloading pouch";
+        hud.detailsLabel.text = @"";
+    }];
+    [api api_users__pouch];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        hud.label.text = @"Downloading places";
+    }];
+    [dbPlace deleteAll];
+    [dbItemInPlace deleteAll];
     [api api_places:locationManager.last.latitude longitude:locationManager.last.longitude];
     NSArray<dbPlace *> *places = [dbPlace all];
     [places enumerateObjectsUsingBlock:^(dbPlace * _Nonnull place, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([place.name isEqualToString:@"The WallaBee Museum"] == YES)
             return;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            hud.detailsLabel.text = [NSString stringWithFormat:@"%d / %d - %@", 1 + idx, [places count], place.name];
+        }];
         [dbItemInPlace deleteByPlace:place._id];
         [api api_places__items:place.place_id];
         [NSThread sleepForTimeInterval:1];
     }];
 
-    [self.pouchVC.tableView reloadData];
-    [self.placesVC.tableView reloadData];
-    [self.setsVC.tableView reloadData];
-    [self.newerVC.tableView reloadData];
+    [self.pouchVC refreshData];
+    [self.placesVC refreshData];
+    [self.setsVC refreshData];
+    [self.newerVC refreshData];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [hud hideAnimated:TRUE];
+    }];
 }
 
 @end

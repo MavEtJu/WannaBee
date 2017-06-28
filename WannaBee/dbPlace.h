@@ -17,5 +17,6 @@
 + (dbPlace *)getByPlaceId:(NSInteger)place_id;
 + (dbPlace *)getByPlaceName:(NSString *)place_name;
 + (NSArray<dbPlace *> *)all;
++ (void)deleteAll;
 
 @end

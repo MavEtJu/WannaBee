@@ -60,9 +60,19 @@
     return [self dbAllXXX:@"where set_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:set._id]]];
 }
 
++ (NSArray<dbItem *> *)allInSetStored:(dbSet *)set
+{
+    return [self dbAllXXX:@"where set_id = ? and id in (select item_id from items_in_sets where set_id = ?)" keys:@"ii" values:@[[NSNumber numberWithInteger:set._id], [NSNumber numberWithInteger:set._id]]];
+}
+
 + (NSArray<dbItem *> *)allInPouch
 {
     return [self dbAllXXX:@"where id in (select item_id from items_in_pouch)" keys:nil values:nil];
+}
+
++ (NSArray<dbItem *> *)allInPlace:(dbPlace *)place
+{
+    return [self dbAllXXX:@"where id in (select item_id from items_in_places where place_id = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:place._id]]];
 }
 
 + (dbItem *)get:(NSId)_id

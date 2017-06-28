@@ -14,6 +14,8 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
+#import "MBProgressHUD.h"
+
 #import "RemoteAPI.h"
 #import "WannabeeLocationManager.h"
 
@@ -21,10 +23,10 @@
 #import "dbObject.h"
 #import "dbConfig.h"
 #import "dbSet.h"
+#import "dbPlace.h"
 #import "dbItem.h"
 #import "dbItemInSet.h"
 #import "dbItemsInPouch.h"
-#import "dbPlace.h"
 #import "dbItemInPlace.h"
 
 #import "TableViewCellPlain.h"

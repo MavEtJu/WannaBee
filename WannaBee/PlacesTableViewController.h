@@ -10,4 +10,6 @@
 
 @interface PlacesTableViewController : UITableViewController
 
+- (void)refreshData;
+
 @end

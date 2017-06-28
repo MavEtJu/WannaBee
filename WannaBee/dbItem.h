@@ -16,7 +16,9 @@
 
 + (NSArray<dbItem *> *)all;
 + (NSArray<dbItem *> *)allInSet:(dbSet *)set;
++ (NSArray<dbItem *> *)allInSetStored:(dbSet *)set;
 + (NSArray<dbItem *> *)allInPouch;
++ (NSArray<dbItem *> *)allInPlace:(dbPlace *)place;
 + (dbItem *)getByItemTypeId:(NSInteger)item_type_id;
 + (dbItem *)get:(NSId)_id;
 

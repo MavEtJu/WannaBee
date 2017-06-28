@@ -21,10 +21,63 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_PLACE];
 
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadData)
+                  forControlEvents:UIControlEventValueChanged];
+
+//    [self refreshData];
+}
+
+- (void)refreshTitle:(NSString *)title
+{
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+    self.refreshControl.attributedTitle = attributedTitle;
+}
+
+- (void)refreshData
+{
     self.places = [dbPlace all];
-    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CELL_PLACE];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)reloadData
+{
+    [self refreshTitle:@"Reloading place data"];
+    [self performSelectorInBackground:@selector(reloadDataBG) withObject:nil];
+}
+
+- (void)reloadDataBG
+{
+    [dbPlace deleteAll];
+    [dbItemInPlace deleteAll];
+    [self refreshTitle:@"Obtaining places"];
+    [api api_places:locationManager.last.latitude longitude:locationManager.last.longitude];
+
+    NSArray<dbPlace *> *places = [dbPlace all];
+    [places enumerateObjectsUsingBlock:^(dbPlace * _Nonnull place, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([place.name isEqualToString:@"The WallaBee Museum"] == YES)
+            return;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self refreshTitle:[NSString stringWithFormat:@"Obtaining items for %@", place.name]];
+        }];
+        [dbItemInPlace deleteByPlace:place._id];
+        [api api_places__items:place.place_id];
+        [NSThread sleepForTimeInterval:1];
+    }];
+
+    [self refreshData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -46,10 +99,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_PLACE forIndexPath:indexPath];
+    TableViewCellSubtitle *cell = [tableView dequeueReusableCellWithIdentifier:CELL_PLACE forIndexPath:indexPath];
     dbPlace *place = [self.places objectAtIndex:indexPath.row];
 
     cell.textLabel.text = place.name;
+    NSInteger count = [[dbItem allInPlace:place] count];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@", count, count == 1 ? @"" : @"s"];
 
     return cell;
 }

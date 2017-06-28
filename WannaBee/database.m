@@ -28,6 +28,7 @@
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"erasedatabase"] == YES) {
         [fm removeItemAtPath:database error:&error];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"erasedatabase"];
         NSLog(@"Nuking database");
     }
 

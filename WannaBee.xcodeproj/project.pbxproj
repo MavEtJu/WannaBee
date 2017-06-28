@@ -40,6 +40,7 @@
 		E8EF64611F038A49000E9111 /* logo 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF645E1F038A49000E9111 /* logo 76x76.png */; };
 		E8EF64621F038A49000E9111 /* logo 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF645F1F038A49000E9111 /* logo 120x120.png */; };
 		E8EF64631F038A49000E9111 /* logo 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64601F038A49000E9111 /* logo 152x152.png */; };
+		E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		E8EF645E1F038A49000E9111 /* logo 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 76x76.png"; path = "WannaBee/images/logo 76x76.png"; sourceTree = "<group>"; };
 		E8EF645F1F038A49000E9111 /* logo 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 120x120.png"; path = "WannaBee/images/logo 120x120.png"; sourceTree = "<group>"; };
 		E8EF64601F038A49000E9111 /* logo 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo 152x152.png"; path = "WannaBee/images/logo 152x152.png"; sourceTree = "<group>"; };
+		E8EF64651F03C1F5000E9111 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = contrib/MBProgressHUD.h; sourceTree = "<group>"; };
+		E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = contrib/MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,7 @@
 				E8EF640D1F034576000E9111 /* Database */,
 				E8EF63D31F0344D9000E9111 /* WannaBee */,
 				E8EF64291F0345A2000E9111 /* GUI */,
+				E8EF64641F03C1C8000E9111 /* Contrib */,
 				E8EF645D1F038A32000E9111 /* Images */,
 				E8EF63F31F0344D9000E9111 /* WannaBeeTests */,
 				E8EF63FE1F0344D9000E9111 /* WannaBeeUITests */,
@@ -248,19 +252,19 @@
 		E8EF64291F0345A2000E9111 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
-				E8EF64561F036DF0000E9111 /* New Group */,
+				E8EF64561F036DF0000E9111 /* TableViewCells */,
 				E8EF64421F035E68000E9111 /* WannaBeenTabBarController.h */,
 				E8EF64431F035E68000E9111 /* WannaBeenTabBarController.m */,
-				E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */,
-				E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */,
-				E8EF643C1F0357E1000E9111 /* ItemTableViewController.h */,
-				E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */,
 				E8EF64471F0364FA000E9111 /* PouchTableViewController.h */,
 				E8EF64481F0364FA000E9111 /* PouchTableViewController.m */,
-				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
-				E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */,
+				E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */,
+				E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */,
 				E8EF64531F036C20000E9111 /* SetsTableViewController.h */,
 				E8EF64541F036C20000E9111 /* SetsTableViewController.m */,
+				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
+				E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */,
+				E8EF643C1F0357E1000E9111 /* ItemTableViewController.h */,
+				E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */,
 			);
 			name = GUI;
 			path = WannaBee;
@@ -275,7 +279,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E8EF64561F036DF0000E9111 /* New Group */ = {
+		E8EF64561F036DF0000E9111 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				E8EF64571F036E0D000E9111 /* TableViewCellPlain.h */,
@@ -283,7 +287,7 @@
 				E8EF645A1F036E1C000E9111 /* TableViewCellSubtitle.h */,
 				E8EF645B1F036E1C000E9111 /* TableViewCellSubtitle.m */,
 			);
-			name = "New Group";
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		E8EF645D1F038A32000E9111 /* Images */ = {
@@ -294,6 +298,16 @@
 				E8EF64601F038A49000E9111 /* logo 152x152.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		E8EF64641F03C1C8000E9111 /* Contrib */ = {
+			isa = PBXGroup;
+			children = (
+				E8EF64651F03C1F5000E9111 /* MBProgressHUD.h */,
+				E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */,
+			);
+			name = Contrib;
+			path = WannaBee;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,6 +466,7 @@
 				E8EF64301F03460E000E9111 /* RemoteAPI.m in Sources */,
 				E8EF644C1F0367E1000E9111 /* NewerTableViewController.m in Sources */,
 				E8EF64321F03460E000E9111 /* WannabeeLocationManager.m in Sources */,
+				E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */,
 				E8EF63D61F0344D9000E9111 /* main.m in Sources */,
 				E8EF64551F036C20000E9111 /* SetsTableViewController.m in Sources */,
 				E8EF64251F03458B000E9111 /* dbItemsInPouch.m in Sources */,
