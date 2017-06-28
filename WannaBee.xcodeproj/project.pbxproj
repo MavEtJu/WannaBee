@@ -7,219 +7,345 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E8D49D451F02872E005EB7BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D441F02872E005EB7BE /* main.m */; };
-		E8D49D4D1F02878E005EB7BE /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D4C1F02878E005EB7BE /* RemoteAPI.m */; };
-		E8D49D521F029130005EB7BE /* database.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D511F029130005EB7BE /* database.m */; };
-		E8D49D551F029141005EB7BE /* dbConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D541F029141005EB7BE /* dbConfig.m */; };
-		E8D49D581F029153005EB7BE /* dbItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D571F029153005EB7BE /* dbItem.m */; };
-		E8D49D5B1F029163005EB7BE /* dbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D5A1F029163005EB7BE /* dbObject.m */; };
-		E8D49D5E1F0292ED005EB7BE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D49D5D1F0292ED005EB7BE /* libsqlite3.tbd */; };
-		E8D49D611F029567005EB7BE /* dbItemsInPouch.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D601F029567005EB7BE /* dbItemsInPouch.m */; };
-		E8D49D641F029692005EB7BE /* dbSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D631F029692005EB7BE /* dbSet.m */; };
-		E8D49D671F02A641005EB7BE /* dbItemInSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D661F02A641005EB7BE /* dbItemInSet.m */; };
-		E8D49D6A1F02ACBE005EB7BE /* dbPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D691F02ACBE005EB7BE /* dbPlace.m */; };
-		E8D49D6D1F02ACCC005EB7BE /* dbItemInPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D6C1F02ACCC005EB7BE /* dbItemInPlace.m */; };
-		E8D49D6F1F03164F005EB7BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D49D6E1F03164F005EB7BE /* CoreLocation.framework */; };
-		E8D49D721F0321B1005EB7BE /* WannabeeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D49D711F0321B1005EB7BE /* WannabeeLocationManager.m */; };
+		E8EF63D61F0344D9000E9111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D51F0344D9000E9111 /* main.m */; };
+		E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D81F0344D9000E9111 /* AppDelegate.m */; };
+		E8EF63DC1F0344D9000E9111 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63DB1F0344D9000E9111 /* RootViewController.m */; };
+		E8EF63DF1F0344D9000E9111 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63DE1F0344D9000E9111 /* DataViewController.m */; };
+		E8EF63E21F0344D9000E9111 /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63E11F0344D9000E9111 /* ModelController.m */; };
+		E8EF63E51F0344D9000E9111 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E31F0344D9000E9111 /* Main.storyboard */; };
+		E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E61F0344D9000E9111 /* Assets.xcassets */; };
+		E8EF63EA1F0344D9000E9111 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E81F0344D9000E9111 /* LaunchScreen.storyboard */; };
+		E8EF63F51F0344D9000E9111 /* WannaBeeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63F41F0344D9000E9111 /* WannaBeeTests.m */; };
+		E8EF64001F0344D9000E9111 /* WannaBeeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63FF1F0344D9000E9111 /* WannaBeeUITests.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		E8D49D3F1F02872E005EB7BE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
+/* Begin PBXContainerItemProxy section */
+		E8EF63F11F0344D9000E9111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8EF63C91F0344D9000E9111 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8EF63D01F0344D9000E9111;
+			remoteInfo = WannaBee;
 		};
-/* End PBXCopyFilesBuildPhase section */
+		E8EF63FC1F0344D9000E9111 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8EF63C91F0344D9000E9111 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8EF63D01F0344D9000E9111;
+			remoteInfo = WannaBee;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E8D49D411F02872E005EB7BE /* Wannabee */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Wannabee; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8D49D441F02872E005EB7BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E8D49D4B1F02878E005EB7BE /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
-		E8D49D4C1F02878E005EB7BE /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
-		E8D49D4F1F0290CD005EB7BE /* Wannabee-prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wannabee-prefix.h"; sourceTree = "<group>"; };
-		E8D49D501F029130005EB7BE /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
-		E8D49D511F029130005EB7BE /* database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = database.m; sourceTree = "<group>"; };
-		E8D49D531F029141005EB7BE /* dbConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbConfig.h; sourceTree = "<group>"; };
-		E8D49D541F029141005EB7BE /* dbConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbConfig.m; sourceTree = "<group>"; };
-		E8D49D561F029153005EB7BE /* dbItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItem.h; sourceTree = "<group>"; };
-		E8D49D571F029153005EB7BE /* dbItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItem.m; sourceTree = "<group>"; };
-		E8D49D591F029163005EB7BE /* dbObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbObject.h; sourceTree = "<group>"; };
-		E8D49D5A1F029163005EB7BE /* dbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbObject.m; sourceTree = "<group>"; };
-		E8D49D5D1F0292ED005EB7BE /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		E8D49D5F1F029567005EB7BE /* dbItemsInPouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItemsInPouch.h; sourceTree = "<group>"; };
-		E8D49D601F029567005EB7BE /* dbItemsInPouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItemsInPouch.m; sourceTree = "<group>"; };
-		E8D49D621F029692005EB7BE /* dbSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbSet.h; sourceTree = "<group>"; };
-		E8D49D631F029692005EB7BE /* dbSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbSet.m; sourceTree = "<group>"; };
-		E8D49D651F02A641005EB7BE /* dbItemInSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItemInSet.h; sourceTree = "<group>"; };
-		E8D49D661F02A641005EB7BE /* dbItemInSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItemInSet.m; sourceTree = "<group>"; };
-		E8D49D681F02ACBE005EB7BE /* dbPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbPlace.h; sourceTree = "<group>"; };
-		E8D49D691F02ACBE005EB7BE /* dbPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbPlace.m; sourceTree = "<group>"; };
-		E8D49D6B1F02ACCC005EB7BE /* dbItemInPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbItemInPlace.h; sourceTree = "<group>"; };
-		E8D49D6C1F02ACCC005EB7BE /* dbItemInPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbItemInPlace.m; sourceTree = "<group>"; };
-		E8D49D6E1F03164F005EB7BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		E8D49D701F0321B1005EB7BE /* WannabeeLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WannabeeLocationManager.h; sourceTree = "<group>"; };
-		E8D49D711F0321B1005EB7BE /* WannabeeLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WannabeeLocationManager.m; sourceTree = "<group>"; };
+		E8EF63D11F0344D9000E9111 /* WannaBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WannaBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8EF63D51F0344D9000E9111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E8EF63D71F0344D9000E9111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E8EF63D81F0344D9000E9111 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E8EF63DA1F0344D9000E9111 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		E8EF63DB1F0344D9000E9111 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		E8EF63DD1F0344D9000E9111 /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
+		E8EF63DE1F0344D9000E9111 /* DataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		E8EF63E01F0344D9000E9111 /* ModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
+		E8EF63E11F0344D9000E9111 /* ModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
+		E8EF63E41F0344D9000E9111 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E8EF63E61F0344D9000E9111 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8EF63E91F0344D9000E9111 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E8EF63EB1F0344D9000E9111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8EF63F01F0344D9000E9111 /* WannaBeeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WannaBeeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8EF63F41F0344D9000E9111 /* WannaBeeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WannaBeeTests.m; sourceTree = "<group>"; };
+		E8EF63F61F0344D9000E9111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8EF63FB1F0344D9000E9111 /* WannaBeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WannaBeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8EF63FF1F0344D9000E9111 /* WannaBeeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WannaBeeUITests.m; sourceTree = "<group>"; };
+		E8EF64011F0344D9000E9111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E8D49D3E1F02872E005EB7BE /* Frameworks */ = {
+		E8EF63CE1F0344D9000E9111 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8D49D6F1F03164F005EB7BE /* CoreLocation.framework in Frameworks */,
-				E8D49D5E1F0292ED005EB7BE /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EF63ED1F0344D9000E9111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EF63F81F0344D9000E9111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E8D49D381F02872E005EB7BE = {
+		E8EF63C81F0344D9000E9111 = {
 			isa = PBXGroup;
 			children = (
-				E8D49D4F1F0290CD005EB7BE /* Wannabee-prefix.h */,
-				E8D49D4E1F0290B0005EB7BE /* Database */,
-				E8D49D431F02872E005EB7BE /* Wannabee */,
-				E8D49D421F02872E005EB7BE /* Products */,
-				E8D49D5C1F0292ED005EB7BE /* Frameworks */,
+				E8EF63D31F0344D9000E9111 /* WannaBee */,
+				E8EF63F31F0344D9000E9111 /* WannaBeeTests */,
+				E8EF63FE1F0344D9000E9111 /* WannaBeeUITests */,
+				E8EF63D21F0344D9000E9111 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E8D49D421F02872E005EB7BE /* Products */ = {
+		E8EF63D21F0344D9000E9111 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8D49D411F02872E005EB7BE /* Wannabee */,
+				E8EF63D11F0344D9000E9111 /* WannaBee.app */,
+				E8EF63F01F0344D9000E9111 /* WannaBeeTests.xctest */,
+				E8EF63FB1F0344D9000E9111 /* WannaBeeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8D49D431F02872E005EB7BE /* Wannabee */ = {
+		E8EF63D31F0344D9000E9111 /* WannaBee */ = {
 			isa = PBXGroup;
 			children = (
-				E8D49D441F02872E005EB7BE /* main.m */,
-				E8D49D4B1F02878E005EB7BE /* RemoteAPI.h */,
-				E8D49D4C1F02878E005EB7BE /* RemoteAPI.m */,
-				E8D49D701F0321B1005EB7BE /* WannabeeLocationManager.h */,
-				E8D49D711F0321B1005EB7BE /* WannabeeLocationManager.m */,
+				E8EF63D71F0344D9000E9111 /* AppDelegate.h */,
+				E8EF63D81F0344D9000E9111 /* AppDelegate.m */,
+				E8EF63DA1F0344D9000E9111 /* RootViewController.h */,
+				E8EF63DB1F0344D9000E9111 /* RootViewController.m */,
+				E8EF63DD1F0344D9000E9111 /* DataViewController.h */,
+				E8EF63DE1F0344D9000E9111 /* DataViewController.m */,
+				E8EF63E01F0344D9000E9111 /* ModelController.h */,
+				E8EF63E11F0344D9000E9111 /* ModelController.m */,
+				E8EF63E31F0344D9000E9111 /* Main.storyboard */,
+				E8EF63E61F0344D9000E9111 /* Assets.xcassets */,
+				E8EF63E81F0344D9000E9111 /* LaunchScreen.storyboard */,
+				E8EF63EB1F0344D9000E9111 /* Info.plist */,
+				E8EF63D41F0344D9000E9111 /* Supporting Files */,
 			);
-			path = Wannabee;
+			path = WannaBee;
 			sourceTree = "<group>";
 		};
-		E8D49D4E1F0290B0005EB7BE /* Database */ = {
+		E8EF63D41F0344D9000E9111 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E8D49D501F029130005EB7BE /* database.h */,
-				E8D49D511F029130005EB7BE /* database.m */,
-				E8D49D591F029163005EB7BE /* dbObject.h */,
-				E8D49D5A1F029163005EB7BE /* dbObject.m */,
-				E8D49D531F029141005EB7BE /* dbConfig.h */,
-				E8D49D541F029141005EB7BE /* dbConfig.m */,
-				E8D49D561F029153005EB7BE /* dbItem.h */,
-				E8D49D571F029153005EB7BE /* dbItem.m */,
-				E8D49D5F1F029567005EB7BE /* dbItemsInPouch.h */,
-				E8D49D601F029567005EB7BE /* dbItemsInPouch.m */,
-				E8D49D621F029692005EB7BE /* dbSet.h */,
-				E8D49D631F029692005EB7BE /* dbSet.m */,
-				E8D49D651F02A641005EB7BE /* dbItemInSet.h */,
-				E8D49D661F02A641005EB7BE /* dbItemInSet.m */,
-				E8D49D681F02ACBE005EB7BE /* dbPlace.h */,
-				E8D49D691F02ACBE005EB7BE /* dbPlace.m */,
-				E8D49D6B1F02ACCC005EB7BE /* dbItemInPlace.h */,
-				E8D49D6C1F02ACCC005EB7BE /* dbItemInPlace.m */,
+				E8EF63D51F0344D9000E9111 /* main.m */,
 			);
-			name = Database;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E8D49D5C1F0292ED005EB7BE /* Frameworks */ = {
+		E8EF63F31F0344D9000E9111 /* WannaBeeTests */ = {
 			isa = PBXGroup;
 			children = (
-				E8D49D6E1F03164F005EB7BE /* CoreLocation.framework */,
-				E8D49D5D1F0292ED005EB7BE /* libsqlite3.tbd */,
+				E8EF63F41F0344D9000E9111 /* WannaBeeTests.m */,
+				E8EF63F61F0344D9000E9111 /* Info.plist */,
 			);
-			name = Frameworks;
+			path = WannaBeeTests;
+			sourceTree = "<group>";
+		};
+		E8EF63FE1F0344D9000E9111 /* WannaBeeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E8EF63FF1F0344D9000E9111 /* WannaBeeUITests.m */,
+				E8EF64011F0344D9000E9111 /* Info.plist */,
+			);
+			path = WannaBeeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E8D49D401F02872E005EB7BE /* WannaBee */ = {
+		E8EF63D01F0344D9000E9111 /* WannaBee */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8D49D481F02872E005EB7BE /* Build configuration list for PBXNativeTarget "WannaBee" */;
+			buildConfigurationList = E8EF64041F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBee" */;
 			buildPhases = (
-				E8D49D3D1F02872E005EB7BE /* Sources */,
-				E8D49D3E1F02872E005EB7BE /* Frameworks */,
-				E8D49D3F1F02872E005EB7BE /* CopyFiles */,
+				E8EF63CD1F0344D9000E9111 /* Sources */,
+				E8EF63CE1F0344D9000E9111 /* Frameworks */,
+				E8EF63CF1F0344D9000E9111 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WannaBee;
-			productName = Wannabee;
-			productReference = E8D49D411F02872E005EB7BE /* Wannabee */;
+			productName = WannaBee;
+			productReference = E8EF63D11F0344D9000E9111 /* WannaBee.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E8EF63EF1F0344D9000E9111 /* WannaBeeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8EF64071F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBeeTests" */;
+			buildPhases = (
+				E8EF63EC1F0344D9000E9111 /* Sources */,
+				E8EF63ED1F0344D9000E9111 /* Frameworks */,
+				E8EF63EE1F0344D9000E9111 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8EF63F21F0344D9000E9111 /* PBXTargetDependency */,
+			);
+			name = WannaBeeTests;
+			productName = WannaBeeTests;
+			productReference = E8EF63F01F0344D9000E9111 /* WannaBeeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E8EF63FA1F0344D9000E9111 /* WannaBeeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8EF640A1F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBeeUITests" */;
+			buildPhases = (
+				E8EF63F71F0344D9000E9111 /* Sources */,
+				E8EF63F81F0344D9000E9111 /* Frameworks */,
+				E8EF63F91F0344D9000E9111 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8EF63FD1F0344D9000E9111 /* PBXTargetDependency */,
+			);
+			name = WannaBeeUITests;
+			productName = WannaBeeUITests;
+			productReference = E8EF63FB1F0344D9000E9111 /* WannaBeeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E8D49D391F02872E005EB7BE /* Project object */ = {
+		E8EF63C91F0344D9000E9111 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Edwin Groothuis";
 				TargetAttributes = {
-					E8D49D401F02872E005EB7BE = {
+					E8EF63D01F0344D9000E9111 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = NRQ2A5FE8M;
 						ProvisioningStyle = Automatic;
 					};
+					E8EF63EF1F0344D9000E9111 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = NRQ2A5FE8M;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E8EF63D01F0344D9000E9111;
+					};
+					E8EF63FA1F0344D9000E9111 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = NRQ2A5FE8M;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E8EF63D01F0344D9000E9111;
+					};
 				};
 			};
-			buildConfigurationList = E8D49D3C1F02872E005EB7BE /* Build configuration list for PBXProject "WannaBee" */;
+			buildConfigurationList = E8EF63CC1F0344D9000E9111 /* Build configuration list for PBXProject "WannaBee" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = E8D49D381F02872E005EB7BE;
-			productRefGroup = E8D49D421F02872E005EB7BE /* Products */;
+			mainGroup = E8EF63C81F0344D9000E9111;
+			productRefGroup = E8EF63D21F0344D9000E9111 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E8D49D401F02872E005EB7BE /* WannaBee */,
+				E8EF63D01F0344D9000E9111 /* WannaBee */,
+				E8EF63EF1F0344D9000E9111 /* WannaBeeTests */,
+				E8EF63FA1F0344D9000E9111 /* WannaBeeUITests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		E8EF63CF1F0344D9000E9111 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EF63EA1F0344D9000E9111 /* LaunchScreen.storyboard in Resources */,
+				E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */,
+				E8EF63E51F0344D9000E9111 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EF63EE1F0344D9000E9111 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EF63F91F0344D9000E9111 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		E8D49D3D1F02872E005EB7BE /* Sources */ = {
+		E8EF63CD1F0344D9000E9111 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8D49D4D1F02878E005EB7BE /* RemoteAPI.m in Sources */,
-				E8D49D551F029141005EB7BE /* dbConfig.m in Sources */,
-				E8D49D5B1F029163005EB7BE /* dbObject.m in Sources */,
-				E8D49D521F029130005EB7BE /* database.m in Sources */,
-				E8D49D671F02A641005EB7BE /* dbItemInSet.m in Sources */,
-				E8D49D641F029692005EB7BE /* dbSet.m in Sources */,
-				E8D49D581F029153005EB7BE /* dbItem.m in Sources */,
-				E8D49D6D1F02ACCC005EB7BE /* dbItemInPlace.m in Sources */,
-				E8D49D6A1F02ACBE005EB7BE /* dbPlace.m in Sources */,
-				E8D49D721F0321B1005EB7BE /* WannabeeLocationManager.m in Sources */,
-				E8D49D451F02872E005EB7BE /* main.m in Sources */,
-				E8D49D611F029567005EB7BE /* dbItemsInPouch.m in Sources */,
+				E8EF63DF1F0344D9000E9111 /* DataViewController.m in Sources */,
+				E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */,
+				E8EF63E21F0344D9000E9111 /* ModelController.m in Sources */,
+				E8EF63D61F0344D9000E9111 /* main.m in Sources */,
+				E8EF63DC1F0344D9000E9111 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EF63EC1F0344D9000E9111 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EF63F51F0344D9000E9111 /* WannaBeeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EF63F71F0344D9000E9111 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8EF64001F0344D9000E9111 /* WannaBeeUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E8EF63F21F0344D9000E9111 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8EF63D01F0344D9000E9111 /* WannaBee */;
+			targetProxy = E8EF63F11F0344D9000E9111 /* PBXContainerItemProxy */;
+		};
+		E8EF63FD1F0344D9000E9111 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8EF63D01F0344D9000E9111 /* WannaBee */;
+			targetProxy = E8EF63FC1F0344D9000E9111 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E8EF63E31F0344D9000E9111 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8EF63E41F0344D9000E9111 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E8EF63E81F0344D9000E9111 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8EF63E91F0344D9000E9111 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		E8D49D461F02872E005EB7BE /* Debug */ = {
+		E8EF64021F0344D9000E9111 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -241,7 +367,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -260,14 +386,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		E8D49D471F02872E005EB7BE /* Release */ = {
+		E8EF64031F0344D9000E9111 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -289,7 +416,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -302,56 +429,125 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		E8D49D491F02872E005EB7BE /* Debug */ = {
+		E8EF64051F0344D9000E9111 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				INFOPLIST_FILE = WannaBee/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		E8D49D4A1F02872E005EB7BE /* Release */ = {
+		E8EF64061F0344D9000E9111 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				INFOPLIST_FILE = WannaBee/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		E8EF64081F0344D9000E9111 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				INFOPLIST_FILE = WannaBeeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBeeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WannaBee.app/WannaBee";
+			};
+			name = Debug;
+		};
+		E8EF64091F0344D9000E9111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				INFOPLIST_FILE = WannaBeeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBeeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WannaBee.app/WannaBee";
+			};
+			name = Release;
+		};
+		E8EF640B1F0344D9000E9111 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				INFOPLIST_FILE = WannaBeeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBeeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = WannaBee;
+			};
+			name = Debug;
+		};
+		E8EF640C1F0344D9000E9111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NRQ2A5FE8M;
+				INFOPLIST_FILE = WannaBeeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.mavetju.WannaBeeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = WannaBee;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E8D49D3C1F02872E005EB7BE /* Build configuration list for PBXProject "WannaBee" */ = {
+		E8EF63CC1F0344D9000E9111 /* Build configuration list for PBXProject "WannaBee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8D49D461F02872E005EB7BE /* Debug */,
-				E8D49D471F02872E005EB7BE /* Release */,
+				E8EF64021F0344D9000E9111 /* Debug */,
+				E8EF64031F0344D9000E9111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8D49D481F02872E005EB7BE /* Build configuration list for PBXNativeTarget "WannaBee" */ = {
+		E8EF64041F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8D49D491F02872E005EB7BE /* Debug */,
-				E8D49D4A1F02872E005EB7BE /* Release */,
+				E8EF64051F0344D9000E9111 /* Debug */,
+				E8EF64061F0344D9000E9111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		E8EF64071F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBeeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8EF64081F0344D9000E9111 /* Debug */,
+				E8EF64091F0344D9000E9111 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E8EF640A1F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBeeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8EF640B1F0344D9000E9111 /* Debug */,
+				E8EF640C1F0344D9000E9111 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E8D49D391F02872E005EB7BE /* Project object */;
+	rootObject = E8EF63C91F0344D9000E9111 /* Project object */;
 }

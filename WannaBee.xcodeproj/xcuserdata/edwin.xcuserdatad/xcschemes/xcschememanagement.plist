@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Wannabee.xcscheme</key>
+		<key>WannaBee.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>E8D49D401F02872E005EB7BE</key>
+		<key>E8EF63D01F0344D9000E9111</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8EF63EF1F0344D9000E9111</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8EF63FA1F0344D9000E9111</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8D49D401F02872E005EB7BE"
-               BuildableName = "WannaBee.xctest"
+               BlueprintIdentifier = "E8EF63D01F0344D9000E9111"
+               BuildableName = "WannaBee.app"
                BlueprintName = "WannaBee"
                ReferencedContainer = "container:WannaBee.xcodeproj">
             </BuildableReference>
@@ -28,12 +28,32 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E8EF63EF1F0344D9000E9111"
+               BuildableName = "WannaBeeTests.xctest"
+               BlueprintName = "WannaBeeTests"
+               ReferencedContainer = "container:WannaBee.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E8EF63FA1F0344D9000E9111"
+               BuildableName = "WannaBeeUITests.xctest"
+               BlueprintName = "WannaBeeUITests"
+               ReferencedContainer = "container:WannaBee.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E8D49D401F02872E005EB7BE"
-            BuildableName = "WannaBee.xctest"
+            BlueprintIdentifier = "E8EF63D01F0344D9000E9111"
+            BuildableName = "WannaBee.app"
             BlueprintName = "WannaBee"
             ReferencedContainer = "container:WannaBee.xcodeproj">
          </BuildableReference>
@@ -55,8 +75,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E8D49D401F02872E005EB7BE"
-            BuildableName = "WannaBee.xctest"
+            BlueprintIdentifier = "E8EF63D01F0344D9000E9111"
+            BuildableName = "WannaBee.app"
             BlueprintName = "WannaBee"
             ReferencedContainer = "container:WannaBee.xcodeproj">
          </BuildableReference>
@@ -74,8 +94,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E8D49D401F02872E005EB7BE"
-            BuildableName = "WannaBee.xctest"
+            BlueprintIdentifier = "E8EF63D01F0344D9000E9111"
+            BuildableName = "WannaBee.app"
             BlueprintName = "WannaBee"
             ReferencedContainer = "container:WannaBee.xcodeproj">
          </BuildableReference>
