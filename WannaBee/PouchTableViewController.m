@@ -27,25 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                            action:@selector(reloadData)
-                  forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)refreshTitle:(NSString *)title
-{
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-    self.refreshControl.attributedTitle = attributedTitle;
+    [self refreshInit];
 }
 
 - (void)refreshData
 {
-    self.items = [dbItem allInPouch];
+    self.items = [dbItemInPouch all];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
@@ -61,9 +48,7 @@
 {
     [api api_users__pouch];
     [self refreshData];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.refreshControl endRefreshing];
-    }];
+    [self refreshStop];
 }
 
 @end

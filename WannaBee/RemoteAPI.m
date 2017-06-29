@@ -224,7 +224,14 @@
 - (int)api_users__sets:(NSInteger)set_id
 {
     NSLog(@"api_users__sets:%d", set_id);
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/users/%@/sets/%d", self.host, self.user_id, set_id]];
+    NSURL *url = nil;
+
+    if (set_id == 20)
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/users/%@/branded", self.host, self.user_id]];
+    else if (set_id == 25)
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/users/%@/unique", self.host, self.user_id]];
+    else
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/users/%@/sets/%d", self.host, self.user_id, set_id]];
 
     NSMutableURLRequest *req = [self newRequest:url];
 
@@ -257,6 +264,9 @@
             item.name = name;
             item.set_id = set._id;
             [item create];
+        } else {
+            item.name = name;
+            [item update];
         }
         if ([number isKindOfClass:[NSNumber class]] == YES) {
             dbItemInSet *iis = [dbItemInSet getByItemId:item];
@@ -307,6 +317,9 @@
             place = [[dbPlace alloc] init];
             place.name = name;
             place.place_id = [place_id integerValue];
+            place.lat = [[itemDict objectForKey:@"lat"] floatValue];
+            place.lon = [[itemDict objectForKey:@"lng"] floatValue];
+            place.radius = [[itemDict objectForKey:@"radius"] longValue];
             [place create];
         }
     }];
@@ -343,6 +356,16 @@
         NSNumber *number = [itemDict objectForKey:@"number"];
 
         dbItem *item = [dbItem getByItemTypeId:[item_type_id integerValue]];
+        if (item == nil) {
+            // This happens when an unique item gets seen
+            item = [[dbItem alloc] init];
+            item.name = [itemDict objectForKey:@"name"];
+            item.item_type_id = [item_type_id integerValue];
+            dbSet *set = [dbSet getBySetName:[itemDict objectForKey:@"set_name"]];
+            item.set_id = set._id;
+            [item create];
+        }
+
         dbItemInPlace *iip = [[dbItemInPlace alloc] init];
         iip.place_id = place._id;
         iip.item_id = item._id;

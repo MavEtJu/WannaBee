@@ -23,21 +23,8 @@
     [super viewDidLoad];
     [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_SET];
 
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                            action:@selector(reloadData)
-                  forControlEvents:UIControlEventValueChanged];
-
+    [self refreshInit];
     [self refreshData];
-}
-
-- (void)refreshTitle:(NSString *)title
-{
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-    self.refreshControl.attributedTitle = attributedTitle;
 }
 
 - (void)refreshData
@@ -70,10 +57,7 @@
     }];
 
     [self refreshData];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        if (self.refreshControl != nil)
-            [self.refreshControl endRefreshing];
-    }];
+    [self refreshStop];
 
     // Now fill the pouch
     [appDelegate.pouchVC refreshData];
@@ -111,7 +95,7 @@
     SetTableViewController *newController = [[SetTableViewController alloc] initWithStyle:UITableViewStylePlain];
     [newController showSet:set];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
-    newController.title = @"Set";
+    newController.title = set.name;
     [self.navigationController pushViewController:newController animated:YES];
 }
 

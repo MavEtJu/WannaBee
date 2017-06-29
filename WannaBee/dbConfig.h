@@ -15,5 +15,6 @@
 
 + (NSArray<dbConfig *> *)all;
 + (dbConfig *)getByKey:(NSString *)key;
+- (void)update;
 
 @end

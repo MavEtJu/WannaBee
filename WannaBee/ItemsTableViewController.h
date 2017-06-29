@@ -16,9 +16,9 @@ typedef NS_ENUM(NSInteger, ItemsTableType) {
     TYPE_NEWER,
 };
 
-@interface ItemsTableViewController : UITableViewController
+@interface ItemsTableViewController : WBTableViewController
 
-@property (nonatomic, retain) NSArray<dbItem *> *items;
+@property (nonatomic, retain) NSArray<NSObject *> *items;
 @property (nonatomic) ItemsTableType type;
 @property (nonatomic, retain) dbPlace *place;
 

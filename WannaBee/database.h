@@ -12,6 +12,8 @@
 
 @property (nonatomic) sqlite3 *db;
 
+- (void)upgrade;
+
 + (NSArray<NSArray *> *)newerItemsInPlaces;
 + (NSArray<NSArray *> *)newerItemsInPouch;
 + (NSArray<NSArray *> *)newItemsInPlaces;

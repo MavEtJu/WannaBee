@@ -18,16 +18,35 @@
 {
     self = [super initWithStyle:style];
 
-    self.title = @"Place";
     self.type = TYPE_PLACE;
+    [self refreshInit];
 
     return self;
+}
+
+- (void)refreshData
+{
+    self.items = [dbItemInPlace allItemsInPlace:self.place];
+    [self.tableView reloadData];
+}
+
+- (void)reloadData
+{
+    [self refreshTitle:@"Reloading place data"];
+    [self performSelectorInBackground:@selector(reloadDataBG) withObject:nil];
+}
+
+- (void)reloadDataBG
+{
+    [api api_places__items:self.place.place_id];
+    [self refreshData];
+    [self refreshStop];
 }
 
 - (void)showPlace:(dbPlace *)place
 {
     self.place = place;
-    self.items = [dbItem allInPlace:place];
+    [self refreshData];
 }
 
 @end

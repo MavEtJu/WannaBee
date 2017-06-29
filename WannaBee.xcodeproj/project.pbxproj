@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E82C7F5B1F0496B200625131 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F591F0496B200625131 /* ItemTableViewCell.m */; };
 		E82C7F5C1F0496B200625131 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */; };
+		E82C7F5F1F04D7E400625131 /* WBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F5E1F04D7E400625131 /* WBTableViewController.m */; };
 		E8EF63D61F0344D9000E9111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D51F0344D9000E9111 /* main.m */; };
 		E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D81F0344D9000E9111 /* AppDelegate.m */; };
 		E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E61F0344D9000E9111 /* Assets.xcassets */; };
@@ -69,6 +70,8 @@
 		E82C7F581F0496B200625131 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemTableViewCell.h; sourceTree = "<group>"; };
 		E82C7F591F0496B200625131 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
 		E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		E82C7F5D1F04D7E400625131 /* WBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTableViewController.h; sourceTree = "<group>"; };
+		E82C7F5E1F04D7E400625131 /* WBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTableViewController.m; sourceTree = "<group>"; };
 		E8EF63D11F0344D9000E9111 /* WannaBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WannaBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EF63D51F0344D9000E9111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EF63D71F0344D9000E9111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -242,10 +245,10 @@
 			children = (
 				E8EF640E1F03458B000E9111 /* database.h */,
 				E8EF640F1F03458B000E9111 /* database.m */,
-				E8EF64101F03458B000E9111 /* dbConfig.h */,
-				E8EF64111F03458B000E9111 /* dbConfig.m */,
 				E8EF641A1F03458B000E9111 /* dbObject.h */,
 				E8EF641B1F03458B000E9111 /* dbObject.m */,
+				E8EF64101F03458B000E9111 /* dbConfig.h */,
+				E8EF64111F03458B000E9111 /* dbConfig.m */,
 				E8EF64121F03458B000E9111 /* dbItem.h */,
 				E8EF64131F03458B000E9111 /* dbItem.m */,
 				E8EF64141F03458B000E9111 /* dbItemInPlace.h */,
@@ -271,6 +274,8 @@
 				E8EF64561F036DF0000E9111 /* TableViewCells */,
 				E8EF64421F035E68000E9111 /* TabBarController.h */,
 				E8EF64431F035E68000E9111 /* TabBarController.m */,
+				E82C7F5D1F04D7E400625131 /* WBTableViewController.h */,
+				E82C7F5E1F04D7E400625131 /* WBTableViewController.m */,
 				E8EF643C1F0357E1000E9111 /* ItemsTableViewController.h */,
 				E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */,
 				E82C7F581F0496B200625131 /* ItemTableViewCell.h */,
@@ -498,6 +503,7 @@
 				E8EF64551F036C20000E9111 /* SetsTableViewController.m in Sources */,
 				E8EF64251F03458B000E9111 /* dbItemsInPouch.m in Sources */,
 				E8EF64201F03458B000E9111 /* database.m in Sources */,
+				E82C7F5F1F04D7E400625131 /* WBTableViewController.m in Sources */,
 				E8EF64271F03458B000E9111 /* dbPlace.m in Sources */,
 				E8EF646D1F0480A4000E9111 /* SetTableViewController.m in Sources */,
 				E8EF64441F035E68000E9111 /* TabBarController.m in Sources */,

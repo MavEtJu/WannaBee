@@ -15,5 +15,6 @@
 
 + (dbItemInSet *)getByItemId:(dbItem *)item;
 + (dbItemInSet *)get:(NSId)_id;
++ (void)deleteBySet:(dbSet *)set;
 
 @end

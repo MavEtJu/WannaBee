@@ -24,6 +24,18 @@
     }
 }
 
++ (void)deleteBySet:(dbSet *)set
+{
+    @synchronized(db) {
+        DB_PREPARE(@"delete from items_in_sets where item_id in (select id from items where set_id = ?)");
+
+        SET_VAR_INT (1, set._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 + (NSArray<dbItemInSet *> *)dbAllXXX:(NSString *)where keys:(NSString *)keys values:(NSArray<NSObject *>*)values
 {
     NSMutableArray<dbItemInSet *> *ss = [NSMutableArray arrayWithCapacity:10];

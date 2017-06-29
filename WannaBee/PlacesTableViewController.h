@@ -8,7 +8,7 @@
 
 #import "Wannabee-prefix.h"
 
-@interface PlacesTableViewController : UITableViewController
+@interface PlacesTableViewController : WBTableViewController
 
 - (void)refreshData;
 

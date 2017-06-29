@@ -17,7 +17,7 @@
 + (NSArray<dbItemInPlace *> *)allItemsInPlace:(dbPlace *)place;
 + (dbItemInPlace *)getByItemId:(dbItem *)item place:(dbPlace *)place;
 + (dbItemInPlace *)get:(NSId)_id;
-+ (void)deleteByPlace:(NSId)place_id;
++ (void)deleteByPlace:(dbPlace *)place;
 + (void)deleteAll;
 
 @end

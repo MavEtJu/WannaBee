@@ -24,6 +24,7 @@
 
     // Database object
     db = [[database alloc] init];
+    [db upgrade];
 
     // Location Manager
     locationManager = [[LocationManager alloc] init];
@@ -126,6 +127,7 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 hud.detailsLabel.text = [NSString stringWithFormat:@"%d / %d - %@", 1 + idx, [sets count], set.name];
             }];
+            [dbItemInSet deleteBySet:set];
             [api api_users__sets:set.set_id];
             set.needs_refresh = NO;
             [set dbUpdateNeedsRefresh];
@@ -152,7 +154,7 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             hud.detailsLabel.text = [NSString stringWithFormat:@"%d / %d - %@", 1 + idx, [places count], place.name];
         }];
-        [dbItemInPlace deleteByPlace:place._id];
+        [dbItemInPlace deleteByPlace:place];
         [api api_places__items:place.place_id];
         [NSThread sleepForTimeInterval:1];
     }];

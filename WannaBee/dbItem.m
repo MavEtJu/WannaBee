@@ -13,7 +13,7 @@
 - (void)create
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into items(item_type_id, name,set_id) values(?, ?, ?)");
+        DB_PREPARE(@"insert into items(item_type_id, name, set_id) values(?, ?, ?)");
 
         SET_VAR_INT (1, self.item_type_id);
         SET_VAR_TEXT(2, self.name);
@@ -21,6 +21,21 @@
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id)
+        DB_FINISH;
+    }
+}
+
+- (void)update
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update items set item_type_id = ?, name = ?, set_id =? where id = ?");
+
+        SET_VAR_INT (1, self.item_type_id);
+        SET_VAR_TEXT(2, self.name);
+        SET_VAR_INT (3, self.set_id);
+        SET_VAR_INT (4, self._id);
+
+        DB_CHECK_OKAY;
         DB_FINISH;
     }
 }

@@ -75,12 +75,12 @@
     [self deleteAll:@"items_in_places"];
 }
 
-+ (void)deleteByPlace:(NSId)place_id
++ (void)deleteByPlace:(dbPlace *)place
 {
     @synchronized(db) {
         DB_PREPARE(@"delete from items_in_places where place_id = ?");
 
-        SET_VAR_INT (1, place_id);
+        SET_VAR_INT (1, place._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;

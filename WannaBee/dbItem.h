@@ -14,6 +14,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) NSId set_id;
 
+- (void)update;
 + (NSArray<dbItem *> *)all;
 + (NSArray<dbItem *> *)allInSet:(dbSet *)set;
 + (NSArray<dbItem *> *)allInSetStored:(dbSet *)set;

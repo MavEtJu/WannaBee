@@ -35,6 +35,7 @@
 #import "ItemTableViewCell.h"
 
 #import "TabBarController.h"
+#import "WBTableViewController.h"
 #import "ItemsTableViewController.h"
 #import "PouchTableViewController.h"
 #import "PlaceTableViewController.h"

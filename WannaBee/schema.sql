@@ -3,6 +3,7 @@ create table config(
     key text,
     value text
 );
+insert into config(key, value) values("version", "3");
 
 create table items(
     id integer primary key,
@@ -24,6 +25,8 @@ create table sets(
     items_in_set integer,
     needs_refresh bool
 );
+insert into sets(set_name, set_id, items_in_set, needs_refresh) values("Unique Items", 25, 0, 0);
+insert into sets(set_name, set_id, items_in_set, needs_refresh) values("Branded Items", 20, 0, 0);
 
 create table items_in_sets(
     id integer primary key,
@@ -34,7 +37,10 @@ create table items_in_sets(
 create table places(
     id integer primary key,
     name text,
-    place_id integer
+    place_id integer,
+    radius integer,
+    lat float,
+    lon float
 );
 
 create table items_in_places(

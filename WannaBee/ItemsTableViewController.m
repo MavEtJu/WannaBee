@@ -39,7 +39,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
-    dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
 
     cell.itemName.text = @"";
     cell.setName.text = @"";
@@ -47,7 +46,8 @@
     cell.numbers.text = @"";
 
     if (self.type == TYPE_POUCH) {
-        dbItemInPouch *iip = [dbItemInPouch getByItem:item];
+        dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
+        dbItem *item = [dbItem get:iip.item_id];
         cell.itemName.text = item.name;
         cell.numbers.text = [NSString stringWithFormat:@"Item in pouch: #%d", iip.number];
         dbSet *set = [dbSet get:item.set_id];
@@ -56,7 +56,8 @@
     }
 
     if (self.type == TYPE_PLACE) {
-        dbItemInPlace *iip = [dbItemInPlace getByItemId:item place:self.place];
+        dbItemInPlace *iip = (dbItemInPlace *)[self.items objectAtIndex:indexPath.row];
+        dbItem *item = [dbItem get:iip.item_id];
         cell.itemName.text = item.name;
         cell.numbers.text = [NSString stringWithFormat:@"Item in place: #%d", iip.number];
         dbSet *set = [dbSet get:item.set_id];
@@ -65,6 +66,7 @@
     }
 
     if (self.type == TYPE_SET) {
+        dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
         dbItemInSet *iis = [dbItemInSet getByItemId:item];
         cell.itemName.text = item.name;
         if (iis != nil)

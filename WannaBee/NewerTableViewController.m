@@ -154,17 +154,20 @@ typedef NS_ENUM(NSInteger, SectionType) {
 
     switch (indexPath.section) {
         case SECTION_NEWERITEMSINPOUCH:
-            cell.itemName.text = [NSString stringWithFormat:@"%@", item.name];
+            cell.itemName.text = item.name;
+            cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipo.number, iis.number];
             break;
         case SECTION_NEWERITEMSINPLACES:
             cell.itemName.text = item.name;
             cell.placeName.text = place.name;
+            cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipl.number, iis.number];
             break;
         case SECTION_NEWITEMSINPLACES:
             cell.itemName.text = item.name;
             cell.placeName.text = place.name;
+            cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
             break;
         case SECTION_ITEMSONWISHLIST:

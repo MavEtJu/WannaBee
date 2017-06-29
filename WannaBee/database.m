@@ -49,10 +49,46 @@
     sqlite3_open([database UTF8String], &db);
     NSAssert(db != nil, @"db");
     self.db = db;
-    
     NSLog(@"database: Using %@", database);
 
     return self;
+}
+
+- (void)upgrade
+{
+    dbConfig *c = [dbConfig getByKey:@"version"];
+    if (c == nil) {
+        c = [[dbConfig alloc] init];
+        c.key = @"version";
+        c.value = @"0";
+    }
+    switch ([c.value integerValue]) {
+        case 0:
+            [self execute:@"alter table places add column radius integer"];
+            /* fall through */
+        case 1:
+            [self execute:@"insert into sets(set_name, set_id, items_in_set, needs_refresh) values('Unique Items', 25, 0, 0)"];
+            [self execute:@"insert into sets(set_name, set_id, items_in_set, needs_refresh) values('Branded Items', 20, 0, 0)"];
+            /* fall through */
+        case 2:
+            [self execute:@"alter table places add column lat float"];
+            [self execute:@"alter table places add column lon float"];
+            /* fall through */
+        default:
+            ;
+    }
+#define VERSION 3
+    c.value = [NSString stringWithFormat:@"%d", VERSION];
+    [c update];
+}
+
+- (void)execute:(NSString *)sql
+{
+    @synchronized (db) {
+        DB_PREPARE(sql);
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
 }
 
 /* Methods */
