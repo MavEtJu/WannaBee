@@ -3,12 +3,13 @@ create table config(
     key text,
     value text
 );
-insert into config(key, value) values("version", "3");
+insert into config(key, value) values("version", "4");
 
 create table items(
     id integer primary key,
     item_type_id integer,
     name text,
+    imgurl text,
     set_id integer	-- points to set(id)
 );
 
@@ -21,6 +22,7 @@ create table items_in_pouch(
 create table sets(
     id integer primary key,
     set_name text,
+    imgurl text,
     set_id integer,
     items_in_set integer,
     needs_refresh bool
@@ -37,6 +39,7 @@ create table items_in_sets(
 create table places(
     id integer primary key,
     name text,
+    imgurl text,
     place_id integer,
     radius integer,
     lat float,
