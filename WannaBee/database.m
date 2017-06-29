@@ -61,7 +61,9 @@
         c = [[dbConfig alloc] init];
         c.key = @"version";
         c.value = @"0";
+        [c create];
     }
+    NSLog(@"Version: %@", c.value);
     switch ([c.value integerValue]) {
         case 0:
             [self execute:@"alter table places add column radius integer"];
@@ -78,6 +80,7 @@
             [self execute:@"alter table items add column imgurl text"];
             [self execute:@"alter table sets add column imgurl text"];
             [self execute:@"alter table places add column imgurl text"];
+            /* fall through */
         default:
             ;
     }

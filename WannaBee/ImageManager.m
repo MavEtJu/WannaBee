@@ -73,7 +73,14 @@
     NSString *urlhash = [self hash:urlstring];
     if ([self isCached:urlhash] == YES)
         return [self fromCache:urlhash];
-    
+
+    [self performSelectorInBackground:@selector(urlBG:) withObject:urlstring];
+    return nil;
+}
+
+- (void)urlBG:(NSString *)urlstring
+{
+    NSString *urlhash = [self hash:urlstring];
     NSURL *url = [NSURL URLWithString:urlstring];
 
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
@@ -87,16 +94,14 @@
 
     if (error != nil) {
         NSLog(@"%@", [error description]);
-        return nil;
+        return;
     }
     if (response.statusCode != 200) {
         NSLog(@"Return value: %d", response.statusCode);
-        return nil;
+        return;
     }
 
     [self cache:urlhash data:data];
-
-    return [UIImage imageWithData:data];
 }
 
 @end
