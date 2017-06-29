@@ -8,8 +8,18 @@
 
 #import "Wannabee-prefix.h"
 
+typedef NS_ENUM(NSInteger, ItemsTableType) {
+    TYPE_UNKNOWN = 0,
+    TYPE_POUCH,
+    TYPE_PLACE,
+    TYPE_SET,
+    TYPE_NEWER,
+};
+
 @interface ItemsTableViewController : UITableViewController
 
-@property (nonatomic, retain) NSArray<NSObject *> *items;
+@property (nonatomic, retain) NSArray<dbItem *> *items;
+@property (nonatomic) ItemsTableType type;
+@property (nonatomic, retain) dbPlace *place;
 
 @end

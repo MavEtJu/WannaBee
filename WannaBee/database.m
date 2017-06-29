@@ -148,4 +148,34 @@
     return ss;
 }
 
++ (NSArray<NSArray *> *)itemsOnWishlist
+{
+    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
+
+    dbPlace *excludePlace = [dbPlace getByPlaceName:@"The WallaBee Museum"];
+
+    NSString *sql = @"select w.item_id, iip.id from items_in_places iip join wishlist w on iip.item_id = w.item_id where iip.place_id != ?";
+
+    @synchronized(db) {
+        DB_PREPARE(sql);
+
+        SET_VAR_INT(1, excludePlace._id);
+
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN(0, item_id);
+            INT_FETCH_AND_ASSIGN(1, iip_id);
+
+            dbItem *item = [dbItem get:item_id];
+            dbSet *set = [dbSet get:item.set_id];
+            dbItemInPlace *iip = [dbItemInPlace get:iip_id];
+            dbPlace *place = [dbPlace get:iip.place_id];
+
+            [ss addObject:@[item, set, iip, place]];
+        }
+        DB_FINISH;
+    }
+    
+    return ss;
+}
+
 @end

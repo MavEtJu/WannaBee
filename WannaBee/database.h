@@ -15,6 +15,7 @@
 + (NSArray<NSArray *> *)newerItemsInPlaces;
 + (NSArray<NSArray *> *)newerItemsInPouch;
 + (NSArray<NSArray *> *)newItemsInPlaces;
++ (NSArray<NSArray *> *)itemsOnWishlist;
 
 @end
 

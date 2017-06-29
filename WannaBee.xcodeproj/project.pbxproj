@@ -43,6 +43,7 @@
 		E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */; };
 		E8EF646A1F04735D000E9111 /* PlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64691F04735D000E9111 /* PlaceTableViewController.m */; };
 		E8EF646D1F0480A4000E9111 /* SetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF646C1F0480A4000E9111 /* SetTableViewController.m */; };
+		E8EF64731F0488D7000E9111 /* dbWishList.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64721F0488D7000E9111 /* dbWishList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,8 @@
 		E8EF64691F04735D000E9111 /* PlaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTableViewController.m; sourceTree = "<group>"; };
 		E8EF646B1F0480A4000E9111 /* SetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewController.h; sourceTree = "<group>"; };
 		E8EF646C1F0480A4000E9111 /* SetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewController.m; sourceTree = "<group>"; };
+		E8EF64711F0488D7000E9111 /* dbWishList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbWishList.h; path = WannaBee/dbWishList.h; sourceTree = "<group>"; };
+		E8EF64721F0488D7000E9111 /* dbWishList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = dbWishList.m; path = WannaBee/dbWishList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +239,8 @@
 				E8EF640F1F03458B000E9111 /* database.m */,
 				E8EF64101F03458B000E9111 /* dbConfig.h */,
 				E8EF64111F03458B000E9111 /* dbConfig.m */,
+				E8EF641A1F03458B000E9111 /* dbObject.h */,
+				E8EF641B1F03458B000E9111 /* dbObject.m */,
 				E8EF64121F03458B000E9111 /* dbItem.h */,
 				E8EF64131F03458B000E9111 /* dbItem.m */,
 				E8EF64141F03458B000E9111 /* dbItemInPlace.h */,
@@ -244,12 +249,12 @@
 				E8EF64171F03458B000E9111 /* dbItemInSet.m */,
 				E8EF64181F03458B000E9111 /* dbItemsInPouch.h */,
 				E8EF64191F03458B000E9111 /* dbItemsInPouch.m */,
-				E8EF641A1F03458B000E9111 /* dbObject.h */,
-				E8EF641B1F03458B000E9111 /* dbObject.m */,
 				E8EF641C1F03458B000E9111 /* dbPlace.h */,
 				E8EF641D1F03458B000E9111 /* dbPlace.m */,
 				E8EF641E1F03458B000E9111 /* dbSet.h */,
 				E8EF641F1F03458B000E9111 /* dbSet.m */,
+				E8EF64711F0488D7000E9111 /* dbWishList.h */,
+				E8EF64721F0488D7000E9111 /* dbWishList.m */,
 				E8EF642D1F03460E000E9111 /* schema.sql */,
 			);
 			name = Database;
@@ -261,6 +266,8 @@
 				E8EF64561F036DF0000E9111 /* TableViewCells */,
 				E8EF64421F035E68000E9111 /* TabBarController.h */,
 				E8EF64431F035E68000E9111 /* TabBarController.m */,
+				E8EF643C1F0357E1000E9111 /* ItemsTableViewController.h */,
+				E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */,
 				E8EF64471F0364FA000E9111 /* PouchTableViewController.h */,
 				E8EF64481F0364FA000E9111 /* PouchTableViewController.m */,
 				E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */,
@@ -273,8 +280,6 @@
 				E8EF646C1F0480A4000E9111 /* SetTableViewController.m */,
 				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
 				E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */,
-				E8EF643C1F0357E1000E9111 /* ItemsTableViewController.h */,
-				E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */,
 			);
 			name = GUI;
 			path = WannaBee;
@@ -467,6 +472,7 @@
 				E8EF643E1F0357E1000E9111 /* ItemsTableViewController.m in Sources */,
 				E8EF645C1F036E1C000E9111 /* TableViewCellSubtitle.m in Sources */,
 				E8EF64261F03458B000E9111 /* dbObject.m in Sources */,
+				E8EF64731F0488D7000E9111 /* dbWishList.m in Sources */,
 				E8EF64221F03458B000E9111 /* dbItem.m in Sources */,
 				E8EF64491F0364FA000E9111 /* PouchTableViewController.m in Sources */,
 				E8EF64591F036E0D000E9111 /* TableViewCellPlain.m in Sources */,
@@ -709,6 +715,7 @@
 				E8EF64061F0344D9000E9111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8EF64071F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBeeTests" */ = {
 			isa = XCConfigurationList;
@@ -717,6 +724,7 @@
 				E8EF64091F0344D9000E9111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8EF640A1F0344D9000E9111 /* Build configuration list for PBXNativeTarget "WannaBeeUITests" */ = {
 			isa = XCConfigurationList;
@@ -725,6 +733,7 @@
 				E8EF640C1F0344D9000E9111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

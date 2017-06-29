@@ -19,6 +19,7 @@
     self = [super initWithStyle:style];
 
     self.title = @"Pouch";
+    self.type = TYPE_POUCH;
 
     return self;
 }

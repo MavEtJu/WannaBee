@@ -25,6 +25,7 @@
 #import "dbSet.h"
 #import "dbPlace.h"
 #import "dbItem.h"
+#import "dbWishList.h"
 #import "dbItemInSet.h"
 #import "dbItemsInPouch.h"
 #import "dbItemInPlace.h"

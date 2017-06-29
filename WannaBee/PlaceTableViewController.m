@@ -19,12 +19,14 @@
     self = [super initWithStyle:style];
 
     self.title = @"Place";
+    self.type = TYPE_PLACE;
 
     return self;
 }
 
 - (void)showPlace:(dbPlace *)place
 {
+    self.place = place;
     self.items = [dbItem allInPlace:place];
 }
 

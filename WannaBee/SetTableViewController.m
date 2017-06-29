@@ -15,6 +15,7 @@
     self = [super initWithStyle:style];
 
     self.title = @"Set";
+    self.type = TYPE_SET;
 
     return self;
 }

@@ -15,5 +15,6 @@
 - (void)create;
 
 + (void)deleteAll:(NSString *)table;
+- (void)delete:(NSString *)table;
 
 @end

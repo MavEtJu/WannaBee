@@ -13,7 +13,7 @@
 @property (nonatomic) NSId item_id;
 @property (nonatomic) NSInteger number;
 
-+ (dbItemInSet *)getByItemId:(NSId)item_id;
++ (dbItemInSet *)getByItemId:(dbItem *)item;
 + (dbItemInSet *)get:(NSId)_id;
 
 @end

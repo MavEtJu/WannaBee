@@ -13,12 +13,28 @@
 @property (nonatomic, retain) NSArray<NSObject *> *newerItemsInPlaces;
 @property (nonatomic, retain) NSArray<NSObject *> *newerItemsInPouch;
 @property (nonatomic, retain) NSArray<NSObject *> *unseenItemsInPlaces;
+@property (nonatomic, retain) NSArray<NSObject *> *itemsOnWishlist;
 
 @end
+
+typedef NS_ENUM(NSInteger, SectionType) {
+    SECTION_NEWITEMSINPLACES = 0,
+    SECTION_NEWERITEMSINPLACES,
+    SECTION_NEWERITEMSINPOUCH,
+    SECTION_ITEMSONWISHLIST,
+    SECTION_MAX,
+};
 
 @implementation NewerTableViewController
 
 #define CELL_ITEM   @"CELL_ITEM"
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -33,6 +49,7 @@
     self.newerItemsInPlaces = [database newerItemsInPlaces];
     self.newerItemsInPouch = [database newerItemsInPouch];
     self.unseenItemsInPlaces = [database newItemsInPlaces];
+    self.itemsOnWishlist = [database itemsOnWishlist];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
@@ -43,18 +60,20 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return SECTION_MAX;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
+        case SECTION_NEWITEMSINPLACES:
             return @"New Items in Places";
-        case 1:
+        case SECTION_NEWERITEMSINPLACES:
             return @"Newer Items in Places";
-        case 2:
+        case SECTION_NEWERITEMSINPOUCH:
             return @"Newer Items in Pouch";
+        case SECTION_ITEMSONWISHLIST:
+            return @"Wishlist";
     }
     return @"???";
 }
@@ -62,12 +81,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
-        case 0:
+        case SECTION_NEWITEMSINPLACES:
             return [self.unseenItemsInPlaces count];
-        case 1:
+        case SECTION_NEWERITEMSINPLACES:
             return [self.newerItemsInPlaces count];
-        case 2:
+        case SECTION_NEWERITEMSINPOUCH:
             return [self.newerItemsInPouch count];
+        case SECTION_ITEMSONWISHLIST:
+            return [self.itemsOnWishlist count];
     }
     return 0;
 }
@@ -77,74 +98,66 @@
     TableViewCellSubtitle *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
     NSObject *o;
     switch (indexPath.section) {
-        case 0:
+        case SECTION_NEWITEMSINPLACES:
             o = [self.unseenItemsInPlaces objectAtIndex:indexPath.row];
             break;
-        case 1:
+        case SECTION_NEWERITEMSINPLACES:
             o = [self.newerItemsInPlaces objectAtIndex:indexPath.row];
             break;
-        case 2:
+        case SECTION_NEWERITEMSINPOUCH:
             o = [self.newerItemsInPouch objectAtIndex:indexPath.row];
+            break;
+        case SECTION_ITEMSONWISHLIST:
+            o = [self.itemsOnWishlist objectAtIndex:indexPath.row];
             break;
     }
 
     cell.textLabel.text = @"-";
     cell.detailTextLabel.text = @"";
 
-    if ([o isKindOfClass:[dbItem class]] == YES) {
-        dbItem *item = (dbItem *)o;
-        cell.textLabel.text = item.name;
-        return cell;
+    NSArray *as = (NSArray *)o;
+
+    __block dbItem *item = nil;
+    __block dbSet *set = nil;
+    __block dbPlace *place = nil;
+    __block dbItemInSet *iis = nil;
+    __block dbItemInPlace *iipl = nil;
+    __block dbItemInPouch *iipo = nil;
+
+    [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([a isKindOfClass:[dbItem class]] == YES)
+            item = (dbItem *)a;
+        if ([a isKindOfClass:[dbSet class]] == YES)
+            set = (dbSet *)a;
+        if ([a isKindOfClass:[dbPlace class]] == YES)
+            place = (dbPlace *)a;
+        if ([a isKindOfClass:[dbItemInSet class]] == YES)
+            iis = (dbItemInSet *)a;
+        if ([a isKindOfClass:[dbItemInPlace class]] == YES)
+            iipl = (dbItemInPlace *)a;
+        if ([a isKindOfClass:[dbItemInPouch class]] == YES)
+            iipo = (dbItemInPouch *)a;
+    }];
+
+    switch (indexPath.section) {
+        case SECTION_NEWERITEMSINPOUCH:
+            cell.textLabel.text = [NSString stringWithFormat:@"%@", item.name];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipo.number, iis.number];
+            break;
+        case SECTION_NEWERITEMSINPLACES:
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item.name, place.name];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipl.number, iis.number];
+            break;
+        case SECTION_NEWITEMSINPLACES:
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item.name, place.name];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
+            break;
+        case SECTION_ITEMSONWISHLIST:
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item.name, set.name];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d at %@", iipl.number, place.name];
+            break;
     }
 
-    if ([o isKindOfClass:[NSArray class]] == YES) {
-        NSArray *as = (NSArray *)o;
-
-        __block NSString *place = nil;
-        __block NSString *set = nil;
-        __block NSString *item = nil;
-        __block NSInteger mynumber = 0;
-        __block NSInteger newnumber = 0;
-
-        [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([a isKindOfClass:[dbItem class]] == YES) {
-                dbItem *i = (dbItem *)a;
-                item = i.name;
-            }
-            if ([a isKindOfClass:[dbSet class]] == YES) {
-                dbSet *s = (dbSet *)a;
-                set = s.name;
-            }
-            if ([a isKindOfClass:[dbPlace class]] == YES) {
-                dbPlace *p = (dbPlace *)a;
-                place = p.name;
-            }
-            if ([a isKindOfClass:[dbItemInSet class]] == YES) {
-                dbItemInSet *iis = (dbItemInSet *)a;
-                mynumber = iis.number;
-            }
-            if ([a isKindOfClass:[dbItemInPlace class]] == YES) {
-                dbItemInPlace *iip = (dbItemInPlace *)a;
-                newnumber = iip.number;
-            }
-            if ([a isKindOfClass:[dbItemInPouch class]] == YES) {
-                dbItemInPouch *iip = (dbItemInPouch *)a;
-                newnumber = iip.number;
-            }
-        }];
-
-        if (place == nil)
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (pouch)", item];
-        else
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item, place];
-        if (mynumber == 0)
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d", newnumber];
-        else
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", newnumber, mynumber];
-
-        return cell;
-    }
-    
     return cell;
 }
 

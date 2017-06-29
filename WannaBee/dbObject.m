@@ -26,4 +26,17 @@
     } 
 }
 
+- (void)delete:(NSString *)table
+{
+    NSString *sql = [NSString stringWithFormat:@"delete from %@ where id = ?", table];
+    @synchronized(db) {
+        DB_PREPARE(sql);
+
+        SET_VAR_INT(1, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    } 
+}
+
 @end

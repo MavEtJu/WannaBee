@@ -259,7 +259,7 @@
             [item create];
         }
         if ([number isKindOfClass:[NSNumber class]] == YES) {
-            dbItemInSet *iis = [dbItemInSet getByItemId:item._id];
+            dbItemInSet *iis = [dbItemInSet getByItemId:item];
             if (iis == nil) {
                 iis = [[dbItemInSet alloc] init];
                 iis.item_id = item._id;
