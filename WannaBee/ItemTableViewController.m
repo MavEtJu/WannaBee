@@ -29,11 +29,6 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Items";
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.items count];
@@ -49,8 +44,7 @@
 
     if ([o isKindOfClass:[dbItem class]] == YES) {
         dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
-        dbItemInPouch *iip = [dbItemInPouch getByItem:item];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%d)", item.name, iip.number];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", item.name];
         dbSet *set = [dbSet get:item.set_id];
         cell.detailTextLabel.text = set.name;
         return cell;

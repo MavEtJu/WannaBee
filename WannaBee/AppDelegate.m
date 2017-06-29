@@ -26,7 +26,7 @@
     db = [[database alloc] init];
 
     // Location Manager
-    locationManager = [[WannabeeLocationManager alloc] init];
+    locationManager = [[LocationManager alloc] init];
 
     if ([CLLocationManager locationServicesEnabled] == NO) {
         NSLog(@"locationServices are disabled");
@@ -52,26 +52,30 @@
 
     self.pouchVC = [[PouchTableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.pouchVC.title = @"Pouch";
+    self.pouchNC = [[UINavigationController alloc] initWithRootViewController:self.pouchVC];
 
     self.placesVC = [[PlacesTableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.placesVC.title = @"Places";
+    self.placesNC = [[UINavigationController alloc] initWithRootViewController:self.placesVC];
 
     self.setsVC = [[SetsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.setsVC.title = @"Sets";
+    self.setsNC = [[UINavigationController alloc] initWithRootViewController:self.setsVC];
 
     self.newerVC = [[NewerTableViewController alloc] initWithStyle:UITableViewStylePlain];
     self.newerVC.title = @"Newer";
+    self.newerNC = [[UINavigationController alloc] initWithRootViewController:self.newerVC];
 
     //create an array of all view controllers that will represent the tab at the bottom
     NSArray *myViewControllers = [[NSArray alloc] initWithObjects:
-                                  self.pouchVC,
-                                  self.placesVC,
-                                  self.setsVC,
-                                  self.newerVC,
+                                  self.pouchNC,
+                                  self.placesNC,
+                                  self.setsNC,
+                                  self.newerNC,
                                   nil];
 
     //initialize the tab bar controller
-    self.tabBarController = [[WannaBeenTabBarController alloc] init];
+    self.tabBarController = [[TabBarController alloc] init];
 
     //set the view controllers for the tab bar controller
     [self.tabBarController setViewControllers:myViewControllers];

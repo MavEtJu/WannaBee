@@ -30,8 +30,6 @@
     [self.refreshControl addTarget:self
                             action:@selector(reloadData)
                   forControlEvents:UIControlEventValueChanged];
-
-//    [self refreshData];
 }
 
 - (void)refreshTitle:(NSString *)title
@@ -87,11 +85,6 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Places";
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.places count];
@@ -121,9 +114,7 @@
     [newController showPlace:place];
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = @"Place";
-    [self.tabBarController presentViewController:newController animated:YES completion:nil];
-
-
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 @end

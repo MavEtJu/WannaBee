@@ -8,11 +8,11 @@
 
 #import "Wannabee-prefix.h"
 
-@interface WannaBeenTabBarController ()
+@interface TabBarController ()
 
 @end
 
-@implementation WannaBeenTabBarController
+@implementation TabBarController
 
 - (void)viewDidLoad
 {

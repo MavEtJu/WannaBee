@@ -23,14 +23,14 @@
 		E8EF64281F03458B000E9111 /* dbSet.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF641F1F03458B000E9111 /* dbSet.m */; };
 		E8EF64301F03460E000E9111 /* RemoteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF642C1F03460E000E9111 /* RemoteAPI.m */; };
 		E8EF64311F03460E000E9111 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = E8EF642D1F03460E000E9111 /* schema.sql */; };
-		E8EF64321F03460E000E9111 /* WannabeeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF642F1F03460E000E9111 /* WannabeeLocationManager.m */; };
+		E8EF64321F03460E000E9111 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF642F1F03460E000E9111 /* LocationManager.m */; };
 		E8EF64351F034639000E9111 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EF64341F034639000E9111 /* CoreLocation.framework */; };
 		E8EF64371F034645000E9111 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EF64361F034645000E9111 /* libsqlite3.tbd */; };
 		E8EF64391F034ABF000E9111 /* empty.db in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64381F034ABF000E9111 /* empty.db */; };
 		E8EF643B1F034BF9000E9111 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF643A1F034BF9000E9111 /* Default-568h@2x.png */; };
 		E8EF643E1F0357E1000E9111 /* ItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */; };
 		E8EF64411F035C8B000E9111 /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */; };
-		E8EF64441F035E68000E9111 /* WannaBeenTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64431F035E68000E9111 /* WannaBeenTabBarController.m */; };
+		E8EF64441F035E68000E9111 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64431F035E68000E9111 /* TabBarController.m */; };
 		E8EF64461F036279000E9111 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64451F036279000E9111 /* Settings.bundle */; };
 		E8EF64491F0364FA000E9111 /* PouchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64481F0364FA000E9111 /* PouchTableViewController.m */; };
 		E8EF644C1F0367E1000E9111 /* NewerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */; };
@@ -96,8 +96,8 @@
 		E8EF642B1F03460E000E9111 /* RemoteAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteAPI.h; sourceTree = "<group>"; };
 		E8EF642C1F03460E000E9111 /* RemoteAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteAPI.m; sourceTree = "<group>"; };
 		E8EF642D1F03460E000E9111 /* schema.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = schema.sql; path = WannaBee/schema.sql; sourceTree = "<group>"; };
-		E8EF642E1F03460E000E9111 /* WannabeeLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WannabeeLocationManager.h; sourceTree = "<group>"; };
-		E8EF642F1F03460E000E9111 /* WannabeeLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WannabeeLocationManager.m; sourceTree = "<group>"; };
+		E8EF642E1F03460E000E9111 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		E8EF642F1F03460E000E9111 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		E8EF64341F034639000E9111 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E8EF64361F034645000E9111 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E8EF64381F034ABF000E9111 /* empty.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.db; sourceTree = SOURCE_ROOT; };
@@ -106,8 +106,8 @@
 		E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewController.m; sourceTree = "<group>"; };
 		E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesTableViewController.h; sourceTree = "<group>"; };
 		E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesTableViewController.m; sourceTree = "<group>"; };
-		E8EF64421F035E68000E9111 /* WannaBeenTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WannaBeenTabBarController.h; sourceTree = "<group>"; };
-		E8EF64431F035E68000E9111 /* WannaBeenTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WannaBeenTabBarController.m; sourceTree = "<group>"; };
+		E8EF64421F035E68000E9111 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		E8EF64431F035E68000E9111 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		E8EF64451F036279000E9111 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E8EF64471F0364FA000E9111 /* PouchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PouchTableViewController.h; sourceTree = "<group>"; };
 		E8EF64481F0364FA000E9111 /* PouchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PouchTableViewController.m; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 				E8EF63D81F0344D9000E9111 /* AppDelegate.m */,
 				E8EF642B1F03460E000E9111 /* RemoteAPI.h */,
 				E8EF642C1F03460E000E9111 /* RemoteAPI.m */,
-				E8EF642E1F03460E000E9111 /* WannabeeLocationManager.h */,
-				E8EF642F1F03460E000E9111 /* WannabeeLocationManager.m */,
+				E8EF642E1F03460E000E9111 /* LocationManager.h */,
+				E8EF642F1F03460E000E9111 /* LocationManager.m */,
 				E8EF63E61F0344D9000E9111 /* Assets.xcassets */,
 				E8EF63D41F0344D9000E9111 /* Supporting Files */,
 			);
@@ -256,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				E8EF64561F036DF0000E9111 /* TableViewCells */,
-				E8EF64421F035E68000E9111 /* WannaBeenTabBarController.h */,
-				E8EF64431F035E68000E9111 /* WannaBeenTabBarController.m */,
+				E8EF64421F035E68000E9111 /* TabBarController.h */,
+				E8EF64431F035E68000E9111 /* TabBarController.m */,
 				E8EF64471F0364FA000E9111 /* PouchTableViewController.h */,
 				E8EF64481F0364FA000E9111 /* PouchTableViewController.m */,
 				E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */,
@@ -470,7 +470,7 @@
 				E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */,
 				E8EF64301F03460E000E9111 /* RemoteAPI.m in Sources */,
 				E8EF644C1F0367E1000E9111 /* NewerTableViewController.m in Sources */,
-				E8EF64321F03460E000E9111 /* WannabeeLocationManager.m in Sources */,
+				E8EF64321F03460E000E9111 /* LocationManager.m in Sources */,
 				E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */,
 				E8EF63D61F0344D9000E9111 /* main.m in Sources */,
 				E8EF646A1F04735D000E9111 /* PlaceTableViewController.m in Sources */,
@@ -478,7 +478,7 @@
 				E8EF64251F03458B000E9111 /* dbItemsInPouch.m in Sources */,
 				E8EF64201F03458B000E9111 /* database.m in Sources */,
 				E8EF64271F03458B000E9111 /* dbPlace.m in Sources */,
-				E8EF64441F035E68000E9111 /* WannaBeenTabBarController.m in Sources */,
+				E8EF64441F035E68000E9111 /* TabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

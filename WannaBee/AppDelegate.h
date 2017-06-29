@@ -11,11 +11,15 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) WannaBeenTabBarController *tabBarController;
+@property (strong, nonatomic) TabBarController *tabBarController;
 @property (strong, nonatomic) PouchTableViewController *pouchVC;
+@property (strong, nonatomic) UINavigationController *pouchNC;
 @property (strong, nonatomic) NewerTableViewController *newerVC;
+@property (strong, nonatomic) UINavigationController *newerNC;
 @property (strong, nonatomic) PlacesTableViewController *placesVC;
+@property (strong, nonatomic) UINavigationController *placesNC;
 @property (strong, nonatomic) SetsTableViewController *setsVC;
+@property (strong, nonatomic) UINavigationController *setsNC;
 
 @end
 

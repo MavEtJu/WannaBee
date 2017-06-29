@@ -8,11 +8,11 @@
 
 #import "Wannabee-prefix.h"
 
-@interface WannabeeLocationManager : NSObject <CLLocationManagerDelegate>
+@interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, retain) CLLocationManager *lm;
 @property (nonatomic) CLLocationCoordinate2D last;
 
 @end
 
-extern WannabeeLocationManager *locationManager;
+extern LocationManager *locationManager;

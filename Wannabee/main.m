@@ -9,7 +9,7 @@
 #import "Wannabee-prefix.h"
 
 database *db = nil;
-WannabeeLocationManager *locationManager = nil;
+LocationManager *locationManager = nil;
 RemoteAPI *api = nil;
 AppDelegate *appDelegate = nil;
 

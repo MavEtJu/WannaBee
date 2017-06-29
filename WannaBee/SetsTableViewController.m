@@ -62,7 +62,8 @@
     [sets enumerateObjectsUsingBlock:^(dbSet * _Nonnull set, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<dbItem *> *itemsInSet = [dbItem allInSet:set];
         if ([itemsInSet count] == 0 || [itemsInSet count] < set.items_in_set) {
-            [self refreshTitle:[NSString stringWithFormat:@"Reloading data for set '%@'", set.name]];
+            if (self.refreshControl != nil)
+                [self refreshTitle:[NSString stringWithFormat:@"Reloading data for set '%@'", set.name]];
             [api api_users__sets:set.set_id];
             [NSThread sleepForTimeInterval:0.5];
         }
@@ -70,7 +71,8 @@
 
     [self refreshData];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.refreshControl endRefreshing];
+        if (self.refreshControl != nil)
+            [self.refreshControl endRefreshing];
     }];
 
     // Now fill the pouch
@@ -82,11 +84,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Sets";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

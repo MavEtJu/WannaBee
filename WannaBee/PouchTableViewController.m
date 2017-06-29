@@ -65,9 +65,4 @@
     }];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"Pouch";
-}
-
 @end

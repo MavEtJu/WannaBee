@@ -25,25 +25,15 @@
     [super viewDidLoad];
     [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_ITEM];
 
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                            action:@selector(refreshData)
-                  forControlEvents:UIControlEventValueChanged];
-
     [self refreshData];
 }
 
 - (void)refreshData
 {
-    [self.refreshControl beginRefreshing];
-
     self.newerItemsInPlaces = [database newerItemsInPlaces];
     self.newerItemsInPouch = [database newerItemsInPouch];
     self.unseenItemsInPlaces = [database newItemsInPlaces];
 
-    [self.refreshControl endRefreshing];
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];

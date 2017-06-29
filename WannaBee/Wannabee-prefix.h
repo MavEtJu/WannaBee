@@ -17,7 +17,7 @@
 #import "MBProgressHUD.h"
 
 #import "RemoteAPI.h"
-#import "WannabeeLocationManager.h"
+#import "LocationManager.h"
 
 #import "database.h"
 #import "dbObject.h"
@@ -32,7 +32,7 @@
 #import "TableViewCellPlain.h"
 #import "TableViewCellSubtitle.h"
 
-#import "WannaBeenTabBarController.h"
+#import "TabBarController.h"
 #import "ItemTableViewController.h"
 #import "PouchTableViewController.h"
 #import "PlaceTableViewController.h"

@@ -8,6 +8,6 @@
 
 #import "Wannabee-prefix.h"
 
-@interface WannaBeenTabBarController : UITabBarController
+@interface TabBarController : UITabBarController
 
 @end

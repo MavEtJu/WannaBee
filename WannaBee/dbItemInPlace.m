@@ -65,9 +65,9 @@
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];
 }
 
-+ (dbItemInPlace *)getByItemId:(NSId)item_id place_id:(NSId)place_id
++ (dbItemInPlace *)getByItemId:(dbItem *)item place:(dbPlace *)place
 {
-    return [[self dbAllXXX:@"where item_id = ? and place_id = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:item_id], [NSNumber numberWithInteger:place_id]]] firstObject];
+    return [[self dbAllXXX:@"where item_id = ? and place_id = ?" keys:@"ii" values:@[[NSNumber numberWithInteger:item._id], [NSNumber numberWithInteger:place._id]]] firstObject];
 }
 
 + (void)deleteAll

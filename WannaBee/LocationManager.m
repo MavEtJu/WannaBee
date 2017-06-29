@@ -8,7 +8,7 @@
 
 #import "Wannabee-prefix.h"
 
-@implementation WannabeeLocationManager
+@implementation LocationManager
 
 - (instancetype)init
 {
