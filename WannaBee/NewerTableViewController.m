@@ -46,6 +46,12 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [self refreshData];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self refreshData];
+    [super viewDidAppear:animated];
+}
+
 - (void)refreshData
 {
     self.newerItemsInPlaces = [database newerItemsInPlaces];
@@ -126,8 +132,11 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([a isKindOfClass:[dbItem class]] == YES)
             item = (dbItem *)a;
-        if ([a isKindOfClass:[dbSet class]] == YES)
+        if ([a isKindOfClass:[dbSet class]] == YES) {
             set = (dbSet *)a;
+            set.needs_refresh = YES;
+            [set dbUpdateNeedsRefresh];
+        }
         if ([a isKindOfClass:[dbPlace class]] == YES)
             place = (dbPlace *)a;
         if ([a isKindOfClass:[dbItemInSet class]] == YES)
