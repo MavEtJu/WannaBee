@@ -27,7 +27,9 @@
 - (void)refreshData
 {
     self.items = [dbItemInPlace allItemsInPlace:self.place];
-    [self.tableView reloadData];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)reloadData
