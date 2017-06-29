@@ -19,7 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_ITEM];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ItemTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_ITEM];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 }
 
 #pragma mark - Table view data source
@@ -36,33 +38,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCellSubtitle *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
     dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = @"-";
-    cell.detailTextLabel.text = @"";
+    cell.itemName.text = @"";
+    cell.setName.text = @"";
+    cell.placeName.text = @"";
+    cell.numbers.text = @"";
 
     if (self.type == TYPE_POUCH) {
         dbItemInPouch *iip = [dbItemInPouch getByItem:item];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%d)", item.name, iip.number];
+        cell.itemName.text = item.name;
+        cell.numbers.text = [NSString stringWithFormat:@"Item in pouch: #%d", iip.number];
         dbSet *set = [dbSet get:item.set_id];
-        cell.detailTextLabel.text = set.name;
+        cell.setName.text = set.name;
         return cell;
     }
 
     if (self.type == TYPE_PLACE) {
         dbItemInPlace *iip = [dbItemInPlace getByItemId:item place:self.place];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (#%d)", item.name, iip.number];
+        cell.itemName.text = item.name;
+        cell.numbers.text = [NSString stringWithFormat:@"Item in place: #%d", iip.number];
         dbSet *set = [dbSet get:item.set_id];
-        cell.detailTextLabel.text = set.name;
+        cell.setName.text = set.name;
         return cell;
     }
 
     if (self.type == TYPE_SET) {
         dbItemInSet *iis = [dbItemInSet getByItemId:item];
-        cell.textLabel.text = item.name;
+        cell.itemName.text = item.name;
         if (iis != nil)
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"#%d", iis.number];
+            cell.numbers.text = [NSString stringWithFormat:@"Item in set: #%d", iis.number];
         return cell;
     }
 

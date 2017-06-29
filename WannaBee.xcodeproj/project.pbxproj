@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E82C7F5B1F0496B200625131 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F591F0496B200625131 /* ItemTableViewCell.m */; };
+		E82C7F5C1F0496B200625131 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */; };
 		E8EF63D61F0344D9000E9111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D51F0344D9000E9111 /* main.m */; };
 		E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D81F0344D9000E9111 /* AppDelegate.m */; };
 		E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E61F0344D9000E9111 /* Assets.xcassets */; };
@@ -64,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E82C7F581F0496B200625131 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemTableViewCell.h; sourceTree = "<group>"; };
+		E82C7F591F0496B200625131 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
+		E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		E8EF63D11F0344D9000E9111 /* WannaBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WannaBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EF63D51F0344D9000E9111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EF63D71F0344D9000E9111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -268,6 +273,9 @@
 				E8EF64431F035E68000E9111 /* TabBarController.m */,
 				E8EF643C1F0357E1000E9111 /* ItemsTableViewController.h */,
 				E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */,
+				E82C7F581F0496B200625131 /* ItemTableViewCell.h */,
+				E82C7F591F0496B200625131 /* ItemTableViewCell.m */,
+				E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */,
 				E8EF64471F0364FA000E9111 /* PouchTableViewController.h */,
 				E8EF64481F0364FA000E9111 /* PouchTableViewController.m */,
 				E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */,
@@ -438,6 +446,7 @@
 				E8EF64311F03460E000E9111 /* schema.sql in Resources */,
 				E8EF643B1F034BF9000E9111 /* Default-568h@2x.png in Resources */,
 				E8EF64621F038A49000E9111 /* logo 120x120.png in Resources */,
+				E82C7F5C1F0496B200625131 /* ItemTableViewCell.xib in Resources */,
 				E8EF64631F038A49000E9111 /* logo 152x152.png in Resources */,
 				E8EF64461F036279000E9111 /* Settings.bundle in Resources */,
 				E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */,
@@ -480,6 +489,7 @@
 				E8EF64281F03458B000E9111 /* dbSet.m in Sources */,
 				E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */,
 				E8EF64301F03460E000E9111 /* RemoteAPI.m in Sources */,
+				E82C7F5B1F0496B200625131 /* ItemTableViewCell.m in Sources */,
 				E8EF644C1F0367E1000E9111 /* NewerTableViewController.m in Sources */,
 				E8EF64321F03460E000E9111 /* LocationManager.m in Sources */,
 				E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */,

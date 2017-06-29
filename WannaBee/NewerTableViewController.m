@@ -39,7 +39,9 @@ typedef NS_ENUM(NSInteger, SectionType) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_ITEM];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ItemTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_ITEM];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
 
     [self refreshData];
 }
@@ -95,7 +97,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCellSubtitle *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
     NSObject *o;
     switch (indexPath.section) {
         case SECTION_NEWITEMSINPLACES:
@@ -111,9 +113,6 @@ typedef NS_ENUM(NSInteger, SectionType) {
             o = [self.itemsOnWishlist objectAtIndex:indexPath.row];
             break;
     }
-
-    cell.textLabel.text = @"-";
-    cell.detailTextLabel.text = @"";
 
     NSArray *as = (NSArray *)o;
 
@@ -139,22 +138,30 @@ typedef NS_ENUM(NSInteger, SectionType) {
             iipo = (dbItemInPouch *)a;
     }];
 
+    cell.itemName.text = @"";
+    cell.setName.text = @"";
+    cell.placeName.text = @"";
+    cell.numbers.text = @"";
+
     switch (indexPath.section) {
         case SECTION_NEWERITEMSINPOUCH:
-            cell.textLabel.text = [NSString stringWithFormat:@"%@", item.name];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipo.number, iis.number];
+            cell.itemName.text = [NSString stringWithFormat:@"%@", item.name];
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipo.number, iis.number];
             break;
         case SECTION_NEWERITEMSINPLACES:
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item.name, place.name];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipl.number, iis.number];
+            cell.itemName.text = item.name;
+            cell.placeName.text = place.name;
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipl.number, iis.number];
             break;
         case SECTION_NEWITEMSINPLACES:
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item.name, place.name];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
+            cell.itemName.text = item.name;
+            cell.placeName.text = place.name;
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
             break;
         case SECTION_ITEMSONWISHLIST:
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", item.name, set.name];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Found #%d at %@", iipl.number, place.name];
+            cell.itemName.text = item.name;
+            cell.setName.text = set.name;
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d at %@", iipl.number, place.name];
             break;
     }
 

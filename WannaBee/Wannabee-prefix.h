@@ -32,6 +32,7 @@
 
 #import "TableViewCellPlain.h"
 #import "TableViewCellSubtitle.h"
+#import "ItemTableViewCell.h"
 
 #import "TabBarController.h"
 #import "ItemsTableViewController.h"
