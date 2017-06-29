@@ -34,26 +34,6 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [self refreshInit];
 }
 
-- (CLLocationDegrees)toRadians:(CLLocationDegrees)f
-{
-    return f * M_PI / 180;
-}
-
-- (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
-{
-    // From http://www.movable-type.co.uk/scripts/latlong.html
-    float R = 6371000; // radius of Earth in metres
-    float φ1 = [self toRadians:c1.latitude];
-    float φ2 = [self toRadians:c2.latitude];
-    float Δφ = [self toRadians:c2.latitude - c1.latitude];
-    float Δλ = [self toRadians:c2.longitude - c1.longitude];
-
-    float a = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2);
-    float c = 2 * atan2(sqrt(a), sqrt(1 - a));
-
-    float d = R * c;
-    return d;
-}
 
 
 - (void)refreshData
@@ -66,7 +46,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [[dbPlace all] enumerateObjectsUsingBlock:^(dbPlace * _Nonnull place, NSUInteger idx, BOOL * _Nonnull stop) {
         if (place.radius > 100000)  // 100km
             [global addObject:place];
-        else if ([self coordinates2distance:CLLocationCoordinate2DMake(locationManager.last.latitude, locationManager.last.longitude) to:CLLocationCoordinate2DMake(place.lat, place.lon)] < place.radius)
+        else if ([place canReach] == YES)
             [local addObject:place];
         else
             [toofar addObject:place];

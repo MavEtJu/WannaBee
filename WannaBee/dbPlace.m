@@ -81,4 +81,32 @@
     [self deleteAll:@"places"];
 }
 
+/* Other methods */
+
+- (CLLocationDegrees)toRadians:(CLLocationDegrees)f
+{
+    return f * M_PI / 180;
+}
+
+- (NSInteger)coordinates2distance:(CLLocationCoordinate2D)c1 to:(CLLocationCoordinate2D)c2
+{
+    // From http://www.movable-type.co.uk/scripts/latlong.html
+    float R = 6371000; // radius of Earth in metres
+    float φ1 = [self toRadians:c1.latitude];
+    float φ2 = [self toRadians:c2.latitude];
+    float Δφ = [self toRadians:c2.latitude - c1.latitude];
+    float Δλ = [self toRadians:c2.longitude - c1.longitude];
+
+    float a = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2);
+    float c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    float d = R * c;
+    return d;
+}
+
+- (BOOL)canReach
+{
+    return ([self coordinates2distance:CLLocationCoordinate2DMake(locationManager.last.latitude, locationManager.last.longitude) to:CLLocationCoordinate2DMake(self.lat, self.lon)] < self.radius);
+}
+
 @end

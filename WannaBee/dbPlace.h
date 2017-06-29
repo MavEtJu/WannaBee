@@ -23,4 +23,6 @@
 + (NSArray<dbPlace *> *)all;
 + (void)deleteAll;
 
+- (BOOL)canReach;
+
 @end

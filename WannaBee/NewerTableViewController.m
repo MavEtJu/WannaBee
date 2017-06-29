@@ -15,6 +15,9 @@
 @property (nonatomic, retain) NSArray<NSObject *> *unseenItemsInPlaces;
 @property (nonatomic, retain) NSArray<NSObject *> *itemsOnWishlist;
 
+@property (nonatomic, retain) UIColor *tooFarColour;
+@property (nonatomic, retain) UIColor *reachableColour;;
+
 @end
 
 typedef NS_ENUM(NSInteger, SectionType) {
@@ -32,6 +35,9 @@ typedef NS_ENUM(NSInteger, SectionType) {
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
+
+    self.tooFarColour = [UIColor grayColor];
+    self.reachableColour = [UIColor darkGrayColor];
 
     return self;
 }
@@ -152,18 +158,34 @@ typedef NS_ENUM(NSInteger, SectionType) {
     cell.placeName.text = @"";
     cell.numbers.text = @"";
 
+    cell.itemName.textColor = self.reachableColour;
+    cell.setName.textColor = self.reachableColour;
+    cell.placeName.textColor = self.reachableColour;
+    cell.numbers.textColor = self.reachableColour;
+
+    if (indexPath.section == SECTION_NEWITEMSINPLACES ||
+        indexPath.section == SECTION_NEWERITEMSINPLACES ||
+        indexPath.section == SECTION_ITEMSONWISHLIST) {
+        if ([place canReach] == YES) {
+            cell.itemName.textColor = self.tooFarColour;
+            cell.setName.textColor = self.tooFarColour;
+            cell.placeName.textColor = self.tooFarColour;
+            cell.numbers.textColor = self.tooFarColour;
+        }
+    }
+
     switch (indexPath.section) {
         case SECTION_NEWERITEMSINPOUCH:
             cell.itemName.text = item.name;
             cell.setName.text = set.name;
-            cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipo.number, iis.number];
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d in pouch, #%d in set", iipo.number, iis.number];
             cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_NEWERITEMSINPLACES:
             cell.itemName.text = item.name;
             cell.placeName.text = place.name;
             cell.setName.text = set.name;
-            cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipl.number, iis.number];
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d in place, #%d in set", iipl.number, iis.number];
             cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_NEWITEMSINPLACES:
