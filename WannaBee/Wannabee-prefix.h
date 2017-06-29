@@ -33,11 +33,12 @@
 #import "TableViewCellSubtitle.h"
 
 #import "TabBarController.h"
-#import "ItemTableViewController.h"
+#import "ItemsTableViewController.h"
 #import "PouchTableViewController.h"
 #import "PlaceTableViewController.h"
 #import "PlacesTableViewController.h"
 #import "SetsTableViewController.h"
+#import "SetTableViewController.h"
 #import "NewerTableViewController.h"
 
 #import "AppDelegate.h"

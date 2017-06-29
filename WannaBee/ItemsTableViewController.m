@@ -8,11 +8,11 @@
 
 #import "Wannabee-prefix.h"
 
-@interface ItemTableViewController ()
+@interface ItemsTableViewController ()
 
 @end
 
-@implementation ItemTableViewController
+@implementation ItemsTableViewController
 
 #define CELL_ITEM   @"CELL_ITEM"
 

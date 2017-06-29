@@ -104,4 +104,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    dbSet *set = [self.sets objectAtIndex:indexPath.row];
+
+    SetTableViewController *newController = [[SetTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [newController showSet:set];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = @"Set";
+    [self.navigationController pushViewController:newController animated:YES];
+}
+
 @end

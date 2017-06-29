@@ -1,5 +1,5 @@
 //
-//  PlaceTableViewController.h
+//  SetTableViewController.h
 //  WannaBee
 //
 //  Created by Edwin Groothuis on 29/6/17.
@@ -8,8 +8,8 @@
 
 #import "Wannabee-prefix.h"
 
-@interface PlaceTableViewController : ItemsTableViewController
+@interface SetTableViewController : ItemsTableViewController
 
-- (void)showPlace:(dbPlace *)place;
+- (void)showSet:(dbSet *)set;
 
 @end

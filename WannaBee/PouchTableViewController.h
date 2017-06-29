@@ -8,7 +8,7 @@
 
 #import "Wannabee-prefix.h"
 
-@interface PouchTableViewController : ItemTableViewController
+@interface PouchTableViewController : ItemsTableViewController
 
 - (void)refreshData;
 

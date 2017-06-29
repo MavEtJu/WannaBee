@@ -28,7 +28,7 @@
 		E8EF64371F034645000E9111 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EF64361F034645000E9111 /* libsqlite3.tbd */; };
 		E8EF64391F034ABF000E9111 /* empty.db in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64381F034ABF000E9111 /* empty.db */; };
 		E8EF643B1F034BF9000E9111 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF643A1F034BF9000E9111 /* Default-568h@2x.png */; };
-		E8EF643E1F0357E1000E9111 /* ItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */; };
+		E8EF643E1F0357E1000E9111 /* ItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */; };
 		E8EF64411F035C8B000E9111 /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */; };
 		E8EF64441F035E68000E9111 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64431F035E68000E9111 /* TabBarController.m */; };
 		E8EF64461F036279000E9111 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64451F036279000E9111 /* Settings.bundle */; };
@@ -42,6 +42,7 @@
 		E8EF64631F038A49000E9111 /* logo 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E8EF64601F038A49000E9111 /* logo 152x152.png */; };
 		E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */; };
 		E8EF646A1F04735D000E9111 /* PlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF64691F04735D000E9111 /* PlaceTableViewController.m */; };
+		E8EF646D1F0480A4000E9111 /* SetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF646C1F0480A4000E9111 /* SetTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,8 +103,8 @@
 		E8EF64361F034645000E9111 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E8EF64381F034ABF000E9111 /* empty.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = empty.db; sourceTree = SOURCE_ROOT; };
 		E8EF643A1F034BF9000E9111 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E8EF643C1F0357E1000E9111 /* ItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemTableViewController.h; sourceTree = "<group>"; };
-		E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewController.m; sourceTree = "<group>"; };
+		E8EF643C1F0357E1000E9111 /* ItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsTableViewController.h; sourceTree = "<group>"; };
+		E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsTableViewController.m; sourceTree = "<group>"; };
 		E8EF643F1F035C8B000E9111 /* PlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesTableViewController.h; sourceTree = "<group>"; };
 		E8EF64401F035C8B000E9111 /* PlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesTableViewController.m; sourceTree = "<group>"; };
 		E8EF64421F035E68000E9111 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -126,6 +127,8 @@
 		E8EF64661F03C1F5000E9111 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = contrib/MBProgressHUD.m; sourceTree = "<group>"; };
 		E8EF64681F04735D000E9111 /* PlaceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTableViewController.h; sourceTree = "<group>"; };
 		E8EF64691F04735D000E9111 /* PlaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTableViewController.m; sourceTree = "<group>"; };
+		E8EF646B1F0480A4000E9111 /* SetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewController.h; sourceTree = "<group>"; };
+		E8EF646C1F0480A4000E9111 /* SetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,10 +269,12 @@
 				E8EF64691F04735D000E9111 /* PlaceTableViewController.m */,
 				E8EF64531F036C20000E9111 /* SetsTableViewController.h */,
 				E8EF64541F036C20000E9111 /* SetsTableViewController.m */,
+				E8EF646B1F0480A4000E9111 /* SetTableViewController.h */,
+				E8EF646C1F0480A4000E9111 /* SetTableViewController.m */,
 				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
 				E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */,
-				E8EF643C1F0357E1000E9111 /* ItemTableViewController.h */,
-				E8EF643D1F0357E1000E9111 /* ItemTableViewController.m */,
+				E8EF643C1F0357E1000E9111 /* ItemsTableViewController.h */,
+				E8EF643D1F0357E1000E9111 /* ItemsTableViewController.m */,
 			);
 			name = GUI;
 			path = WannaBee;
@@ -459,7 +464,7 @@
 				E8EF64241F03458B000E9111 /* dbItemInSet.m in Sources */,
 				E8EF64411F035C8B000E9111 /* PlacesTableViewController.m in Sources */,
 				E8EF64231F03458B000E9111 /* dbItemInPlace.m in Sources */,
-				E8EF643E1F0357E1000E9111 /* ItemTableViewController.m in Sources */,
+				E8EF643E1F0357E1000E9111 /* ItemsTableViewController.m in Sources */,
 				E8EF645C1F036E1C000E9111 /* TableViewCellSubtitle.m in Sources */,
 				E8EF64261F03458B000E9111 /* dbObject.m in Sources */,
 				E8EF64221F03458B000E9111 /* dbItem.m in Sources */,
@@ -478,6 +483,7 @@
 				E8EF64251F03458B000E9111 /* dbItemsInPouch.m in Sources */,
 				E8EF64201F03458B000E9111 /* database.m in Sources */,
 				E8EF64271F03458B000E9111 /* dbPlace.m in Sources */,
+				E8EF646D1F0480A4000E9111 /* SetTableViewController.m in Sources */,
 				E8EF64441F035E68000E9111 /* TabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

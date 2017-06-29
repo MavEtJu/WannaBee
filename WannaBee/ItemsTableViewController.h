@@ -8,7 +8,7 @@
 
 #import "Wannabee-prefix.h"
 
-@interface ItemTableViewController : UITableViewController
+@interface ItemsTableViewController : UITableViewController
 
 @property (nonatomic, retain) NSArray<NSObject *> *items;
 
