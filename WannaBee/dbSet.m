@@ -27,6 +27,23 @@
     }
 }
 
+- (void)update
+{
+    @synchronized(db) {
+        DB_PREPARE(@"update sets set set_name = ?, set_id = ?, items_in_set = ?, needs_refresh = ?, imgurl = ? where id = ?");
+
+        SET_VAR_TEXT(1, self.name);
+        SET_VAR_INT (2, self.set_id);
+        SET_VAR_INT (3, self.items_in_set);
+        SET_VAR_BOOL(4, self.needs_refresh);
+        SET_VAR_TEXT(5, self.imgurl);
+        SET_VAR_INT (6, self._id);
+
+        DB_CHECK_OKAY;
+        DB_FINISH;
+    }
+}
+
 - (void)dbUpdateNeedsRefresh
 {
     @synchronized(db) {

@@ -177,6 +177,9 @@
             set.needs_refresh = NO;
             set.imgurl = imgurl;
             [set create];
+        } else {
+            set.imgurl = imgurl;
+            [set update];
         }
     }];
     
@@ -221,6 +224,9 @@
             set.needs_refresh = NO;
             set.imgurl = imgurl;
             [set create];
+        } else {
+            set.imgurl = imgurl;
+            [set update];
         }
     }];
 

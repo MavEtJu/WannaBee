@@ -56,6 +56,12 @@
 
 - (void)upgrade
 {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"refreshallsets"] == YES) {
+        [self execute:@"update sets set needs_refresh = 1"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"refreshallsets"];
+        NSLog(@"Refreshing all sets");
+    }
+
     dbConfig *c = [dbConfig getByKey:@"version"];
     if (c == nil) {
         c = [[dbConfig alloc] init];

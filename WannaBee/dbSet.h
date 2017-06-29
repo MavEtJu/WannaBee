@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL needs_refresh;
 @property (nonatomic, retain) NSString *imgurl;
 
+- (void)update;
 - (void)dbUpdateNeedsRefresh;
 + (dbSet *)get:(NSId)_id;
 + (dbSet *)getBySetId:(NSInteger)set_id;
