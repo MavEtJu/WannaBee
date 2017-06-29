@@ -83,14 +83,16 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
     switch (self.type) {
         case TYPE_SET:
             return YES;
-        case TYPE_POUCH:
+        case TYPE_POUCH: {
+            dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
+            dbItem *item = [dbItem get:iip.item_id];
             if ([dbWishList getByItem:item] == nil)
                 return NO;
             return YES;
+        }
         case TYPE_NEWER:
         case TYPE_UNKNOWN:
         case TYPE_PLACE:
@@ -101,13 +103,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
     switch (self.type) {
-        case TYPE_SET:
+        case TYPE_SET: {
+            dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
             if ([dbWishList getByItem:item] == nil)
                 return @"Add to wishlist";
             else
                 return @"Remove from wishlist";
+        }
         case TYPE_POUCH:
             return @"Remove from wishlist";
         case TYPE_UNKNOWN:
@@ -120,10 +123,10 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
-    dbWishList *wl = [dbWishList getByItem:item];
     switch (self.type) {
-        case TYPE_SET:
+        case TYPE_SET: {
+            dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
+            dbWishList *wl = [dbWishList getByItem:item];
             if (wl == nil) {
                 wl = [[dbWishList alloc] init];
                 wl.item_id = item._id;
@@ -133,10 +136,15 @@
             }
             [self.tableView reloadData];
             return;
-        case TYPE_POUCH:
+        }
+        case TYPE_POUCH: {
+            dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
+            dbItem *item = [dbItem get:iip.item_id];
+            dbWishList *wl = [dbWishList getByItem:item];
             [wl _delete];
             [self.tableView reloadData];
             return;
+        }
         case TYPE_UNKNOWN:
         case TYPE_NEWER:
         case TYPE_PLACE:
