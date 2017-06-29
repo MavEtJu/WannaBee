@@ -167,6 +167,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@", unique, unique == 1 ? @"" : @"s"];
     else
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@, %d unique", total, total == 1 ? @"" : @"s", unique];
+    cell.imageView.image = [imageManager url:place.imgurl];
 
     return cell;
 }

@@ -84,6 +84,7 @@
     NSInteger count = [[dbItem allInSet:set] count];
     NSInteger got = [[dbItem allInSetStored:set] count];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@, %d in set", count, count == 1 ? @"" : @"s", got];
+    cell.imageView.image = [imageManager url:set.imgurl];
 
     return cell;
 }
