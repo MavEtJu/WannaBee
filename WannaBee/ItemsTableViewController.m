@@ -52,6 +52,7 @@
         cell.numbers.text = [NSString stringWithFormat:@"Item in pouch: #%d", iip.number];
         dbSet *set = [dbSet get:item.set_id];
         cell.setName.text = set.name;
+        cell.image.image = [imageManager url:item.imgurl];
         return cell;
     }
 
@@ -62,6 +63,7 @@
         cell.numbers.text = [NSString stringWithFormat:@"Item in place: #%d", iip.number];
         dbSet *set = [dbSet get:item.set_id];
         cell.setName.text = set.name;
+        cell.image.image = [imageManager url:item.imgurl];
         return cell;
     }
 
@@ -71,6 +73,7 @@
         cell.itemName.text = item.name;
         if (iis != nil)
             cell.numbers.text = [NSString stringWithFormat:@"Item in set: #%d", iis.number];
+        cell.image.image = [imageManager url:item.imgurl];
         return cell;
     }
 

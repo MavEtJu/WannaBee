@@ -74,10 +74,14 @@
             [self execute:@"alter table places add column lat float"];
             [self execute:@"alter table places add column lon float"];
             /* fall through */
+        case 3:
+            [self execute:@"alter table items add column imgurl text"];
+            [self execute:@"alter table sets add column imgurl text"];
+            [self execute:@"alter table places add column imgurl text"];
         default:
             ;
     }
-#define VERSION 3
+#define VERSION 4
     c.value = [NSString stringWithFormat:@"%d", VERSION];
     [c update];
 }

@@ -13,11 +13,12 @@
 - (void)create
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into items(item_type_id, name, set_id) values(?, ?, ?)");
+        DB_PREPARE(@"insert into items(item_type_id, name, set_id, imgurl) values(?, ?, ?, ?)");
 
         SET_VAR_INT (1, self.item_type_id);
         SET_VAR_TEXT(2, self.name);
         SET_VAR_INT (3, self.set_id);
+        SET_VAR_TEXT(4, self.imgurl);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id)
@@ -28,12 +29,13 @@
 - (void)update
 {
     @synchronized(db) {
-        DB_PREPARE(@"update items set item_type_id = ?, name = ?, set_id =? where id = ?");
+        DB_PREPARE(@"update items set item_type_id = ?, name = ?, set_id =?, imgurl = ? where id = ?");
 
         SET_VAR_INT (1, self.item_type_id);
         SET_VAR_TEXT(2, self.name);
         SET_VAR_INT (3, self.set_id);
-        SET_VAR_INT (4, self._id);
+        SET_VAR_TEXT(4, self.imgurl);
+        SET_VAR_INT (5, self._id);
 
         DB_CHECK_OKAY;
         DB_FINISH;
@@ -44,7 +46,7 @@
 {
     NSMutableArray<dbItem *> *ss = [NSMutableArray arrayWithCapacity:10];
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, item_type_id, name, set_id from items "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, item_type_id, name, set_id, imgurl from items "];
     if (where != nil)
         [sql appendString:where];
 
@@ -57,6 +59,7 @@
             INT_FETCH (1, c.item_type_id);
             TEXT_FETCH(2, c.name);
             INT_FETCH (3, c.set_id);
+            TEXT_FETCH(4, c.imgurl);
 
             [ss addObject:c];
         }

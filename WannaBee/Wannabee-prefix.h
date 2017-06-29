@@ -11,6 +11,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonHMAC.h>
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
@@ -18,6 +20,7 @@
 
 #import "RemoteAPI.h"
 #import "LocationManager.h"
+#import "ImageManager.h"
 
 #import "database.h"
 #import "dbObject.h"
@@ -45,5 +48,7 @@
 #import "NewerTableViewController.h"
 
 #import "AppDelegate.h"
+
+extern ImageManager *imageManager;
 
 #endif /* Wannabee_prefix_h */

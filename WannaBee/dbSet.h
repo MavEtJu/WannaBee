@@ -14,6 +14,7 @@
 @property (nonatomic) NSInteger set_id;
 @property (nonatomic) NSInteger items_in_set;
 @property (nonatomic) BOOL needs_refresh;
+@property (nonatomic, retain) NSString *imgurl;
 
 - (void)dbUpdateNeedsRefresh;
 + (dbSet *)get:(NSId)_id;

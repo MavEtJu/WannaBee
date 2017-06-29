@@ -10,6 +10,7 @@
 		E82C7F5B1F0496B200625131 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F591F0496B200625131 /* ItemTableViewCell.m */; };
 		E82C7F5C1F0496B200625131 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */; };
 		E82C7F5F1F04D7E400625131 /* WBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F5E1F04D7E400625131 /* WBTableViewController.m */; };
+		E82C7F621F0525A800625131 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F611F0525A800625131 /* ImageManager.m */; };
 		E8EF63D61F0344D9000E9111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D51F0344D9000E9111 /* main.m */; };
 		E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D81F0344D9000E9111 /* AppDelegate.m */; };
 		E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E61F0344D9000E9111 /* Assets.xcassets */; };
@@ -72,6 +73,8 @@
 		E82C7F5A1F0496B200625131 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		E82C7F5D1F04D7E400625131 /* WBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTableViewController.h; sourceTree = "<group>"; };
 		E82C7F5E1F04D7E400625131 /* WBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTableViewController.m; sourceTree = "<group>"; };
+		E82C7F601F0525A800625131 /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
+		E82C7F611F0525A800625131 /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		E8EF63D11F0344D9000E9111 /* WannaBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WannaBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EF63D51F0344D9000E9111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EF63D71F0344D9000E9111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 				E8EF642C1F03460E000E9111 /* RemoteAPI.m */,
 				E8EF642E1F03460E000E9111 /* LocationManager.h */,
 				E8EF642F1F03460E000E9111 /* LocationManager.m */,
+				E82C7F601F0525A800625131 /* ImageManager.h */,
+				E82C7F611F0525A800625131 /* ImageManager.m */,
 				E8EF63E61F0344D9000E9111 /* Assets.xcassets */,
 				E8EF63D41F0344D9000E9111 /* Supporting Files */,
 			);
@@ -495,6 +500,7 @@
 				E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */,
 				E8EF64301F03460E000E9111 /* RemoteAPI.m in Sources */,
 				E82C7F5B1F0496B200625131 /* ItemTableViewCell.m in Sources */,
+				E82C7F621F0525A800625131 /* ImageManager.m in Sources */,
 				E8EF644C1F0367E1000E9111 /* NewerTableViewController.m in Sources */,
 				E8EF64321F03460E000E9111 /* LocationManager.m in Sources */,
 				E8EF64671F03C1F5000E9111 /* MBProgressHUD.m in Sources */,

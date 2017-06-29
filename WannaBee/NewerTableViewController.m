@@ -18,10 +18,10 @@
 @end
 
 typedef NS_ENUM(NSInteger, SectionType) {
+    SECTION_ITEMSONWISHLIST,
     SECTION_NEWITEMSINPLACES = 0,
     SECTION_NEWERITEMSINPLACES,
     SECTION_NEWERITEMSINPOUCH,
-    SECTION_ITEMSONWISHLIST,
     SECTION_MAX,
 };
 
@@ -157,23 +157,27 @@ typedef NS_ENUM(NSInteger, SectionType) {
             cell.itemName.text = item.name;
             cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipo.number, iis.number];
+            cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_NEWERITEMSINPLACES:
             cell.itemName.text = item.name;
             cell.placeName.text = place.name;
             cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d which is smaller than #%d", iipl.number, iis.number];
+            cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_NEWITEMSINPLACES:
             cell.itemName.text = item.name;
             cell.placeName.text = place.name;
             cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
+            cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_ITEMSONWISHLIST:
             cell.itemName.text = item.name;
             cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d at %@", iipl.number, place.name];
+            cell.image.image = [imageManager url:item.imgurl];
             break;
     }
 

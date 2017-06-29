@@ -29,6 +29,9 @@
     // Location Manager
     locationManager = [[LocationManager alloc] init];
 
+    // Image Manager
+    imageManager = [[ImageManager alloc] init];
+
     if ([CLLocationManager locationServicesEnabled] == NO) {
         NSLog(@"locationServices are disabled");
         // location services is disabled, alert user

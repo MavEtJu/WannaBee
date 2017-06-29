@@ -119,6 +119,7 @@
         NSNumber *number = [itemDict objectForKey:@"number"];
         NSNumber *item_type_id = [itemDict objectForKey:@"item_type_id"];
         NSNumber *set_id = [itemDict objectForKey:@"set_id"];
+        NSString *imgurl = [itemDict objectForKey:@"image_url_50"];
 
         dbSet *set = [dbSet getBySetId:[set_id integerValue]];
         dbItem *item = [dbItem getByItemTypeId:[item_type_id integerValue]];
@@ -126,6 +127,7 @@
             item = [[dbItem alloc] init];
             item.item_type_id = [item_type_id integerValue];
             item.name = name;
+            item.imgurl = imgurl;
             item.set_id = set._id;
             [item create];
         }
@@ -165,6 +167,7 @@
     [sets enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull setDict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *set_name = [setDict objectForKey:@"name"];
         NSNumber *set_id = [setDict objectForKey:@"id"];
+        NSString *imgurl = [setDict objectForKey:@"image_url_50"];
 
         dbSet *set = [dbSet getBySetId:[set_id integerValue]];
         if (set == nil) {
@@ -172,6 +175,7 @@
             set.name = set_name;
             set.set_id = [set_id integerValue];
             set.needs_refresh = NO;
+            set.imgurl = imgurl;
             [set create];
         }
     }];
@@ -206,6 +210,7 @@
         NSString *name = [itemDict objectForKey:@"name"];
         NSString *set_id = [itemDict objectForKey:@"id"];
         NSNumber *items_in_set = [itemDict objectForKey:@"numberinset"];
+        NSString *imgurl = [itemDict objectForKey:@"image_url_50"];
 
         dbSet *set = [dbSet getBySetId:[set_id integerValue]];
         if (set == nil) {
@@ -214,6 +219,7 @@
             set.set_id = [set_id integerValue];
             set.items_in_set = [items_in_set integerValue];
             set.needs_refresh = NO;
+            set.imgurl = imgurl;
             [set create];
         }
     }];
@@ -255,6 +261,7 @@
         NSString *name = [itemDict objectForKey:@"name"];
         NSString *number = [itemDict objectForKey:@"number"];
         NSNumber *item_type_id = [itemDict objectForKey:@"item_type_id"];
+        NSString *imgurl = [itemDict objectForKey:@"image_url_50"];
 
         dbSet *set = [dbSet getBySetId:set_id];
         dbItem *item = [dbItem getByItemTypeId:[item_type_id integerValue]];
@@ -263,9 +270,11 @@
             item.item_type_id = [item_type_id integerValue];
             item.name = name;
             item.set_id = set._id;
+            item.imgurl = imgurl;
             [item create];
         } else {
             item.name = name;
+            item.imgurl = imgurl;
             [item update];
         }
         if ([number isKindOfClass:[NSNumber class]] == YES) {
@@ -311,6 +320,7 @@
     [places enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull itemDict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *name = [itemDict objectForKey:@"name"];
         NSNumber *place_id = [itemDict objectForKey:@"id"];
+        NSString *imgurl = [itemDict objectForKey:@"image_url_50"];
 
         dbPlace *place = [dbPlace getByPlaceId:[place_id integerValue]];
         if (place == nil) {
@@ -320,6 +330,7 @@
             place.lat = [[itemDict objectForKey:@"lat"] floatValue];
             place.lon = [[itemDict objectForKey:@"lng"] floatValue];
             place.radius = [[itemDict objectForKey:@"radius"] longValue];
+            place.imgurl = imgurl;
             [place create];
         }
     }];
@@ -354,6 +365,7 @@
     [items enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull itemDict, NSUInteger idx, BOOL * _Nonnull stop) {
         NSNumber *item_type_id = [itemDict objectForKey:@"item_type_id"];
         NSNumber *number = [itemDict objectForKey:@"number"];
+        NSString *imgurl = [itemDict objectForKey:@"image_url_50"];
 
         dbItem *item = [dbItem getByItemTypeId:[item_type_id integerValue]];
         if (item == nil) {
@@ -363,6 +375,7 @@
             item.item_type_id = [item_type_id integerValue];
             dbSet *set = [dbSet getBySetName:[itemDict objectForKey:@"set_name"]];
             item.set_id = set._id;
+            item.imgurl = imgurl;
             [item create];
         }
 

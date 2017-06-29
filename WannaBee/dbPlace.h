@@ -15,6 +15,7 @@
 @property (nonatomic) NSInteger radius;
 @property (nonatomic) CLLocationDegrees lat;
 @property (nonatomic) CLLocationDegrees lon;
+@property (nonatomic, retain) NSString *imgurl;
 
 + (dbPlace *)get:(NSId)_id;
 + (dbPlace *)getByPlaceId:(NSInteger)place_id;

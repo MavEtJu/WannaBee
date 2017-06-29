@@ -13,13 +13,14 @@
 - (void)create
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into places(name, place_id, radius, lat, lon) values(?, ?, ?, ?, ?)");
+        DB_PREPARE(@"insert into places(name, place_id, radius, lat, lon, imgurl) values(?, ?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT  (1, self.name);
         SET_VAR_INT   (2, self.place_id);
         SET_VAR_INT   (3, self.radius);
         SET_VAR_DOUBLE(4, self.lat);
         SET_VAR_DOUBLE(5, self.lon);
+        SET_VAR_TEXT  (6, self.imgurl);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id)
@@ -31,7 +32,7 @@
 {
     NSMutableArray<dbPlace *> *ss = [NSMutableArray arrayWithCapacity:10];
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, place_id, radius, lat, lon from places "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, name, place_id, radius, lat, lon, imgurl from places "];
     if (where != nil)
         [sql appendString:where];
 
@@ -46,6 +47,7 @@
             INT_FETCH   (3, c.radius);
             DOUBLE_FETCH(4, c.lat);
             DOUBLE_FETCH(5, c.lon);
+            TEXT_FETCH  (6, c.imgurl);
 
             [ss addObject:c];
         }

@@ -13,6 +13,7 @@
 @property (nonatomic) NSInteger item_type_id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) NSId set_id;
+@property (nonatomic, retain) NSString *imgurl;
 
 - (void)update;
 + (NSArray<dbItem *> *)all;

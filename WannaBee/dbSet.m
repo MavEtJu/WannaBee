@@ -13,12 +13,13 @@
 - (void)create
 {
     @synchronized(db) {
-        DB_PREPARE(@"insert into sets(set_name, set_id, items_in_set, needs_refresh) values(?, ?, ?, ?)");
+        DB_PREPARE(@"insert into sets(set_name, set_id, items_in_set, needs_refresh, imgurl) values(?, ?, ?, ?, ?)");
 
         SET_VAR_TEXT(1, self.name);
         SET_VAR_INT (2, self.set_id);
         SET_VAR_INT (3, self.items_in_set);
         SET_VAR_BOOL(4, self.needs_refresh);
+        SET_VAR_TEXT(5, self.imgurl);
 
         DB_CHECK_OKAY;
         DB_GET_LAST_ID(self._id)
@@ -43,7 +44,7 @@
 {
     NSMutableArray<dbSet *> *ss = [NSMutableArray arrayWithCapacity:10];
 
-    NSMutableString *sql = [NSMutableString stringWithString:@"select id, set_name, set_id, items_in_set, needs_refresh from sets "];
+    NSMutableString *sql = [NSMutableString stringWithString:@"select id, set_name, set_id, items_in_set, needs_refresh, imgurl from sets "];
     if (where != nil)
         [sql appendString:where];
 
@@ -57,6 +58,7 @@
             INT_FETCH (2, c.set_id);
             INT_FETCH (3, c.items_in_set);
             BOOL_FETCH(4, c.needs_refresh);
+            TEXT_FETCH(5, c.imgurl);
 
             [ss addObject:c];
         }

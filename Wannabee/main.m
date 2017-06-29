@@ -10,6 +10,7 @@
 
 database *db = nil;
 LocationManager *locationManager = nil;
+ImageManager *imageManager = nil;
 RemoteAPI *api = nil;
 AppDelegate *appDelegate = nil;
 
