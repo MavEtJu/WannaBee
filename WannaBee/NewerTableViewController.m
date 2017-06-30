@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"ItemTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_ITEM];
 
+    [self refreshInit];
     [self refreshData];
 }
 
