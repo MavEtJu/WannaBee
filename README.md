@@ -19,6 +19,8 @@ not enabled by default.
 
 ![Settings](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/settings.png)
 
+Only use the "Remove database" and "refresh all sets" when requested.
+
 ### First time run
 
 When you run the first time, it will download all sets and contents.
