@@ -27,22 +27,38 @@ not enabled by default.
 
 ### Pouch
 
+See the contents of your pouch. Swipe to remove an object from your wishlist.
+
 ![Pouch overview](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/pouch-overview.png))
+
+Long tap to change the sorting order.
 
 ![Pouch sorting](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/pouch-sorting.png))
 
 ### Places
 
+See the overview of the global places, the local places and the
+out-of-reach places.
+
 ![Place overview](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/places-overview.png))
 
-![Place sorting](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/places-single.png))
+![Place single](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/places-single.png))
 
 ### Sets
 
-![Set overview](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/sets-overview.png))
+See the overview of the sets.
 
-![Place sorting](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/sets-single.png))
+![Sets overview](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/sets-overview.png))
+
+![Sets single](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/sets-single.png))
 
 ### Newer
+
+And now the interesting one:
+
+* See the items in the places on your wishlist.
+* See the items in the places which you don't have yet.
+* See the items in the places which are newer than the ones in your set.
+* See the items in your pouch which are newer than the ones in your set.
 
 ![Newer items](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/newer.png))
