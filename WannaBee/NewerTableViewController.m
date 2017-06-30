@@ -177,32 +177,24 @@ typedef NS_ENUM(NSInteger, SectionType) {
         }
     }
 
+    cell.itemName.text = item.name;
+    cell.image.image = [imageManager url:item.imgurl];
+    cell.setName.text = set.name;
     switch (indexPath.section) {
         case SECTION_NEWERITEMSINPOUCH:
-            cell.itemName.text = item.name;
-            cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d in pouch, #%d in set", iipo.number, iis.number];
-            cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_NEWERITEMSINPLACES:
-            cell.itemName.text = item.name;
             cell.placeName.text = place.name;
-            cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d in place, #%d in set", iipl.number, iis.number];
-            cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_NEWITEMSINPLACES:
-            cell.itemName.text = item.name;
             cell.placeName.text = place.name;
-            cell.setName.text = set.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
-            cell.image.image = [imageManager url:item.imgurl];
             break;
         case SECTION_ITEMSONWISHLIST:
-            cell.itemName.text = item.name;
-            cell.setName.text = set.name;
-            cell.numbers.text = [NSString stringWithFormat:@"Found #%d at %@", iipl.number, place.name];
-            cell.image.image = [imageManager url:item.imgurl];
+            cell.placeName.text = place.name;
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
             break;
     }
 

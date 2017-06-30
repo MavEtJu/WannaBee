@@ -51,6 +51,7 @@
     cell.setName.text = @"";
     cell.placeName.text = @"";
     cell.numbers.text = @"";
+    cell.backgroundColor = [UIColor clearColor];
 
     if (self.type == TYPE_POUCH) {
         dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
@@ -60,6 +61,8 @@
         dbSet *set = [dbSet get:item.set_id];
         cell.setName.text = set.name;
         cell.image.image = [imageManager url:item.imgurl];
+        if ([dbWishList getByItem:item] != nil)
+            cell.backgroundColor = [UIColor yellowColor];
         return cell;
     }
 
@@ -71,6 +74,8 @@
         dbSet *set = [dbSet get:item.set_id];
         cell.setName.text = set.name;
         cell.image.image = [imageManager url:item.imgurl];
+        if ([dbWishList getByItem:item] != nil)
+            cell.backgroundColor = [UIColor yellowColor];
         return cell;
     }
 
@@ -81,6 +86,8 @@
         if (iis != nil)
             cell.numbers.text = [NSString stringWithFormat:@"Item in set: #%d", iis.number];
         cell.image.image = [imageManager url:item.imgurl];
+        if ([dbWishList getByItem:item] != nil)
+            cell.backgroundColor = [UIColor yellowColor];
         return cell;
     }
 
