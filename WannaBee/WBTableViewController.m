@@ -27,6 +27,12 @@
     return self;
 }
 
+- (void)sortBySetName { NSAssert(NO, @"Muh"); }
+- (void)sortByItemName { NSAssert(NO, @"Muh"); }
+- (void)sortByPlaceName { NSAssert(NO, @"Muh"); }
+- (void)sortByItemNumber { NSAssert(NO, @"Muh"); }
+
+
 - (void)refreshInit
 {
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -96,13 +102,13 @@
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                              }];
 
-    if (self.canSortBySetName == YES && [self respondsToSelector:@selector(sortBySetName)] == YES)
+    if (self.canSortBySetName == YES)
         [alert addAction:setName];
-    if (self.canSortByItemName == YES && [self respondsToSelector:@selector(sortByItemName)] == YES)
+    if (self.canSortByItemName == YES)
         [alert addAction:itemName];
-    if (self.canSortByPlaceName == YES && [self respondsToSelector:@selector(sortByPlaceName)] == YES)
+    if (self.canSortByPlaceName == YES)
         [alert addAction:placeName];
-    if (self.canSortByItemNumber == YES && [self respondsToSelector:@selector(sortByItemNumber)] == YES)
+    if (self.canSortByItemNumber == YES)
         [alert addAction:itemNumber];
     [alert addAction:cancel];
 

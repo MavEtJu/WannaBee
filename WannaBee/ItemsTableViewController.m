@@ -220,10 +220,8 @@
     }
 
     if (self.type == TYPE_SET) {
-        sort = ^(dbItemInSet *a, dbItemInSet *b) {
-            dbItem *itemA = [dbItem get:a.item_id];
-            dbItem *itemB = [dbItem get:b.item_id];
-            return [itemA.name compare:itemB.name];
+        sort = ^(dbItem *a, dbItem *b) {
+            return [a.name compare:b.name];
         };
     }
 
@@ -274,17 +272,15 @@
     }
 
     if (self.type == TYPE_SET) {
-        sort = ^(dbItemInSet *a, dbItemInSet *b) {
-            return CMP(a.number, b.number);
+        sort = ^(dbItem *a, dbItem *b) {
+            dbItemInSet *iisA = [dbItemInSet getByItemId:a];
+            dbItemInSet *iisB = [dbItemInSet getByItemId:b];
+            return CMP(iisA.number, iisB.number);
         };
     }
 
     NSAssert(sort != nil, @"sort == nil");
     self.items = [self.items sortedArrayUsingComparator:sort];
-    [self.items enumerateObjectsUsingBlock:^(NSObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        dbItemInPouch *p = (dbItemInPouch *)obj;
-        NSLog(@"%d", p.number);
-    }];
 }
 
 @end

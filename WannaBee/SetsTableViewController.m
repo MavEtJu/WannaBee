@@ -22,7 +22,7 @@
 {
     self = [super initWithStyle:style];
 
-    self.canSortByItemName = YES;
+    self.canSortBySetName = YES;
 
     return self;
 }
@@ -107,6 +107,18 @@
     newController.edgesForExtendedLayout = UIRectEdgeNone;
     newController.title = set.name;
     [self.navigationController pushViewController:newController animated:YES];
+}
+
+- (void)sortBySetName
+{
+    id sort = nil;
+
+    sort = ^(dbSet *a, dbSet *b) {
+        return [a.name compare:b.name];
+    };
+
+    NSAssert(sort != nil, @"sort == nil");
+    self.sets = [self.sets sortedArrayUsingComparator:sort];
 }
 
 @end
