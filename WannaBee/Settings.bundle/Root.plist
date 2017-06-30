@@ -12,6 +12,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Download images</string>
+			<key>Key</key>
+			<string>downloadimages</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Erase database on startup</string>
 			<key>Key</key>
 			<string>erasedatabase</string>

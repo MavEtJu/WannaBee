@@ -6,3 +6,6 @@ Before you start, create the database:
     sqlite3 empty.db < WannaBee/schema.sql
 
 Then start the app.
+
+![alt text][images/settings.png]
+
