@@ -18,6 +18,7 @@
 + (NSArray<NSArray *> *)newerItemsInPouch;
 + (NSArray<NSArray *> *)newItemsInPlaces;
 + (NSArray<NSArray *> *)itemsOnWishlist;
++ (NSDictionary *)itemsNeededForMixing;
 
 @end
 

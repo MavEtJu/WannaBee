@@ -58,6 +58,14 @@ create table wishlist(
     item_id integer
 );
 
+create table formulas(
+    id integer primary key,
+    item_id integer,
+    source_number integer,
+    source_id integer,
+    formula integer
+);
+
 -- Items in places, not in sets
 select * from items i join sets s on s.id = i.set_id where i.id in (select item_id from items_in_places where place_id != 2 and item_id not in (select item_id from items_in_sets));
 

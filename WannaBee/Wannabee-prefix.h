@@ -32,6 +32,7 @@
 #import "dbItemInSet.h"
 #import "dbItemsInPouch.h"
 #import "dbItemInPlace.h"
+#import "dbFormula.h"
 
 #import "ImageTableViewCell.h"
 #import "ItemTableViewCell.h"
@@ -45,6 +46,7 @@
 #import "SetsTableViewController.h"
 #import "SetTableViewController.h"
 #import "NewerTableViewController.h"
+#import "ShopTableViewController.h"
 
 #import "AppDelegate.h"
 

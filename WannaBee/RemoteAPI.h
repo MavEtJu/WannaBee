@@ -17,7 +17,7 @@
 
 - (int)api_login:(NSString *)username password:(NSString *)password;
 - (int)api_users__pouch;
-- (int)api_sets;
+//- (int)api_sets;
 - (int)api_users__sets;
 - (int)api_users__sets:(NSInteger)set_id;
 - (int)api_places:(CLLocationDegrees)lat longitude:(CLLocationDegrees)lon;

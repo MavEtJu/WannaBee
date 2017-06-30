@@ -87,10 +87,13 @@
             [self execute:@"alter table sets add column imgurl text"];
             [self execute:@"alter table places add column imgurl text"];
             /* fall through */
+        case 4:
+            [self execute:@"create table formulas(id integer primary key, item_id integer, source_number integer, source_id integer, formula integer)"];
+            /* fall through */
         default:
             ;
     }
-#define VERSION 4
+#define VERSION 5
     c.value = [NSString stringWithFormat:@"%d", VERSION];
     [c update];
 }
@@ -225,6 +228,37 @@
     }
     
     return ss;
+}
+
++ (NSDictionary *)itemsNeededForMixing
+{
+    NSArray<dbItem *> *itemsNotInASetYet = [dbItem allNotInASetButWithFormula];
+    NSMutableDictionary *allItemsNeeded = [NSMutableDictionary dictionaryWithCapacity:100];
+
+    [itemsNotInASetYet enumerateObjectsUsingBlock:^(dbItem * _Nonnull forItem, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray<dbFormula *> *formulas = [dbFormula allNeededForItem:forItem];
+        NSMutableArray *stuffNeeded = [NSMutableArray arrayWithCapacity:2];
+        [stuffNeeded addObject:forItem];
+        dbSet *set = [dbSet get:forItem.set_id];
+        [stuffNeeded addObject:set];
+        [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull formula, NSUInteger idx, BOOL * _Nonnull stop) {
+            [stuffNeeded addObject:formula];
+            dbItem *item = [dbItem get:formula.source_id];
+            dbItemInPouch *iipo = [dbItemInPouch getByItem:item];
+            if (iipo != nil) {
+                [stuffNeeded addObject:iipo];
+                return;
+            }
+            NSArray<dbItemInPlace *> *iipls = [dbItemInPlace findThisItem:item];
+            [iipls enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull iipl, NSUInteger idx, BOOL * _Nonnull stop) {
+                [stuffNeeded addObject:iipl];
+            }];
+        }];
+
+        [allItemsNeeded setValue:stuffNeeded forKey:[[NSNumber numberWithInteger:forItem._id] stringValue]];
+    }];
+
+    return allItemsNeeded;
 }
 
 @end

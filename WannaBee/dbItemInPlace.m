@@ -60,6 +60,11 @@
     return [self dbAllXXX:@"where place_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:place._id]]];
 }
 
++ (NSArray<dbItemInPlace *> *)findThisItem:(dbItem *)item
+{
+    return [self dbAllXXX:@"where item_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:item._id]]];
+}
+
 + (dbItemInPlace *)get:(NSId)_id
 {
     return [[self dbAllXXX:@"where id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:_id]]] firstObject];

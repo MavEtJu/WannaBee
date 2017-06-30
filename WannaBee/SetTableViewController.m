@@ -46,6 +46,7 @@
 - (void)reloadDataBG
 {
     [api api_users__sets:self.set.set_id];
+    [dbFormula fixSource];
     self.set.needs_refresh = NO;
     [self.set dbUpdateNeedsRefresh];
     [self refreshData];

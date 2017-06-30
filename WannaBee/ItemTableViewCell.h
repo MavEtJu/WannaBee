@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *placeName;
 @property (nonatomic, weak) IBOutlet UILabel *setName;
 @property (nonatomic, weak) IBOutlet UILabel *numbers;
+@property (nonatomic, weak) IBOutlet UILabel *mixing;
 @property (nonatomic, weak) IBOutlet UIImageView *image;
 
 @end

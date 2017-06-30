@@ -13,6 +13,8 @@
 		E82C7F621F0525A800625131 /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F611F0525A800625131 /* ImageManager.m */; };
 		E82C7F661F05E9D100625131 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F641F05E9D100625131 /* ImageTableViewCell.m */; };
 		E82C7F671F05E9D100625131 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82C7F651F05E9D100625131 /* ImageTableViewCell.xib */; };
+		E82C7F6A1F06125B00625131 /* ShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F691F06125A00625131 /* ShopTableViewController.m */; };
+		E82C7F6D1F061B4200625131 /* dbFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F6C1F061B4200625131 /* dbFormula.m */; };
 		E8EF63D61F0344D9000E9111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D51F0344D9000E9111 /* main.m */; };
 		E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D81F0344D9000E9111 /* AppDelegate.m */; };
 		E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E61F0344D9000E9111 /* Assets.xcassets */; };
@@ -78,6 +80,10 @@
 		E82C7F631F05E9D100625131 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
 		E82C7F641F05E9D100625131 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		E82C7F651F05E9D100625131 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
+		E82C7F681F06125A00625131 /* ShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewController.h; sourceTree = "<group>"; };
+		E82C7F691F06125A00625131 /* ShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTableViewController.m; sourceTree = "<group>"; };
+		E82C7F6B1F061B4200625131 /* dbFormula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dbFormula.h; sourceTree = "<group>"; };
+		E82C7F6C1F061B4200625131 /* dbFormula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFormula.m; sourceTree = "<group>"; };
 		E8EF63D11F0344D9000E9111 /* WannaBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WannaBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EF63D51F0344D9000E9111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EF63D71F0344D9000E9111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -253,14 +259,16 @@
 				E8EF641B1F03458B000E9111 /* dbObject.m */,
 				E8EF64101F03458B000E9111 /* dbConfig.h */,
 				E8EF64111F03458B000E9111 /* dbConfig.m */,
+				E82C7F6B1F061B4200625131 /* dbFormula.h */,
+				E82C7F6C1F061B4200625131 /* dbFormula.m */,
 				E8EF64121F03458B000E9111 /* dbItem.h */,
 				E8EF64131F03458B000E9111 /* dbItem.m */,
 				E8EF64141F03458B000E9111 /* dbItemInPlace.h */,
 				E8EF64151F03458B000E9111 /* dbItemInPlace.m */,
-				E8EF64161F03458B000E9111 /* dbItemInSet.h */,
-				E8EF64171F03458B000E9111 /* dbItemInSet.m */,
 				E8EF64181F03458B000E9111 /* dbItemsInPouch.h */,
 				E8EF64191F03458B000E9111 /* dbItemsInPouch.m */,
+				E8EF64161F03458B000E9111 /* dbItemInSet.h */,
+				E8EF64171F03458B000E9111 /* dbItemInSet.m */,
 				E8EF641C1F03458B000E9111 /* dbPlace.h */,
 				E8EF641D1F03458B000E9111 /* dbPlace.m */,
 				E8EF641E1F03458B000E9111 /* dbSet.h */,
@@ -299,6 +307,8 @@
 				E8EF646C1F0480A4000E9111 /* SetTableViewController.m */,
 				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
 				E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */,
+				E82C7F681F06125A00625131 /* ShopTableViewController.h */,
+				E82C7F691F06125A00625131 /* ShopTableViewController.m */,
 			);
 			name = GUI;
 			path = WannaBee;
@@ -481,12 +491,14 @@
 				E8EF64231F03458B000E9111 /* dbItemInPlace.m in Sources */,
 				E8EF643E1F0357E1000E9111 /* ItemsTableViewController.m in Sources */,
 				E8EF64261F03458B000E9111 /* dbObject.m in Sources */,
+				E82C7F6A1F06125B00625131 /* ShopTableViewController.m in Sources */,
 				E8EF64731F0488D7000E9111 /* dbWishList.m in Sources */,
 				E8EF64221F03458B000E9111 /* dbItem.m in Sources */,
 				E8EF64491F0364FA000E9111 /* PouchTableViewController.m in Sources */,
 				E8EF64211F03458B000E9111 /* dbConfig.m in Sources */,
 				E8EF64281F03458B000E9111 /* dbSet.m in Sources */,
 				E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */,
+				E82C7F6D1F061B4200625131 /* dbFormula.m in Sources */,
 				E8EF64301F03460E000E9111 /* RemoteAPI.m in Sources */,
 				E82C7F5B1F0496B200625131 /* ItemTableViewCell.m in Sources */,
 				E82C7F661F05E9D100625131 /* ImageTableViewCell.m in Sources */,

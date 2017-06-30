@@ -141,50 +141,50 @@
     return 0;
 }
 
-- (int)api_sets
-{
-    NSLog(@"api_sets");
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/sets", self.host]];
-
-    NSMutableURLRequest *req = [self newRequest:url];
-
-    NSHTTPURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
-
-    if (error != nil) {
-        NSLog(@"%@", [error description]);
-        return 1;
-    }
-    if (response.statusCode != 200) {
-        NSLog(@"Return value: %d", response.statusCode);
-        return 1;
-    }
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-
-    NSArray *sets = [json objectForKey:@"sets"];
-    [sets enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull setDict, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *set_name = [setDict objectForKey:@"name"];
-        NSNumber *set_id = [setDict objectForKey:@"id"];
-        NSString *imgurl = [setDict objectForKey:@"image_url_50"];
-
-        dbSet *set = [dbSet getBySetId:[set_id integerValue]];
-        if (set == nil) {
-            set = [[dbSet alloc] init];
-            set.name = set_name;
-            set.set_id = [set_id integerValue];
-            set.needs_refresh = NO;
-            set.imgurl = imgurl;
-            [set create];
-        } else {
-            set.imgurl = imgurl;
-            [set update];
-        }
-    }];
-    
-    return 0;
-}
+//- (int)api_sets
+//{
+//    NSLog(@"api_sets");
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/sets", self.host]];
+//
+//    NSMutableURLRequest *req = [self newRequest:url];
+//
+//    NSHTTPURLResponse *response = nil;
+//    NSError *error = nil;
+//    NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&response error:&error];
+//
+//    if (error != nil) {
+//        NSLog(@"%@", [error description]);
+//        return 1;
+//    }
+//    if (response.statusCode != 200) {
+//        NSLog(@"Return value: %d", response.statusCode);
+//        return 1;
+//    }
+//
+//    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+//
+//    NSArray *sets = [json objectForKey:@"sets"];
+//    [sets enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull setDict, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSString *set_name = [setDict objectForKey:@"name"];
+//        NSNumber *set_id = [setDict objectForKey:@"id"];
+//        NSString *imgurl = [setDict objectForKey:@"image_url_50"];
+//
+//        dbSet *set = [dbSet getBySetId:[set_id integerValue]];
+//        if (set == nil) {
+//            set = [[dbSet alloc] init];
+//            set.name = set_name;
+//            set.set_id = [set_id integerValue];
+//            set.needs_refresh = NO;
+//            set.imgurl = imgurl;
+//            [set create];
+//        } else {
+//            set.imgurl = imgurl;
+//            [set update];
+//        }
+//    }];
+//    
+//    return 0;
+//}
 
 - (int)api_users__sets
 {
@@ -268,6 +268,7 @@
         NSString *number = [itemDict objectForKey:@"number"];
         NSNumber *item_type_id = [itemDict objectForKey:@"item_type_id"];
         NSString *imgurl = [itemDict objectForKey:@"image_url_50"];
+        NSArray<NSArray *> *formulas = [itemDict objectForKey:@"formulas"];
 
         dbSet *set = [dbSet getBySetId:set_id];
         dbItem *item = [dbItem getByItemTypeId:[item_type_id integerValue]];
@@ -292,6 +293,18 @@
                 [iis create];
             }
         }
+        [dbFormula deleteByItem:item];
+        [formulas enumerateObjectsUsingBlock:^(NSArray * _Nonnull formula, NSUInteger idxformula, BOOL * _Nonnull stop) {
+            [formula enumerateObjectsUsingBlock:^(NSNumber * _Nonnull number, NSUInteger idxitem, BOOL * _Nonnull stop) {
+                dbFormula *f = [[dbFormula alloc] init];
+                f.item_id = item._id;
+                f.source_number = [number integerValue];
+                dbItem *i = [dbItem getByItemTypeId:f.source_number];
+                f.source_id = i._id;        // Might fail
+                f.number = idxformula;
+                [f create];
+            }];
+        }];
     }];
 
     dbSet *set = [dbSet getBySetId:set_id];

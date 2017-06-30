@@ -51,6 +51,7 @@
     cell.setName.text = @"";
     cell.placeName.text = @"";
     cell.numbers.text = @"";
+    cell.mixing.text = @"";
     cell.backgroundColor = [UIColor clearColor];
 
     if (self.type == TYPE_POUCH) {
