@@ -74,6 +74,9 @@
     if ([self isCached:urlhash] == YES)
         return [self fromCache:urlhash];
 
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"downloadimages"] == NO)
+        return nil;
+    
     [self performSelectorInBackground:@selector(urlBG:) withObject:urlstring];
     return nil;
 }

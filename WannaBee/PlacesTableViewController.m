@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_PLACE];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ImageTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_PLACE];
     [self refreshInit];
 }
 
@@ -134,7 +134,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCellSubtitle *cell = [tableView dequeueReusableCellWithIdentifier:CELL_PLACE forIndexPath:indexPath];
+    ImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_PLACE forIndexPath:indexPath];
 
     dbPlace *place = nil;
     switch (indexPath.section) {
@@ -149,14 +149,14 @@ typedef NS_ENUM(NSInteger, SectionType) {
             break;
     }
 
-    cell.textLabel.text = place.name;
+    cell.name.text = place.name;
     NSInteger unique = [[dbItem allInPlace:place] count];
     NSInteger total = [[dbItemInPlace allItemsInPlace:place] count];
     if (total == unique)
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@", unique, unique == 1 ? @"" : @"s"];
+        cell.subtitle.text = [NSString stringWithFormat:@"%d item%@", unique, unique == 1 ? @"" : @"s"];
     else
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@, %d unique", total, total == 1 ? @"" : @"s", unique];
-    cell.imageView.image = [imageManager url:place.imgurl];
+        cell.subtitle.text = [NSString stringWithFormat:@"%d item%@, %d unique", total, total == 1 ? @"" : @"s", unique];
+    cell.image.image = [imageManager url:place.imgurl];
 
     return cell;
 }

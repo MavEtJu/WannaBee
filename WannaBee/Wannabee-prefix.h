@@ -33,8 +33,7 @@
 #import "dbItemsInPouch.h"
 #import "dbItemInPlace.h"
 
-#import "TableViewCellPlain.h"
-#import "TableViewCellSubtitle.h"
+#import "ImageTableViewCell.h"
 #import "ItemTableViewCell.h"
 
 #import "TabBarController.h"

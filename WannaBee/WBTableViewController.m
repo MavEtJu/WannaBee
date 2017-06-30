@@ -45,6 +45,10 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 20;
+
     if ([self respondsToSelector:@selector(handleLongPress:)] == YES) {
         UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                               initWithTarget:self action:@selector(handleLongPress:)];

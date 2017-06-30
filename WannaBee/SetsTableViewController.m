@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[TableViewCellSubtitle class] forCellReuseIdentifier:CELL_SET];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ImageTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_SET];
 
     [self refreshInit];
     [self refreshData];
@@ -86,14 +86,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCellSubtitle *cell = [tableView dequeueReusableCellWithIdentifier:CELL_SET forIndexPath:indexPath];
+    ImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_SET forIndexPath:indexPath];
     dbSet *set = [self.sets objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = set.name;
+    cell.name.text = set.name;
     NSInteger count = [[dbItem allInSet:set] count];
     NSInteger got = [[dbItem allInSetStored:set] count];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d item%@, %d in set", count, count == 1 ? @"" : @"s", got];
-    cell.imageView.image = [imageManager url:set.imgurl];
+    cell.subtitle.text = [NSString stringWithFormat:@"%d item%@, %d in set", count, count == 1 ? @"" : @"s", got];
+    cell.image.image = [imageManager url:set.imgurl];
 
     return cell;
 }
