@@ -19,11 +19,27 @@ not enabled by default.
 
 ![Settings](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/settings.png)
 
+### First time run
+
+When you run the first time, it will download all sets and contents.
+This might take a while.
+
+Also downloads the local places and your pouch.
+
+### Next time run
+
+Any next time it will download only the sets which were earlier
+mentioned in the "Newer" section.
+
+Also downloads the local places and your pouch.
+
 ### Tables
 
 * Pull down to refresh.
 * Swipe on items in sets to add them to your wishlist.
 * Long tap to change the sorting mechanism.
+* Images are downloaded on demand, so they will show up the next
+  time the place / item / set is shown.
 
 ### Pouch
 
