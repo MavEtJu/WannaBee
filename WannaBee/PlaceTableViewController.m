@@ -44,6 +44,7 @@
 
 - (void)reloadDataBG
 {
+    [dbItemInPlace deleteByPlace:self.place];
     [api api_places__items:self.place.place_id];
     [self refreshData];
     [self refreshStop];
