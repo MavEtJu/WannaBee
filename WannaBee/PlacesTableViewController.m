@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
 {
     self = [super initWithStyle:style];
 
-    self.canSortBySetName = YES;
+    self.canSortByPlaceName = YES;
 
     return self;
 }
@@ -183,5 +183,20 @@ typedef NS_ENUM(NSInteger, SectionType) {
     newController.title = place.name;
     [self.navigationController pushViewController:newController animated:YES];
 }
+
+- (void)sortByPlaceName
+{
+    id sort = nil;
+
+    sort = ^(dbPlace *a, dbPlace *b) {
+        return [a.name compare:b.name];
+    };
+
+    NSAssert(sort != nil, @"sort == nil");
+    self.placesLocal = [self.placesLocal sortedArrayUsingComparator:sort];
+    self.placesGlobal = [self.placesGlobal sortedArrayUsingComparator:sort];
+    self.placesTooFar = [self.placesTooFar sortedArrayUsingComparator:sort];
+}
+
 
 @end
