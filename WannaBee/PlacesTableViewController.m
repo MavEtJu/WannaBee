@@ -27,6 +27,15 @@ typedef NS_ENUM(NSInteger, SectionType) {
     SECTION_MAX,
 };
 
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+
+    self.canSortBySetName = YES;
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -30,15 +30,20 @@ typedef NS_ENUM(NSInteger, SectionType) {
 
 @implementation NewerTableViewController
 
-#define CELL_ITEM   @"CELL_ITEM"
+#define CELL_ITEM   @"newercells"
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
 
-    self.tooFarColour = [UIColor grayColor];
-    self.reachableColour = [UIColor darkGrayColor];
+    self.tooFarColour = [UIColor lightGrayColor];
+    self.reachableColour = [UIColor darkTextColor];
 
+    self.canSortBySetName = YES;
+    self.canSortByItemName = YES;
+    self.canSortByPlaceName = YES;
+    self.canSortByItemNumber = YES;
+    
     return self;
 }
 
@@ -166,7 +171,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
     if (indexPath.section == SECTION_NEWITEMSINPLACES ||
         indexPath.section == SECTION_NEWERITEMSINPLACES ||
         indexPath.section == SECTION_ITEMSONWISHLIST) {
-        if ([place canReach] == YES) {
+        if ([place canReach] == NO) {
             cell.itemName.textColor = self.tooFarColour;
             cell.setName.textColor = self.tooFarColour;
             cell.placeName.textColor = self.tooFarColour;

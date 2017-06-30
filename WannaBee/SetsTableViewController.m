@@ -18,6 +18,15 @@
 
 #define CELL_SET  @"SetsCell"
 
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+
+    self.canSortByItemName = YES;
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -21,9 +21,13 @@
     self.type = TYPE_PLACE;
     [self refreshInit];
 
+    self.canSortBySetName = YES;
+    self.canSortByItemName = YES;
+    self.canSortByItemNumber = YES;
+    
     return self;
 }
-
+    
 - (void)refreshData
 {
     self.items = [dbItemInPlace allItemsInPlace:self.place];

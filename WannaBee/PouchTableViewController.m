@@ -21,6 +21,10 @@
     self.title = @"Pouch";
     self.type = TYPE_POUCH;
 
+    self.canSortBySetName = YES;
+    self.canSortByItemName = YES;
+    self.canSortByItemNumber = YES;
+
     return self;
 }
 

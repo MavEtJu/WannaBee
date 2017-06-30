@@ -23,6 +23,9 @@
     self.type = TYPE_SET;
     [self refreshInit];
 
+    self.canSortByItemName = YES;
+    self.canSortByItemNumber = YES;
+
     return self;
 }
 

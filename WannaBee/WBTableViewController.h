@@ -8,10 +8,20 @@
 
 #import "Wannabee-prefix.h"
 
-@interface WBTableViewController : UITableViewController
+@interface WBTableViewController : UITableViewController<UIGestureRecognizerDelegate>
+
+@property (nonatomic) BOOL canSortBySetName;
+@property (nonatomic) BOOL canSortByItemName;
+@property (nonatomic) BOOL canSortByPlaceName;
+@property (nonatomic) BOOL canSortByItemNumber;
 
 - (void)refreshInit;
 - (void)refreshTitle:(NSString *)title;
 - (void)refreshStop;
+
+- (void)sortBySetName;
+- (void)sortByItemName;
+- (void)sortByPlaceName;
+- (void)sortByItemNumber;
 
 @end

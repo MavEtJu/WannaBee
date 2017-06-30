@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib
 {
+    self.translatesAutoresizingMaskIntoConstraints = YES;
     [super awakeFromNib];
 }
 

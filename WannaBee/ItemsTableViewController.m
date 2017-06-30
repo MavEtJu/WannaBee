@@ -16,12 +16,21 @@
 
 #define CELL_ITEM   @"CELL_ITEM"
 
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+
+    // Do not set canSortBy.... here.
+
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"ItemTableViewCell" bundle:nil] forCellReuseIdentifier:CELL_ITEM];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 20;
+    self.tableView.estimatedRowHeight = 50;
 }
 
 #pragma mark - Table view data source
@@ -152,5 +161,130 @@
     }
 }
 
+- (void)sortBySetName
+{
+    id sort = nil;
+
+    if (self.type == TYPE_POUCH) {
+        sort = ^(dbItemInPouch *a, dbItemInPouch *b) {
+            dbItem *itemA = [dbItem get:a.item_id];
+            dbItem *itemB = [dbItem get:b.item_id];
+            dbSet *setA = [dbSet get:itemA.set_id];
+            dbSet *setB = [dbSet get:itemB.set_id];
+            return [setA.name compare:setB.name];
+        };
+    }
+
+    if (self.type == TYPE_PLACE) {
+        sort = ^(dbItemInPlace *a, dbItemInPlace *b) {
+            dbItem *itemA = [dbItem get:a.item_id];
+            dbItem *itemB = [dbItem get:b.item_id];
+            dbSet *setA = [dbSet get:itemA.set_id];
+            dbSet *setB = [dbSet get:itemB.set_id];
+            return [setA.name compare:setB.name];
+        };
+    }
+
+    if (self.type == TYPE_SET) {
+        sort = ^(dbItemInSet *a, dbItemInSet *b) {
+            dbItem *itemA = [dbItem get:a.item_id];
+            dbItem *itemB = [dbItem get:b.item_id];
+            dbSet *setA = [dbSet get:itemA.set_id];
+            dbSet *setB = [dbSet get:itemB.set_id];
+            return [setA.name compare:setB.name];
+        };
+    }
+
+    NSAssert(sort != nil, @"sort == nil");
+    self.items = [self.items sortedArrayUsingComparator:sort];
+}
+
+- (void)sortByItemName
+{
+    id sort = nil;
+
+    if (self.type == TYPE_POUCH) {
+        sort = ^(dbItemInPouch *a, dbItemInPouch *b) {
+            dbItem *itemA = [dbItem get:a.item_id];
+            dbItem *itemB = [dbItem get:b.item_id];
+            return [itemA.name compare:itemB.name];
+        };
+    }
+
+    if (self.type == TYPE_PLACE) {
+        sort = ^(dbItemInPlace *a, dbItemInPlace *b) {
+            dbItem *itemA = [dbItem get:a.item_id];
+            dbItem *itemB = [dbItem get:b.item_id];
+            return [itemA.name compare:itemB.name];
+        };
+    }
+
+    if (self.type == TYPE_SET) {
+        sort = ^(dbItemInSet *a, dbItemInSet *b) {
+            dbItem *itemA = [dbItem get:a.item_id];
+            dbItem *itemB = [dbItem get:b.item_id];
+            return [itemA.name compare:itemB.name];
+        };
+    }
+
+    NSAssert(sort != nil, @"sort == nil");
+    self.items = [self.items sortedArrayUsingComparator:sort];
+}
+
+- (void)sortByPlaceName
+{
+    id sort = nil;
+
+    if (self.type == TYPE_POUCH) {
+        // Nope
+    }
+
+    if (self.type == TYPE_PLACE) {
+        sort = ^(dbItemInPlace *a, dbItemInPlace *b) {
+            dbPlace *placeA = [dbPlace get:a.place_id];
+            dbPlace *placeB = [dbPlace get:b.place_id];
+            return [placeA.name compare:placeB.name];
+        };
+    }
+
+    if (self.type == TYPE_SET) {
+        // Nope
+    }
+
+    NSAssert(sort != nil, @"sort == nil");
+    self.items = [self.items sortedArrayUsingComparator:sort];
+}
+
+#define CMP(a, b) (a > b) ? 1L : (a < b) ? -1L : 0L
+
+- (void)sortByItemNumber
+{
+    id sort = nil;
+
+    if (self.type == TYPE_POUCH) {
+        sort = ^(dbItemInPouch *a, dbItemInPouch *b) {
+            return CMP(a.number, b.number);
+        };
+    }
+
+    if (self.type == TYPE_PLACE) {
+        sort = ^(dbItemInPlace *a, dbItemInPlace *b) {
+            return CMP(a.number, b.number);
+        };
+    }
+
+    if (self.type == TYPE_SET) {
+        sort = ^(dbItemInSet *a, dbItemInSet *b) {
+            return CMP(a.number, b.number);
+        };
+    }
+
+    NSAssert(sort != nil, @"sort == nil");
+    self.items = [self.items sortedArrayUsingComparator:sort];
+    [self.items enumerateObjectsUsingBlock:^(NSObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        dbItemInPouch *p = (dbItemInPouch *)obj;
+        NSLog(@"%d", p.number);
+    }];
+}
 
 @end
