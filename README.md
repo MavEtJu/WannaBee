@@ -7,5 +7,5 @@ Before you start, create the database:
 
 Then start the app.
 
-![alt text][https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/newer.png]
+![alt text](https://raw.githubusercontent.com/MavEtJu/WannaBee/master/images/newer.png)
 
