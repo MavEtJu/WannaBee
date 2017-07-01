@@ -78,10 +78,10 @@ enum {
 
 - (void)refreshData
 {
-    NSArray<dbItemInPouch *> *iips = [dbItemInPouch all];
-    NSMutableArray<dbItemInPouch *> *m = [NSMutableArray arrayWithCapacity:[iips count]];
-    NSMutableArray<dbItemInPouch *> *o = [NSMutableArray arrayWithCapacity:[iips count]];
-    [iips enumerateObjectsUsingBlock:^(dbItemInPouch * _Nonnull iip, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSArray<dbItemInPlace *> *iips = [dbItemInPlace allItemsInPlace:self.place];
+    NSMutableArray<dbItemInPlace *> *m = [NSMutableArray arrayWithCapacity:[iips count]];
+    NSMutableArray<dbItemInPlace *> *o = [NSMutableArray arrayWithCapacity:[iips count]];
+    [iips enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull iip, NSUInteger idx, BOOL * _Nonnull stop) {
         dbItem *i = [dbItem get:iip.item_id];
         if ([dbFormula isSourceObject:i] == YES)
             [m addObject:iip];
