@@ -67,6 +67,31 @@
     cell.mixing.text = @"";
     cell.backgroundColor = [UIColor clearColor];
 
+    if (self.type == TYPE_MIXING) {
+        NSObject *o = [items objectAtIndex:indexPath.row];
+        dbItem *item = nil;
+        dbItemInPouch *iipo = nil;
+        dbItemInPlace *iipl = nil;
+        dbPlace *place = nil;
+        if ([o isKindOfClass:[dbItem class]] == YES) {
+            item = (dbItem *)[items objectAtIndex:indexPath.row];
+        } else if ([o isKindOfClass:[dbItemInPlace class]] == YES) {
+            iipl = (dbItemInPlace *)[items objectAtIndex:indexPath.row];
+            item = [dbItem get:iipl.item_id];
+            place = [dbPlace get:iipl.place_id];
+            cell.placeName.text = place.name;
+        } else if ([o isKindOfClass:[dbItemInPouch class]] == YES) {
+            iipo = (dbItemInPouch *)[items objectAtIndex:indexPath.row];
+            item = [dbItem get:iipo.item_id];
+            cell.placeName.text = @"Pouch";
+        }
+        cell.itemName.text = item.name;
+        dbSet *set = [dbSet get:item.set_id];
+        cell.setName.text = set.name;
+        cell.image.image = [imageManager url:item.imgurl];
+        return cell;
+    }
+
     if (self.type == TYPE_POUCH) {
         dbItemInPouch *iip = (dbItemInPouch *)[items objectAtIndex:indexPath.row];
         dbItem *item = [dbItem get:iip.item_id];
@@ -126,6 +151,7 @@
         case TYPE_NEWER:
         case TYPE_UNKNOWN:
         case TYPE_PLACE:
+        case TYPE_MIXING:
             return NO;
     }
     return NO;
@@ -148,6 +174,7 @@
         case TYPE_UNKNOWN:
         case TYPE_NEWER:
         case TYPE_PLACE:
+        case TYPE_MIXING:
             return @"???";
     }
     return @"???";
@@ -182,8 +209,36 @@
         case TYPE_UNKNOWN:
         case TYPE_NEWER:
         case TYPE_PLACE:
+        case TYPE_MIXING:
             return;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.type != TYPE_MIXING)
+        return;
+
+    NSArray<NSObject *> *os = [self itemsForSection:indexPath.section];
+    NSObject *o = [os objectAtIndex:indexPath.row];
+
+    dbItem *item = nil;
+    if ([o isKindOfClass:[dbItem class]] == YES) {
+        item = (dbItem *)o;
+    }  else if ([o isKindOfClass:[dbItemInPlace class]] == YES) {
+        dbItemInPlace *iip = (dbItemInPlace *)o;
+        item = [dbItem get:iip.item_id];
+    }
+
+    NSArray<dbFormula *> *formulas = [dbFormula allNeededForItem:item];
+    if ([formulas count] == 0)
+        return;
+
+    MixingTableViewController *newController = [[MixingTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = item.name;
+    [newController showItem:item];
+    [self.navigationController pushViewController:newController animated:YES];
 }
 
 - (void)sortBySetName:(NSInteger)section

@@ -15,8 +15,9 @@
 - (void)upgrade;
 
 + (NSArray<NSArray *> *)newerItemsInPlaces;
-+ (NSArray<NSArray *> *)newerItemsInPouch;
 + (NSArray<NSArray *> *)newItemsInPlaces;
++ (NSArray<NSArray *> *)newerItemsInPouch;
++ (NSArray<NSArray *> *)newItemsInPouch;
 + (NSArray<NSArray *> *)itemsOnWishlist;
 + (NSDictionary *)itemsNeededForMixing;
 

@@ -83,6 +83,7 @@
 + (void)deleteAllExceptFromSafeplaces
 {
     [self deleteAll:@"items_in_places where place_id in (select id from places where safeplace = 0)"];
+    [self deleteAll:@"items_in_places where place_id not in (select id from places)"];
 }
 
 + (void)deleteByPlace:(dbPlace *)place

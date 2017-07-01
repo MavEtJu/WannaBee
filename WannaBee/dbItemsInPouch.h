@@ -14,6 +14,7 @@
 @property (nonatomic) NSInteger number;
 
 + (NSArray<dbItemInPouch *> *)all;
++ (NSArray<dbItemInPouch *> *)allByItem:(dbItem *)item;
 + (dbItemInPouch *)get:(NSId)_id;
 + (dbItemInPouch *)getByItem:(dbItem *)item;
 + (void)deleteAll;

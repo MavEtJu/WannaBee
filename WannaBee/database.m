@@ -97,10 +97,13 @@
         case 6:
             [self execute:@"delete from items_in_places where place_id = 0"];
             /* fall through */
+        case 7:
+            [self execute:@"delete from items_in_places where place_id not in (select id from places)"];
+            /* fall through */
         default:
             ;
     }
-#define VERSION 6
+#define VERSION 8
     c.value = [NSString stringWithFormat:@"%d", VERSION];
     [c update];
 }
@@ -169,6 +172,31 @@
             dbItemInPouch *iip = [dbItemInPouch get:iip_id];
 
             [ss addObject:@[item, set, iip, iis]];
+        }
+        DB_FINISH;
+    }
+
+    return ss;
+}
+
++ (NSArray<NSArray *> *)newItemsInPouch
+{
+    NSMutableArray *ss = [NSMutableArray arrayWithCapacity:20];
+
+    NSString *sql = @"select i.id, iip.id, i.set_id from items i join items_in_pouch iip on i.id = iip.item_id where i.id not in (select item_id from items_in_sets)";
+
+    @synchronized(db) {
+        DB_PREPARE(sql);
+
+        DB_WHILE_STEP {
+            INT_FETCH_AND_ASSIGN(0, item_id);
+            INT_FETCH_AND_ASSIGN(1, iip_id);
+
+            dbItem *item = [dbItem get:item_id];
+            dbSet *set = [dbSet get:item.set_id];
+            dbItemInPouch *iip = [dbItemInPouch get:iip_id];
+
+            [ss addObject:@[item, set, iip]];
         }
         DB_FINISH;
     }

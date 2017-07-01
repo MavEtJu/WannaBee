@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, ItemsTableType) {
     TYPE_PLACE,
     TYPE_SET,
     TYPE_NEWER,
+    TYPE_MIXING,
 };
 
 @interface ItemsTableViewController : WBTableViewController

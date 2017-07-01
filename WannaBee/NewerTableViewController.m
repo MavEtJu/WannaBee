@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSArray<NSObject *> *newerItemsInPlaces;
 @property (nonatomic, retain) NSArray<NSObject *> *newerItemsInPouch;
+@property (nonatomic, retain) NSArray<NSObject *> *unseenItemsInPouch;
 @property (nonatomic, retain) NSArray<NSObject *> *unseenItemsInPlaces;
 @property (nonatomic, retain) NSArray<NSObject *> *itemsOnWishlist;
 @property (nonatomic, retain) NSDictionary *itemsNeededForMixing;
@@ -22,10 +23,11 @@
 
 @end
 
-typedef NS_ENUM(NSInteger, SectionType) {
+enum {
     SECTION_ITEMSONWISHLIST = 0,
     SECTION_NEWITEMSINPLACES,
     SECTION_NEWERITEMSINPLACES,
+    SECTION_NEWITEMSINPOUCH,
     SECTION_NEWERITEMSINPOUCH,
     SECTION_ITEMSNEEDEDFORMIXING,
     SECTION_MAX,
@@ -77,6 +79,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
 {
     self.newerItemsInPlaces = [database newerItemsInPlaces];
     self.newerItemsInPouch = [database newerItemsInPouch];
+    self.unseenItemsInPouch = [database newItemsInPouch];
     self.unseenItemsInPlaces = [database newItemsInPlaces];
     self.itemsOnWishlist = [database itemsOnWishlist];
 
@@ -118,6 +121,8 @@ typedef NS_ENUM(NSInteger, SectionType) {
             return @"New Items in Places";
         case SECTION_NEWERITEMSINPLACES:
             return @"Newer Items in Places";
+        case SECTION_NEWITEMSINPOUCH:
+            return @"New Items in Pouch";
         case SECTION_NEWERITEMSINPOUCH:
             return @"Newer Items in Pouch";
         case SECTION_ITEMSONWISHLIST:
@@ -137,6 +142,8 @@ typedef NS_ENUM(NSInteger, SectionType) {
             return [self.newerItemsInPlaces count];
         case SECTION_NEWERITEMSINPOUCH:
             return [self.newerItemsInPouch count];
+        case SECTION_NEWITEMSINPOUCH:
+            return [self.unseenItemsInPouch count];
         case SECTION_ITEMSONWISHLIST:
             return [self.itemsOnWishlist count];
         case SECTION_ITEMSNEEDEDFORMIXING:
@@ -158,6 +165,9 @@ typedef NS_ENUM(NSInteger, SectionType) {
             break;
         case SECTION_NEWERITEMSINPOUCH:
             o = [self.newerItemsInPouch objectAtIndex:indexPath.row];
+            break;
+        case SECTION_NEWITEMSINPOUCH:
+            o = [self.unseenItemsInPouch objectAtIndex:indexPath.row];
             break;
         case SECTION_ITEMSONWISHLIST:
             o = [self.itemsOnWishlist objectAtIndex:indexPath.row];
@@ -249,6 +259,7 @@ typedef NS_ENUM(NSInteger, SectionType) {
             }
             break;
         case SECTION_NEWITEMSINPLACES:
+        case SECTION_NEWITEMSINPOUCH:
             cell.placeName.text = place.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
             if (set.needs_refresh == NO) {
@@ -331,4 +342,24 @@ typedef NS_ENUM(NSInteger, SectionType) {
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != SECTION_ITEMSNEEDEDFORMIXING)
+        return;
+
+    NSArray *os = [self.itemsNeededForMixing objectForKey:[self.itemsNeededForMixingItems objectAtIndex:indexPath.row]];
+    __block dbItem *item = nil;
+    [os enumerateObjectsUsingBlock:^(NSObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[dbItem class]] == YES) {
+            item = (dbItem *)obj;
+            *stop = YES;
+        }
+    }];
+
+    MixingTableViewController *newController = [[MixingTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = item.name;
+    [newController showItem:item];
+    [self.navigationController pushViewController:newController animated:YES];
+}
 @end

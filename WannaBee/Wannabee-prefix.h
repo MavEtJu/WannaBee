@@ -45,6 +45,7 @@
 #import "PlacesTableViewController.h"
 #import "SetsTableViewController.h"
 #import "SetTableViewController.h"
+#import "MixingTableViewController.h"
 #import "NewerTableViewController.h"
 
 #import "AppDelegate.h"
