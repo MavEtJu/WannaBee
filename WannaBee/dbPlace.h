@@ -16,12 +16,15 @@
 @property (nonatomic) CLLocationDegrees lat;
 @property (nonatomic) CLLocationDegrees lon;
 @property (nonatomic, retain) NSString *imgurl;
+@property (nonatomic) BOOL safeplace;
 
+- (void)updateSafeplace;
 + (dbPlace *)get:(NSId)_id;
 + (dbPlace *)getByPlaceId:(NSInteger)place_id;
 + (dbPlace *)getByPlaceName:(NSString *)place_name;
 + (NSArray<dbPlace *> *)all;
 + (void)deleteAll;
++ (void)deleteAllExceptSafeplaces;
 
 - (BOOL)canReach;
 

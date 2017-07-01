@@ -33,6 +33,17 @@
 
 #pragma mark - Table view data source
 
+- (NSArray<NSObject *> *)itemsForSection:(NSInteger)section
+{
+    NSAssert(NO, @"Not implemented");
+    return nil;
+}
+
+- (void)setItems:(NSArray<NSObject *> *)items forSection:(NSInteger)section
+{
+    NSAssert(NO, @"Not implemented");
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -40,12 +51,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.items count];
+    NSArray<NSObject *> *items = [self itemsForSection:section];
+    return [items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
+    NSArray<NSObject *> *items = [self itemsForSection:indexPath.section];
 
     cell.itemName.text = @"";
     cell.setName.text = @"";
@@ -55,7 +68,7 @@
     cell.backgroundColor = [UIColor clearColor];
 
     if (self.type == TYPE_POUCH) {
-        dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
+        dbItemInPouch *iip = (dbItemInPouch *)[items objectAtIndex:indexPath.row];
         dbItem *item = [dbItem get:iip.item_id];
         cell.itemName.text = item.name;
         cell.numbers.text = [NSString stringWithFormat:@"Item in pouch: #%d", iip.number];
@@ -68,7 +81,7 @@
     }
 
     if (self.type == TYPE_PLACE) {
-        dbItemInPlace *iip = (dbItemInPlace *)[self.items objectAtIndex:indexPath.row];
+        dbItemInPlace *iip = (dbItemInPlace *)[items objectAtIndex:indexPath.row];
         dbItem *item = [dbItem get:iip.item_id];
         cell.itemName.text = item.name;
         cell.numbers.text = [NSString stringWithFormat:@"Item in place: #%d", iip.number];
@@ -81,7 +94,7 @@
     }
 
     if (self.type == TYPE_SET) {
-        dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
+        dbItem *item = (dbItem *)[items objectAtIndex:indexPath.row];
         dbItemInSet *iis = [dbItemInSet getByItemId:item];
         cell.itemName.text = item.name;
         if (iis != nil)
@@ -98,11 +111,13 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray<NSObject *> *items = [self itemsForSection:indexPath.section];
+
     switch (self.type) {
         case TYPE_SET:
             return YES;
         case TYPE_POUCH: {
-            dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
+            dbItemInPouch *iip = (dbItemInPouch *)[items objectAtIndex:indexPath.row];
             dbItem *item = [dbItem get:iip.item_id];
             if ([dbWishList getByItem:item] == nil)
                 return NO;
@@ -118,9 +133,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+    NSArray<NSObject *> *items = [self itemsForSection:indexPath.section];
+
     switch (self.type) {
         case TYPE_SET: {
-            dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
+            dbItem *item = (dbItem *)[items objectAtIndex:indexPath.row];
             if ([dbWishList getByItem:item] == nil)
                 return @"Add to wishlist";
             else
@@ -138,9 +155,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
+    NSArray<NSObject *> *items = [self itemsForSection:indexPath.section];
+
     switch (self.type) {
         case TYPE_SET: {
-            dbItem *item = (dbItem *)[self.items objectAtIndex:indexPath.row];
+            dbItem *item = (dbItem *)[items objectAtIndex:indexPath.row];
             dbWishList *wl = [dbWishList getByItem:item];
             if (wl == nil) {
                 wl = [[dbWishList alloc] init];
@@ -153,7 +172,7 @@
             return;
         }
         case TYPE_POUCH: {
-            dbItemInPouch *iip = (dbItemInPouch *)[self.items objectAtIndex:indexPath.row];
+            dbItemInPouch *iip = (dbItemInPouch *)[items objectAtIndex:indexPath.row];
             dbItem *item = [dbItem get:iip.item_id];
             dbWishList *wl = [dbWishList getByItem:item];
             [wl _delete];
@@ -167,7 +186,7 @@
     }
 }
 
-- (void)sortBySetName
+- (void)sortBySetName:(NSInteger)section
 {
     id sort = nil;
 
@@ -202,10 +221,12 @@
     }
 
     NSAssert(sort != nil, @"sort == nil");
-    self.items = [self.items sortedArrayUsingComparator:sort];
+    NSArray<NSObject *> *items = [self itemsForSection:section];
+    items = [items sortedArrayUsingComparator:sort];
+    [self setItems:items forSection:section];
 }
 
-- (void)sortByItemName
+- (void)sortByItemName:(NSInteger)section
 {
     id sort = nil;
 
@@ -232,10 +253,12 @@
     }
 
     NSAssert(sort != nil, @"sort == nil");
-    self.items = [self.items sortedArrayUsingComparator:sort];
+    NSArray<NSObject *> *items = [self itemsForSection:section];
+    items = [items sortedArrayUsingComparator:sort];
+    [self setItems:items forSection:section];
 }
 
-- (void)sortByPlaceName
+- (void)sortByPlaceName:(NSInteger)section
 {
     id sort = nil;
 
@@ -256,12 +279,14 @@
     }
 
     NSAssert(sort != nil, @"sort == nil");
-    self.items = [self.items sortedArrayUsingComparator:sort];
+    NSArray<NSObject *> *items = [self itemsForSection:section];
+    items = [items sortedArrayUsingComparator:sort];
+    [self setItems:items forSection:section];
 }
 
 #define CMP(a, b) (a > b) ? 1L : (a < b) ? -1L : 0L
 
-- (void)sortByItemNumber
+- (void)sortByItemNumber:(NSInteger)section
 {
     id sort = nil;
 
@@ -286,7 +311,9 @@
     }
 
     NSAssert(sort != nil, @"sort == nil");
-    self.items = [self.items sortedArrayUsingComparator:sort];
+    NSArray<NSObject *> *items = [self itemsForSection:section];
+    items = [items sortedArrayUsingComparator:sort];
+    [self setItems:items forSection:section];
 }
 
 @end

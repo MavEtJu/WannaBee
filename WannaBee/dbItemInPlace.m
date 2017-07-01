@@ -80,6 +80,11 @@
     [self deleteAll:@"items_in_places"];
 }
 
++ (void)deleteAllExceptFromSafeplaces
+{
+    [self deleteAll:@"items_in_places where place_id in (select id from places where safeplace = 0)"];
+}
+
 + (void)deleteByPlace:(dbPlace *)place
 {
     @synchronized(db) {

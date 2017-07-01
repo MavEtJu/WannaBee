@@ -19,9 +19,9 @@
 - (void)refreshTitle:(NSString *)title;
 - (void)refreshStop;
 
-- (void)sortBySetName;
-- (void)sortByItemName;
-- (void)sortByPlaceName;
-- (void)sortByItemNumber;
+- (void)sortBySetName:(NSInteger)section;
+- (void)sortByItemName:(NSInteger)section;
+- (void)sortByPlaceName:(NSInteger)section;
+- (void)sortByItemNumber:(NSInteger)section;
 
 @end

@@ -70,15 +70,10 @@
     self.newerVC.title = @"Newer";
     self.newerNC = [[UINavigationController alloc] initWithRootViewController:self.newerVC];
 
-    self.shopVC = [[ShopTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    self.shopVC.title = @"Shops";
-    self.shopNC = [[UINavigationController alloc] initWithRootViewController:self.shopVC];
-
     //create an array of all view controllers that will represent the tab at the bottom
     NSArray *myViewControllers = [[NSArray alloc] initWithObjects:
-                                  self.newerNC,
-                                  self.shopNC,
                                   self.pouchNC,
+                                  self.newerNC,
                                   self.placesNC,
                                   self.setsNC,
                                   nil];
@@ -97,7 +92,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    hud = [MBProgressHUD showHUDAddedTo:_newerVC.view animated:YES];
+    hud = [MBProgressHUD showHUDAddedTo:self.pouchVC.view animated:YES];
     [self performSelectorInBackground:@selector(loadData) withObject:nil];
 
     // Override point for customization after application launch.
@@ -115,7 +110,7 @@
         return;
     }
 
-    BOOL refreshData = [[[NSUserDefaults standardUserDefaults] stringForKey:@"refreshdata"] boolValue];
+    BOOL refreshData = [[NSUserDefaults standardUserDefaults] boolForKey:@"refreshdata"];
     if (refreshData == YES) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             hud.label.text = @"Authenticating";
@@ -153,8 +148,8 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             hud.label.text = @"Downloading places";
         }];
-        [dbPlace deleteAll];
-        [dbItemInPlace deleteAll];
+        [dbPlace deleteAllExceptSafeplaces];
+        [dbItemInPlace deleteAllExceptFromSafeplaces];
         [api api_places:locationManager.last.latitude longitude:locationManager.last.longitude];
         NSArray<dbPlace *> *places = [dbPlace all];
         [places enumerateObjectsUsingBlock:^(dbPlace * _Nonnull place, NSUInteger idx, BOOL * _Nonnull stop) {

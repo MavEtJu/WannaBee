@@ -103,5 +103,10 @@
     }];
 }
 
++ (BOOL)isSourceObject:(dbItem *)item
+{
+    NSArray<dbFormula *> *formulas = [self dbAllXXX:@"where source_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:item._id]]];
+    return ([formulas count] != 0);
+}
 
 @end

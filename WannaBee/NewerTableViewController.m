@@ -182,11 +182,8 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([a isKindOfClass:[dbItem class]] == YES)
             item = (dbItem *)a;
-        if ([a isKindOfClass:[dbSet class]] == YES) {
+        if ([a isKindOfClass:[dbSet class]] == YES)
             set = (dbSet *)a;
-            set.needs_refresh = YES;
-            [set dbUpdateNeedsRefresh];
-        }
         if ([a isKindOfClass:[dbPlace class]] == YES)
             place = (dbPlace *)a;
         if ([a isKindOfClass:[dbItemInSet class]] == YES)
@@ -238,18 +235,34 @@ typedef NS_ENUM(NSInteger, SectionType) {
     switch (indexPath.section) {
         case SECTION_NEWERITEMSINPOUCH:
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d in pouch, #%d in set", iipo.number, iis.number];
+            if (set.needs_refresh == NO) {
+                set.needs_refresh = YES;
+                [set dbUpdateNeedsRefresh];
+            }
             break;
         case SECTION_NEWERITEMSINPLACES:
             cell.placeName.text = place.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d in place, #%d in set", iipl.number, iis.number];
+            if (set.needs_refresh == NO) {
+                set.needs_refresh = YES;
+                [set dbUpdateNeedsRefresh];
+            }
             break;
         case SECTION_NEWITEMSINPLACES:
             cell.placeName.text = place.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
+            if (set.needs_refresh == NO) {
+                set.needs_refresh = YES;
+                [set dbUpdateNeedsRefresh];
+            }
             break;
         case SECTION_ITEMSONWISHLIST:
             cell.placeName.text = place.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
+            if (set.needs_refresh == NO) {
+                set.needs_refresh = YES;
+                [set dbUpdateNeedsRefresh];
+            }
             break;
         case SECTION_ITEMSNEEDEDFORMIXING: {
             BOOL someFound = NO;

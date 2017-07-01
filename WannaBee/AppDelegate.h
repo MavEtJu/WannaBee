@@ -20,8 +20,6 @@
 @property (strong, nonatomic) UINavigationController *placesNC;
 @property (strong, nonatomic) SetsTableViewController *setsVC;
 @property (strong, nonatomic) UINavigationController *setsNC;
-@property (strong, nonatomic) ShopTableViewController *shopVC;
-@property (strong, nonatomic) UINavigationController *shopNC;
 
 @end
 

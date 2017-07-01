@@ -46,7 +46,6 @@
 #import "SetsTableViewController.h"
 #import "SetTableViewController.h"
 #import "NewerTableViewController.h"
-#import "ShopTableViewController.h"
 
 #import "AppDelegate.h"
 

@@ -19,6 +19,6 @@
 + (dbItemInPlace *)getByItemId:(dbItem *)item place:(dbPlace *)place;
 + (dbItemInPlace *)get:(NSId)_id;
 + (void)deleteByPlace:(dbPlace *)place;
-+ (void)deleteAll;
++ (void)deleteAllExceptFromSafeplaces;
 
 @end

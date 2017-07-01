@@ -93,6 +93,7 @@
     NSInteger count = [[dbItem allInSet:set] count];
     NSInteger got = [[dbItem allInSetStored:set] count];
     cell.subtitle.text = [NSString stringWithFormat:@"%d item%@, %d in set", count, count == 1 ? @"" : @"s", got];
+    cell.remark.text = @"";
     cell.image.image = [imageManager url:set.imgurl];
 
     return cell;
@@ -109,7 +110,7 @@
     [self.navigationController pushViewController:newController animated:YES];
 }
 
-- (void)sortBySetName
+- (void)sortBySetName:(NSInteger)section
 {
     id sort = nil;
 

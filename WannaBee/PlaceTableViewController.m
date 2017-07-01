@@ -10,9 +10,18 @@
 
 @interface PlaceTableViewController ()
 
+@property (nonatomic, retain) NSArray *mixableItems;
+@property (nonatomic, retain) NSArray *otherItems;
+
 @end
 
 @implementation PlaceTableViewController
+
+enum {
+    SECTION_MIXABLE = 0,
+    SECTION_OTHERS,
+    SECTION_MAX,
+};
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
@@ -27,10 +36,60 @@
     
     return self;
 }
-    
+
+- (NSArray<NSObject *> *)itemsForSection:(NSInteger)section
+{
+    switch (section) {
+        case SECTION_MIXABLE:
+            return self.mixableItems;
+        case SECTION_OTHERS:
+            return self.otherItems;
+    }
+    return nil;
+}
+
+- (void)setItems:(NSArray<NSObject *> *)items forSection:(NSInteger)section
+{
+    switch (section) {
+        case SECTION_MIXABLE:
+            self.mixableItems = items;
+            break;
+        case SECTION_OTHERS:
+            self.otherItems = items;
+            break;
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return SECTION_MAX;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case SECTION_MIXABLE:
+            return @"Mixable items";
+        case SECTION_OTHERS:
+            return @"Other items";
+    }
+    return @"";
+}
+
 - (void)refreshData
 {
-    self.items = [dbItemInPlace allItemsInPlace:self.place];
+    NSArray<dbItemInPouch *> *iips = [dbItemInPouch all];
+    NSMutableArray<dbItemInPouch *> *m = [NSMutableArray arrayWithCapacity:[iips count]];
+    NSMutableArray<dbItemInPouch *> *o = [NSMutableArray arrayWithCapacity:[iips count]];
+    [iips enumerateObjectsUsingBlock:^(dbItemInPouch * _Nonnull iip, NSUInteger idx, BOOL * _Nonnull stop) {
+        dbItem *i = [dbItem get:iip.item_id];
+        if ([dbFormula isSourceObject:i] == YES)
+            [m addObject:iip];
+        else
+            [o addObject:iip];
+    }];
+    self.mixableItems = m;
+    self.otherItems = o;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];

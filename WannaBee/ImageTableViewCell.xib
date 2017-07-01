@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="415" height="67"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="415" height="67"/>
+                <rect key="frame" x="0.0" y="0.0" width="415" height="66.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkY-9U-idw">
@@ -31,6 +31,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSr-C0-Ew5">
+                        <rect key="frame" x="16" y="44" width="333" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WZR-Ds-g2Z">
                         <rect key="frame" x="349" y="8" width="50" height="50"/>
                         <constraints>
@@ -41,19 +47,24 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="nkY-9U-idw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="2mK-is-yIz"/>
+                    <constraint firstItem="NSr-C0-Ew5" firstAttribute="top" secondItem="cUR-iX-Qw7" secondAttribute="bottom" id="6aZ-JO-cWl"/>
+                    <constraint firstItem="NSr-C0-Ew5" firstAttribute="leading" secondItem="nkY-9U-idw" secondAttribute="leading" id="B3L-ZP-TrC"/>
                     <constraint firstItem="nkY-9U-idw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GeJ-SF-V8R"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="WZR-Ds-g2Z" secondAttribute="bottom" id="Hdc-nT-Xcd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="WZR-Ds-g2Z" secondAttribute="trailing" constant="8" id="OHn-dE-SAa"/>
                     <constraint firstItem="cUR-iX-Qw7" firstAttribute="trailing" secondItem="nkY-9U-idw" secondAttribute="trailing" id="ORP-IC-f9B"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NSr-C0-Ew5" secondAttribute="bottom" constant="8" id="W1q-OW-erE"/>
                     <constraint firstItem="WZR-Ds-g2Z" firstAttribute="leading" secondItem="nkY-9U-idw" secondAttribute="trailing" id="aTa-kx-sb2"/>
                     <constraint firstItem="cUR-iX-Qw7" firstAttribute="leading" secondItem="nkY-9U-idw" secondAttribute="leading" id="bsA-g5-SCC"/>
                     <constraint firstItem="cUR-iX-Qw7" firstAttribute="top" secondItem="nkY-9U-idw" secondAttribute="bottom" id="cak-X2-Jr8"/>
                     <constraint firstItem="WZR-Ds-g2Z" firstAttribute="top" secondItem="nkY-9U-idw" secondAttribute="top" id="h3J-XV-slc"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="cUR-iX-Qw7" secondAttribute="bottom" constant="8" id="uNH-tL-33H"/>
+                    <constraint firstItem="NSr-C0-Ew5" firstAttribute="trailing" secondItem="nkY-9U-idw" secondAttribute="trailing" id="xUC-Fy-BpZ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="image" destination="WZR-Ds-g2Z" id="t2A-iz-7Ma"/>
                 <outlet property="name" destination="nkY-9U-idw" id="oq4-WS-nSI"/>
+                <outlet property="remark" destination="NSr-C0-Ew5" id="103-GK-Z1R"/>
                 <outlet property="subtitle" destination="cUR-iX-Qw7" id="8sF-Hh-ISn"/>
             </connections>
             <point key="canvasLocation" x="79.5" y="95.5"/>

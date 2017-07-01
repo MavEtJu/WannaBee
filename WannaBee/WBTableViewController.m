@@ -27,10 +27,10 @@
     return self;
 }
 
-- (void)sortBySetName { NSAssert(NO, @"Muh"); }
-- (void)sortByItemName { NSAssert(NO, @"Muh"); }
-- (void)sortByPlaceName { NSAssert(NO, @"Muh"); }
-- (void)sortByItemNumber { NSAssert(NO, @"Muh"); }
+- (void)sortBySetName:(NSInteger)section { NSAssert(NO, @"Muh"); }
+- (void)sortByItemName:(NSInteger)section { NSAssert(NO, @"Muh"); }
+- (void)sortByPlaceName:(NSInteger)section { NSAssert(NO, @"Muh"); }
+- (void)sortByItemNumber:(NSInteger)section { NSAssert(NO, @"Muh"); }
 
 
 - (void)refreshInit
@@ -72,7 +72,8 @@
                               actionWithTitle:@"Set Name"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction *action) {
-                                  [self sortBySetName];
+                                  for (NSInteger s = 0; s < [self numberOfSectionsInTableView:self.tableView]; s++)
+                                      [self sortBySetName:s];
                                   [self.tableView reloadData];
                               }];
 
@@ -80,7 +81,8 @@
                                actionWithTitle:@"Item Name"
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action) {
-                                  [self sortByItemName];
+                                  for (NSInteger s = 0; s < [self numberOfSectionsInTableView:self.tableView]; s++)
+                                      [self sortByItemName:s];
                                   [self.tableView reloadData];
                                }];
 
@@ -88,7 +90,8 @@
                                 actionWithTitle:@"Place Name"
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction *action) {
-                                  [self sortByPlaceName];
+                                  for (NSInteger s = 0; s < [self numberOfSectionsInTableView:self.tableView]; s++)
+                                      [self sortByPlaceName:s];
                                   [self.tableView reloadData];
                                 }];
 
@@ -96,7 +99,8 @@
                                  actionWithTitle:@"Item Number"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction *action) {
-                                  [self sortByItemNumber];
+                                  for (NSInteger s = 0; s < [self numberOfSectionsInTableView:self.tableView]; s++)
+                                      [self sortByItemNumber:s];
                                   [self.tableView reloadData];
                                  }];
 

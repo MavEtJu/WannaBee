@@ -43,8 +43,6 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [self refreshInit];
 }
 
-
-
 - (void)refreshData
 {
     NSArray *places = [dbPlace all];
@@ -79,8 +77,8 @@ typedef NS_ENUM(NSInteger, SectionType) {
 
 - (void)reloadDataBG
 {
-    [dbPlace deleteAll];
-    [dbItemInPlace deleteAll];
+    [dbPlace deleteAllExceptSafeplaces];
+    [dbItemInPlace deleteAllExceptFromSafeplaces];
     [self refreshTitle:@"Obtaining places"];
     [api api_places:locationManager.last.latitude longitude:locationManager.last.longitude];
 
@@ -156,6 +154,9 @@ typedef NS_ENUM(NSInteger, SectionType) {
         cell.subtitle.text = [NSString stringWithFormat:@"%d item%@", unique, unique == 1 ? @"" : @"s"];
     else
         cell.subtitle.text = [NSString stringWithFormat:@"%d item%@, %d unique", total, total == 1 ? @"" : @"s", unique];
+    cell.remark.text = @"";
+    if (place.safeplace)
+        cell.remark.text = @"Safe storage place";
     cell.image.image = [imageManager url:place.imgurl];
 
     return cell;
@@ -184,7 +185,53 @@ typedef NS_ENUM(NSInteger, SectionType) {
     [self.navigationController pushViewController:newController animated:YES];
 }
 
-- (void)sortByPlaceName
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    dbPlace *place = nil;
+    switch (indexPath.section) {
+        case SECTION_GLOBAL:
+            place = [self.placesGlobal objectAtIndex:indexPath.row];
+            break;
+        case SECTION_LOCAL:
+            place = [self.placesLocal objectAtIndex:indexPath.row];
+            break;
+        case SECTION_TOOFAR:
+            place = [self.placesTooFar objectAtIndex:indexPath.row];
+            break;
+    }
+
+    if (place.safeplace == YES)
+        return @"Unmark as safe place";
+    else
+        return @"Mark as safe place";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    dbPlace *place = nil;
+    switch (indexPath.section) {
+        case SECTION_GLOBAL:
+            place = [self.placesGlobal objectAtIndex:indexPath.row];
+            break;
+        case SECTION_LOCAL:
+            place = [self.placesLocal objectAtIndex:indexPath.row];
+            break;
+        case SECTION_TOOFAR:
+            place = [self.placesTooFar objectAtIndex:indexPath.row];
+            break;
+    }
+
+    place.safeplace = !place.safeplace;
+    [place updateSafeplace];
+    [self.tableView reloadData];
+}
+
+- (void)sortByPlaceName:(NSInteger)section
 {
     id sort = nil;
 

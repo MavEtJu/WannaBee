@@ -18,8 +18,10 @@ typedef NS_ENUM(NSInteger, ItemsTableType) {
 
 @interface ItemsTableViewController : WBTableViewController
 
-@property (nonatomic, retain) NSArray<NSObject *> *items;
 @property (nonatomic) ItemsTableType type;
 @property (nonatomic, retain) dbPlace *place;
+
+- (NSArray<NSObject *> *)itemsForSection:(NSInteger)section;
+- (void)setItems:(NSArray<NSObject *> *)items forSection:(NSInteger)section;
 
 @end

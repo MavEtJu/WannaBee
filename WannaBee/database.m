@@ -90,10 +90,17 @@
         case 4:
             [self execute:@"create table formulas(id integer primary key, item_id integer, source_number integer, source_id integer, formula integer)"];
             /* fall through */
+        case 5:
+            [self execute:@"alter table places add column safeplace bool"];
+            [self execute:@"update places set safeplace = 0"];
+            /* fall through */
+        case 6:
+            [self execute:@"delete from items_in_places where place_id = 0"];
+            /* fall through */
         default:
             ;
     }
-#define VERSION 5
+#define VERSION 6
     c.value = [NSString stringWithFormat:@"%d", VERSION];
     [c update];
 }

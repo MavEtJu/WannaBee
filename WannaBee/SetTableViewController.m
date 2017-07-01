@@ -11,6 +11,7 @@
 @interface SetTableViewController ()
 
 @property (nonatomic, retain) dbSet *set;
+@property (nonatomic, retain) NSArray<NSObject *> *items;
 
 @end
 
@@ -27,6 +28,16 @@
     self.canSortByItemNumber = YES;
 
     return self;
+}
+
+- (NSArray<NSObject *> *)itemsForSection:(NSInteger)section
+{
+    return self.items;
+}
+
+- (void)setItems:(NSArray<NSObject *> *)items forSection:(NSInteger)section
+{
+    self.items = items;
 }
 
 - (void)refreshData
