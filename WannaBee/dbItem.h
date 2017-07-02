@@ -19,6 +19,7 @@
 + (NSArray<dbItem *> *)all;
 + (NSArray<dbItem *> *)allInSet:(dbSet *)set;
 + (NSArray<dbItem *> *)allNotInASetButWithFormula;
++ (NSArray<dbItem *> *)allNotInASet;
 + (NSArray<dbItem *> *)allInSetStored:(dbSet *)set;
 + (NSArray<dbItem *> *)allInPouch;
 + (NSArray<dbItem *> *)allInPlace:(dbPlace *)place;

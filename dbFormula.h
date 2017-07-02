@@ -21,6 +21,7 @@
 + (void)deleteByItem:(dbItem *)item;
 + (void)fixSource;
 + (NSArray<dbFormula *> *)allNeededForItem:(dbItem *)item;
++ (NSArray<dbFormula *> *)allForNeededItems;
 + (BOOL)isSourceObject:(dbItem *)item;
 
 @end

@@ -80,6 +80,11 @@
     return [self dbAllXXX:@"where item_id = ? and formula = 0" keys:@"i" values:@[[NSNumber numberWithInteger:item._id]]];
 }
 
++ (NSArray<dbFormula *> *)allForNeededItems
+{
+    return [self dbAllXXX:@"where item_id = in (select i.id from items i join items_in_sets iis on i.id = iis.item_id)" keys:nil values:nil];
+}
+
 + (void)deleteByItem:(dbItem *)item
 {
     @synchronized (db) {

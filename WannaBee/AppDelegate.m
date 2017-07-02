@@ -70,10 +70,15 @@
     self.newerVC.title = @"Newer";
     self.newerNC = [[UINavigationController alloc] initWithRootViewController:self.newerVC];
 
+    self.mixingsVC = [[MixingsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.mixingsVC.title = @"Mixing";
+    self.mixingsNC = [[UINavigationController alloc] initWithRootViewController:self.mixingsVC];
+
     //create an array of all view controllers that will represent the tab at the bottom
     NSArray *myViewControllers = [[NSArray alloc] initWithObjects:
                                   self.pouchNC,
                                   self.newerNC,
+                                  self.mixingsNC,
                                   self.placesNC,
                                   self.setsNC,
                                   nil];
@@ -170,6 +175,7 @@
     [self.placesVC refreshData];
     [self.setsVC refreshData];
     [self.newerVC refreshData];
+    [self.mixingsVC refreshData];
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [hud hideAnimated:TRUE];

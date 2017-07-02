@@ -15,8 +15,7 @@
 @property (nonatomic, retain) NSArray<NSObject *> *unseenItemsInPouch;
 @property (nonatomic, retain) NSArray<NSObject *> *unseenItemsInPlaces;
 @property (nonatomic, retain) NSArray<NSObject *> *itemsOnWishlist;
-@property (nonatomic, retain) NSDictionary *itemsNeededForMixing;
-@property (nonatomic, retain) NSArray *itemsNeededForMixingItems;
+
 
 @property (nonatomic, retain) UIColor *tooFarColour;
 @property (nonatomic, retain) UIColor *reachableColour;;
@@ -29,7 +28,6 @@ enum {
     SECTION_NEWERITEMSINPLACES,
     SECTION_NEWITEMSINPOUCH,
     SECTION_NEWERITEMSINPOUCH,
-    SECTION_ITEMSNEEDEDFORMIXING,
     SECTION_MAX,
 };
 
@@ -83,25 +81,6 @@ enum {
     self.unseenItemsInPlaces = [database newItemsInPlaces];
     self.itemsOnWishlist = [database itemsOnWishlist];
 
-    self.itemsNeededForMixing = [database itemsNeededForMixing];
-    NSMutableArray *found = [NSMutableArray arrayWithCapacity:[self.itemsNeededForMixing count]];
-    NSMutableArray *notfound = [NSMutableArray arrayWithCapacity:[self.itemsNeededForMixing count]];
-    [self.itemsNeededForMixing enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull number, NSArray *  _Nonnull as, BOOL * _Nonnull stop) {
-        __block BOOL foundit = NO;
-        [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull o, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([o isKindOfClass:[dbItemInPlace class]] == YES ||
-                [o isKindOfClass:[dbItemInPouch class]] == YES) {
-                [found addObject:number];
-                foundit = YES;
-                *stop = YES;
-            }
-        }];
-        if (foundit == NO)
-            [notfound addObject:number];
-    }];
-    [found addObjectsFromArray:notfound];
-    self.itemsNeededForMixingItems = found;
-
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
@@ -127,8 +106,6 @@ enum {
             return @"Newer Items in Pouch";
         case SECTION_ITEMSONWISHLIST:
             return @"Wishlist";
-        case SECTION_ITEMSNEEDEDFORMIXING:
-            return @"Items Needed for Mixing";
     }
     return @"???";
 }
@@ -146,8 +123,6 @@ enum {
             return [self.unseenItemsInPouch count];
         case SECTION_ITEMSONWISHLIST:
             return [self.itemsOnWishlist count];
-        case SECTION_ITEMSNEEDEDFORMIXING:
-            return [self.itemsNeededForMixing count];
     }
     return 0;
 }
@@ -171,9 +146,6 @@ enum {
             break;
         case SECTION_ITEMSONWISHLIST:
             o = [self.itemsOnWishlist objectAtIndex:indexPath.row];
-            break;
-        case SECTION_ITEMSNEEDEDFORMIXING:
-            o = [self.itemsNeededForMixing objectForKey:[self.itemsNeededForMixingItems objectAtIndex:indexPath.row]];
             break;
     }
 
@@ -226,8 +198,7 @@ enum {
 
     if (indexPath.section == SECTION_NEWITEMSINPLACES ||
         indexPath.section == SECTION_NEWERITEMSINPLACES ||
-        indexPath.section == SECTION_ITEMSONWISHLIST ||
-        indexPath.section == SECTION_ITEMSNEEDEDFORMIXING) {
+        indexPath.section == SECTION_ITEMSONWISHLIST) {
         if ([place canReach] == NO) {
             cell.itemName.textColor = self.tooFarColour;
             cell.setName.textColor = self.tooFarColour;
@@ -259,9 +230,16 @@ enum {
             }
             break;
         case SECTION_NEWITEMSINPLACES:
-        case SECTION_NEWITEMSINPOUCH:
             cell.placeName.text = place.name;
             cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipl.number];
+            if (set.needs_refresh == NO) {
+                set.needs_refresh = YES;
+                [set dbUpdateNeedsRefresh];
+            }
+            break;
+        case SECTION_NEWITEMSINPOUCH:
+            cell.placeName.text = place.name;
+            cell.numbers.text = [NSString stringWithFormat:@"Found #%d", iipo.number];
             if (set.needs_refresh == NO) {
                 set.needs_refresh = YES;
                 [set dbUpdateNeedsRefresh];
@@ -275,91 +253,9 @@ enum {
                 [set dbUpdateNeedsRefresh];
             }
             break;
-        case SECTION_ITEMSNEEDEDFORMIXING: {
-            BOOL someFound = NO;
-            NSMutableString *s = [NSMutableString string];
-            if ([formulas count] != 0) {
-                [s appendString:@"Required:"];
-                [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
-                    f.found = NO;
-                    dbItem *i = [dbItem get:f.source_id];
-                    dbSet *set = [dbSet get:i.set_id];
-                    [s appendFormat:@"\n%@ (%@)", i.name, set.name];
-                }];
-            }
-            if ([iipos count] != 0) {
-                someFound = YES;
-                [s appendString:@"\nPouch:"];
-                [iipos enumerateObjectsUsingBlock:^(dbItemInPouch * _Nonnull iipo, NSUInteger idx, BOOL * _Nonnull stop) {
-                    dbItem *i = [dbItem get:iipo.item_id];
-                    [s appendFormat:@"\n%@", i.name];
-                    [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (f.found == NO && f.source_id == i._id) {
-                            f.found = YES;
-                            *stop = YES;
-                        }
-                    }];
-                }];
-            }
-            if ([iipls count] != 0) {
-                someFound = YES;
-                [s appendString:@"\nPlaces:"];
-                [iipls enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull iipl, NSUInteger idx, BOOL * _Nonnull stop) {
-                    dbItem *i = [dbItem get:iipl.item_id];
-                    dbPlace *p = [dbPlace get:iipl.place_id];
-                    [s appendFormat:@"\n%@: %@", p.name, i.name];
-                    [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (f.found == NO && f.source_id == i._id) {
-                            f.found = YES;
-                            *stop = YES;
-                        }
-                    }];
-                }];
-            }
-            __block BOOL allFound = YES;
-            [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (f.found == NO) {
-                    allFound = NO;
-                    *stop = YES;
-                }
-            }];
-            if (allFound == YES)
-                cell.backgroundColor = [UIColor yellowColor];
-
-            if (someFound == YES) {
-                cell.itemName.textColor = self.reachableColour;
-                cell.setName.textColor = self.reachableColour;
-                cell.placeName.textColor = self.reachableColour;
-                cell.numbers.textColor = self.reachableColour;
-                cell.mixing.textColor = self.reachableColour;
-            }
-
-            cell.mixing.text = s;
-            break;
-        }
     }
 
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section != SECTION_ITEMSNEEDEDFORMIXING)
-        return;
-
-    NSArray *os = [self.itemsNeededForMixing objectForKey:[self.itemsNeededForMixingItems objectAtIndex:indexPath.row]];
-    __block dbItem *item = nil;
-    [os enumerateObjectsUsingBlock:^(NSObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[dbItem class]] == YES) {
-            item = (dbItem *)obj;
-            *stop = YES;
-        }
-    }];
-
-    MixingTableViewController *newController = [[MixingTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    newController.edgesForExtendedLayout = UIRectEdgeNone;
-    newController.title = item.name;
-    [newController showItem:item];
-    [self.navigationController pushViewController:newController animated:YES];
-}
 @end

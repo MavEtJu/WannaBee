@@ -78,6 +78,11 @@
     return [self dbAllXXX:@"where set_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:set._id]]];
 }
 
++ (NSArray<dbItem *> *)allNotInASet
+{
+    return [self dbAllXXX:@"where id not in (select item_id from items_in_sets)" keys:nil values:nil];
+}
+
 + (NSArray<dbItem *> *)allNotInASetButWithFormula
 {
     return [self dbAllXXX:@"where id not in (select item_id from items_in_sets) and id in (select item_id from formulas)" keys:nil values:nil];

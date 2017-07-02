@@ -57,10 +57,12 @@
     NSArray<dbSet *> *sets = [dbSet all];
     [sets enumerateObjectsUsingBlock:^(dbSet * _Nonnull set, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<dbItem *> *itemsInSet = [dbItem allInSet:set];
-        if ([itemsInSet count] == 0 || [itemsInSet count] < set.items_in_set) {
+        if ([itemsInSet count] == 0 || [itemsInSet count] < set.items_in_set || set.needs_refresh == YES) {
             if (self.refreshControl != nil)
                 [self refreshTitle:[NSString stringWithFormat:@"Reloading data for set '%@'", set.name]];
             [api api_users__sets:set.set_id];
+            set.needs_refresh = NO;
+            [set dbUpdateNeedsRefresh];
             [NSThread sleepForTimeInterval:0.5];
         }
     }];

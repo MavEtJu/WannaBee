@@ -18,6 +18,8 @@
 @property (strong, nonatomic) UINavigationController *newerNC;
 @property (strong, nonatomic) PlacesTableViewController *placesVC;
 @property (strong, nonatomic) UINavigationController *placesNC;
+@property (strong, nonatomic) MixingsTableViewController *mixingsVC;
+@property (strong, nonatomic) UINavigationController *mixingsNC;
 @property (strong, nonatomic) SetsTableViewController *setsVC;
 @property (strong, nonatomic) UINavigationController *setsNC;
 

@@ -15,6 +15,7 @@
 		E82C7F671F05E9D100625131 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E82C7F651F05E9D100625131 /* ImageTableViewCell.xib */; };
 		E82C7F6D1F061B4200625131 /* dbFormula.m in Sources */ = {isa = PBXBuildFile; fileRef = E82C7F6C1F061B4200625131 /* dbFormula.m */; };
 		E85386051F077D90007BC6BB /* MixingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85386041F077D90007BC6BB /* MixingTableViewController.m */; };
+		E85386081F07C7B6007BC6BB /* MixingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85386071F07C7B6007BC6BB /* MixingsTableViewController.m */; };
 		E8EF63D61F0344D9000E9111 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D51F0344D9000E9111 /* main.m */; };
 		E8EF63D91F0344D9000E9111 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EF63D81F0344D9000E9111 /* AppDelegate.m */; };
 		E8EF63E71F0344D9000E9111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EF63E61F0344D9000E9111 /* Assets.xcassets */; };
@@ -84,6 +85,8 @@
 		E82C7F6C1F061B4200625131 /* dbFormula.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dbFormula.m; sourceTree = "<group>"; };
 		E85386031F077D90007BC6BB /* MixingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingTableViewController.h; sourceTree = "<group>"; };
 		E85386041F077D90007BC6BB /* MixingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingTableViewController.m; sourceTree = "<group>"; };
+		E85386061F07C7B6007BC6BB /* MixingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixingsTableViewController.h; sourceTree = "<group>"; };
+		E85386071F07C7B6007BC6BB /* MixingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixingsTableViewController.m; sourceTree = "<group>"; };
 		E8EF63D11F0344D9000E9111 /* WannaBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WannaBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EF63D51F0344D9000E9111 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EF63D71F0344D9000E9111 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				E8EF646C1F0480A4000E9111 /* SetTableViewController.m */,
 				E8EF644A1F0367E1000E9111 /* NewerTableViewController.h */,
 				E8EF644B1F0367E1000E9111 /* NewerTableViewController.m */,
+				E85386061F07C7B6007BC6BB /* MixingsTableViewController.h */,
+				E85386071F07C7B6007BC6BB /* MixingsTableViewController.m */,
 				E85386031F077D90007BC6BB /* MixingTableViewController.h */,
 				E85386041F077D90007BC6BB /* MixingTableViewController.m */,
 			);
@@ -491,6 +496,7 @@
 				E8EF64411F035C8B000E9111 /* PlacesTableViewController.m in Sources */,
 				E8EF64231F03458B000E9111 /* dbItemInPlace.m in Sources */,
 				E8EF643E1F0357E1000E9111 /* ItemsTableViewController.m in Sources */,
+				E85386081F07C7B6007BC6BB /* MixingsTableViewController.m in Sources */,
 				E8EF64261F03458B000E9111 /* dbObject.m in Sources */,
 				E8EF64731F0488D7000E9111 /* dbWishList.m in Sources */,
 				E8EF64221F03458B000E9111 /* dbItem.m in Sources */,
