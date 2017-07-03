@@ -302,4 +302,35 @@ enum {
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSObject *o;
+    switch (indexPath.section) {
+        case SECTION_MIXINGS_READY:
+            o = [self.itemsReady objectAtIndex:indexPath.row];
+            break;
+        case SECTION_MIXINGS_POSSIBLE:
+            o = [self.itemsPossible objectAtIndex:indexPath.row];
+            break;
+        case SECTION_MIXINGS_NOPE:
+            o = [self.itemsNope objectAtIndex:indexPath.row];
+            break;
+    }
+
+    NSArray *as = (NSArray *)o;
+    __block dbItem *item = nil;
+    [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([a isKindOfClass:[dbItem class]] == YES) {
+            item = (dbItem *)a;
+            *stop = YES;
+        }
+    }];
+
+    MixingTableViewController *newController = [[MixingTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [newController showItem:item];
+    newController.edgesForExtendedLayout = UIRectEdgeNone;
+    newController.title = item.name;
+    [self.navigationController pushViewController:newController animated:YES];
+}
+
 @end
