@@ -34,6 +34,8 @@
 #import "dbItemInPlace.h"
 #import "dbFormula.h"
 
+#import "MixManager.h"
+
 #import "ImageTableViewCell.h"
 #import "ItemTableViewCell.h"
 

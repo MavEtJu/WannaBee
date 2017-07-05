@@ -10,16 +10,18 @@
 
 @interface PouchTableViewController ()
 
-@property (nonatomic, retain) NSArray *mixableItems;
-@property (nonatomic, retain) NSArray *otherItems;
+@property (nonatomic, retain) NSArray *neededForSets;
+@property (nonatomic, retain) NSArray *neededForMixing;
+@property (nonatomic, retain) NSArray *notNeeded;
 
 @end
 
 @implementation PouchTableViewController
 
 enum {
-    SECTION_MIXABLE = 0,
-    SECTION_OTHERS,
+    SECTION_NEEDEDFORSETS = 0,
+    SECTION_NEEDEDFORMIXING,
+    SECTION_NOTNEEDED,
     SECTION_MAX,
 };
 
@@ -40,10 +42,12 @@ enum {
 - (NSArray<NSObject *> *)itemsForSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_MIXABLE:
-            return self.mixableItems;
-        case SECTION_OTHERS:
-            return self.otherItems;
+        case SECTION_NEEDEDFORSETS:
+            return self.neededForSets;
+        case SECTION_NEEDEDFORMIXING:
+            return self.neededForMixing;
+        case SECTION_NOTNEEDED:
+            return self.notNeeded;
     }
     return nil;
 }
@@ -51,11 +55,14 @@ enum {
 - (void)setItems:(NSArray<NSObject *> *)items forSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_MIXABLE:
-            self.mixableItems = items;
+        case SECTION_NEEDEDFORSETS:
+            self.neededForSets = items;
             break;
-        case SECTION_OTHERS:
-            self.otherItems = items;
+        case SECTION_NEEDEDFORMIXING:
+            self.neededForMixing = items;
+            break;
+        case SECTION_NOTNEEDED:
+            self.notNeeded = items;
             break;
     }
 }
@@ -63,10 +70,12 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_MIXABLE:
-            return @"Mixable items";
-        case SECTION_OTHERS:
-            return @"Other items";
+        case SECTION_NEEDEDFORSETS:
+            return @"Items needed in sets";
+        case SECTION_NEEDEDFORMIXING:
+            return @"Items needed for mixing";
+        case SECTION_NOTNEEDED:
+            return @"Not needed";
     }
     return @"";
 }
@@ -85,17 +94,30 @@ enum {
 - (void)refreshData
 {
     NSArray<dbItemInPouch *> *iips = [dbItemInPouch all];
-    NSMutableArray<dbItemInPouch *> *m = [NSMutableArray arrayWithCapacity:[iips count]];
-    NSMutableArray<dbItemInPouch *> *o = [NSMutableArray arrayWithCapacity:[iips count]];
+    NSMutableArray<dbItemInPouch *> *neededForSets = [NSMutableArray arrayWithCapacity:[iips count]];
+    NSMutableArray<dbItemInPouch *> *neededForMixing = [NSMutableArray arrayWithCapacity:[iips count]];
+    NSMutableArray<dbItemInPouch *> *notNeeded = [NSMutableArray arrayWithCapacity:[iips count]];
+
     [iips enumerateObjectsUsingBlock:^(dbItemInPouch * _Nonnull iip, NSUInteger idx, BOOL * _Nonnull stop) {
+
+        if (iip.item_id== 1875)
+            NSLog(@"foo");
         dbItem *i = [dbItem get:iip.item_id];
-        if ([dbFormula isSourceObject:i] == YES)
-            [m addObject:iip];
+        if ([mixManager isItemNeeded:i] == YES)
+            [neededForSets addObject:iip];
+        else if ([mixManager isItemNeededForMixing:i] == YES)
+            [neededForMixing addObject:iip];
         else
-            [o addObject:iip];
+            [notNeeded addObject:iip];
     }];
-    self.mixableItems = m;
-    self.otherItems = o;
+
+    NSLog(@"neededForSets: %d" , [neededForSets count]);
+    NSLog(@"neededForMixing: %d" , [neededForMixing count]);
+    NSLog(@"notNeeded: %d" , [notNeeded count]);
+
+    self.neededForSets = neededForSets;
+    self.neededForMixing = neededForMixing;
+    self.notNeeded = notNeeded;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];

@@ -69,6 +69,8 @@
 
     if (self.type == TYPE_MIXING) {
         NSObject *o = [items objectAtIndex:indexPath.row];
+        NSMutableString *locations = [NSMutableString string];
+
         dbItem *item = nil;
         dbItemInPouch *iipo = nil;
         dbItemInPlace *iipl = nil;
@@ -80,15 +82,18 @@
             item = [dbItem get:iipl.item_id];
             place = [dbPlace get:iipl.place_id];
             cell.placeName.text = place.name;
+            [locations appendFormat:@"Available in %@", place.name];
         } else if ([o isKindOfClass:[dbItemInPouch class]] == YES) {
             iipo = (dbItemInPouch *)[items objectAtIndex:indexPath.row];
             item = [dbItem get:iipo.item_id];
             cell.placeName.text = @"Pouch";
+            [locations appendString:@"Available in pouch"];
         }
         cell.itemName.text = item.name;
         dbSet *set = [dbSet get:item.set_id];
         cell.setName.text = set.name;
         cell.image.image = [imageManager url:item.imgurl];
+        cell.numbers.text = locations;
         return cell;
     }
 
@@ -216,23 +221,40 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.type != TYPE_MIXING)
-        return;
-
     NSArray<NSObject *> *os = [self itemsForSection:indexPath.section];
     NSObject *o = [os objectAtIndex:indexPath.row];
 
     dbItem *item = nil;
-    if ([o isKindOfClass:[dbItem class]] == YES) {
-        item = (dbItem *)o;
-    }  else if ([o isKindOfClass:[dbItemInPlace class]] == YES) {
-        dbItemInPlace *iip = (dbItemInPlace *)o;
-        item = [dbItem get:iip.item_id];
+    switch (self.type) {
+        case TYPE_MIXING: {
+            if ([o isKindOfClass:[dbItem class]] == YES) {
+                item = (dbItem *)o;
+            }  else if ([o isKindOfClass:[dbItemInPlace class]] == YES) {
+                dbItemInPlace *iip = (dbItemInPlace *)o;
+                item = [dbItem get:iip.item_id];
+            }
+            break;
+        }
+
+        case TYPE_POUCH: {
+            dbItemInPouch *iip = (dbItemInPouch *)o;
+            item = [dbItem get:iip.item_id];
+            break;
+        }
+
+        case TYPE_PLACE: {
+            dbItemInPlace *iip = (dbItemInPlace *)o;
+            item = [dbItem get:iip.item_id];
+            break;
+        }
+
+        default:
+            item = (dbItem *)o;
+            break;
     }
 
-    NSArray<dbFormula *> *formulas = [dbFormula allNeededForItem:item];
-    if ([formulas count] == 0)
-        return;
+//    if ([formulas count] == 0)
+//        return;
 
     MixingTableViewController *newController = [[MixingTableViewController alloc] initWithStyle:UITableViewStylePlain];
     newController.edgesForExtendedLayout = UIRectEdgeNone;

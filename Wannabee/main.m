@@ -13,6 +13,7 @@ LocationManager *locationManager = nil;
 ImageManager *imageManager = nil;
 RemoteAPI *api = nil;
 AppDelegate *appDelegate = nil;
+MixManager *mixManager = nil;
 
 void showitems(NSArray *as, NSString *title);
 

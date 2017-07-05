@@ -80,9 +80,9 @@
     return [self dbAllXXX:@"where item_id = ? and formula = 0" keys:@"i" values:@[[NSNumber numberWithInteger:item._id]]];
 }
 
-+ (NSArray<dbFormula *> *)allForNeededItems
++ (NSArray<dbFormula *> *)allBySourceItem:(dbItem *)item
 {
-    return [self dbAllXXX:@"where item_id = in (select i.id from items i join items_in_sets iis on i.id = iis.item_id)" keys:nil values:nil];
+    return [self dbAllXXX:@"where source_id = ?" keys:@"i" values:@[[NSNumber numberWithInteger:item._id]]];
 }
 
 + (void)deleteByItem:(dbItem *)item

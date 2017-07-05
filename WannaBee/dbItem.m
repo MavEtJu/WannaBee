@@ -10,6 +10,11 @@
 
 @implementation dbItem
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (%d)", self.name, self.item_type_id];
+}
+
 - (void)create
 {
     @synchronized(db) {
@@ -101,6 +106,11 @@
 + (NSArray<dbItem *> *)allInPlace:(dbPlace *)place
 {
     return [self dbAllXXX:@"where id in (select item_id from items_in_places where place_id = ?)" keys:@"i" values:@[[NSNumber numberWithInteger:place._id]]];
+}
+
++ (NSArray<dbItem *> *)allInPlaces
+{
+    return [self dbAllXXX:@"where id in (select item_id from items_in_places)" keys:nil values:nil];
 }
 
 + (dbItem *)get:(NSId)_id

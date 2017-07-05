@@ -32,6 +32,9 @@
     // Image Manager
     imageManager = [[ImageManager alloc] init];
 
+    // Mix Manager
+    mixManager = [[MixManager alloc] init];
+
     if ([CLLocationManager locationServicesEnabled] == NO) {
         NSLog(@"locationServices are disabled");
         // location services is disabled, alert user

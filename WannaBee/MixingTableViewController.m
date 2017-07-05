@@ -14,13 +14,16 @@
 @property (nonatomic, retain) NSArray *itemsRequired;
 @property (nonatomic, retain) NSArray *itemsAvailable;
 @property (nonatomic, retain) NSArray *itemsMissing;
+@property (nonatomic, retain) NSArray *neededForItems;
 
 @end
 
 @implementation MixingTableViewController
 
 enum {
-    SECTION_HEADER = 0,
+    SECTION_NEEDEDFOR
+    = 0,
+    SECTION_HEADER,
     SECTION_REQUIRED,
     SECTION_AVAILABLE,
     SECTION_NOTAVAILABLE,
@@ -34,7 +37,6 @@ enum {
 {
     self = [super initWithStyle:style];
 
-    self.title = @"Pouch";
     self.type = TYPE_MIXING;
 
     self.canSortBySetName = YES;
@@ -60,13 +62,23 @@ enum {
 {
     switch (section) {
         case SECTION_HEADER:
-            return @"Item to create";
+            return @"Information about:";
         case SECTION_REQUIRED:
-            return @"Required";
+            if ([self.itemsRequired count] != 0)
+                return @"Required";
+            break;
         case SECTION_AVAILABLE:
-            return @"Available";
+            if ([self.itemsAvailable count] != 0)
+                return @"Available";
+            break;
         case SECTION_NOTAVAILABLE:
-            return @"Missing";
+            if ([self.itemsMissing count] != 0)
+                return @"Missing";
+            break;
+        case SECTION_NEEDEDFOR:
+            if ([self.neededForItems count] != 0)
+                return @"Needed for";
+            break;
     }
     return @"";
 }
@@ -82,6 +94,8 @@ enum {
             return self.itemsMissing;
         case SECTION_HEADER:
             return self.mainItem;
+        case SECTION_NEEDEDFOR:
+            return self.neededForItems;
     }
 
     return nil;
@@ -94,6 +108,7 @@ enum {
     NSMutableArray *req = [NSMutableArray arrayWithCapacity:[formulas count]];
     NSMutableArray *notfound = [NSMutableArray arrayWithCapacity:[formulas count]];
     NSMutableArray *found = [NSMutableArray arrayWithCapacity:[formulas count]];
+    NSMutableArray *neededFor = [NSMutableArray arrayWithCapacity:[formulas count]];
 
     [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
         dbItem *item = [dbItem get:f.source_id];
@@ -116,6 +131,31 @@ enum {
     self.itemsAvailable = found;
     self.itemsMissing = notfound;
     self.mainItem = @[item];
+
+    [[dbFormula allBySourceItem:item] enumerateObjectsUsingBlock:^(dbFormula * _Nonnull f, NSUInteger idx, BOOL * _Nonnull stop) {
+        [neededFor addObject:[dbItem get:f.item_id]];
+    }];
+
+    self.neededForItems = neededFor;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    UITableViewCell *_cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.section == SECTION_NEEDEDFOR) {
+        ItemTableViewCell *cell = (ItemTableViewCell *)_cell;
+        dbItem *item = (dbItem *)[[self itemsForSection:indexPath.section] objectAtIndex:indexPath.row];
+        dbItemInSet *iis = [dbItemInSet getByItemId:item];
+        cell.mixing.text = [NSString stringWithFormat:@"Number in set: #%d", iis.number];
+    }
+    return _cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_HEADER)
+        return;
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 @end

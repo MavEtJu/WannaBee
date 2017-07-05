@@ -10,15 +10,17 @@
 
 @interface PlaceTableViewController ()
 
-@property (nonatomic, retain) NSArray *mixableItems;
-@property (nonatomic, retain) NSArray *otherItems;
+@property (nonatomic, retain) NSArray *itemsNeededInSet;
+@property (nonatomic, retain) NSArray *itemsNeededInMix;
+@property (nonatomic, retain) NSArray *itemsOthers;
 
 @end
 
 @implementation PlaceTableViewController
 
 enum {
-    SECTION_MIXABLE = 0,
+    SECTION_NEEDEDINSET = 0,
+    SECTION_NEEDEDINMIX,
     SECTION_OTHERS,
     SECTION_MAX,
 };
@@ -40,10 +42,12 @@ enum {
 - (NSArray<NSObject *> *)itemsForSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_MIXABLE:
-            return self.mixableItems;
+        case SECTION_NEEDEDINSET:
+            return self.itemsNeededInSet;
+        case SECTION_NEEDEDINMIX:
+            return self.itemsNeededInMix;
         case SECTION_OTHERS:
-            return self.otherItems;
+            return self.itemsOthers;
     }
     return nil;
 }
@@ -51,11 +55,14 @@ enum {
 - (void)setItems:(NSArray<NSObject *> *)items forSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_MIXABLE:
-            self.mixableItems = items;
+        case SECTION_NEEDEDINMIX:
+            self.itemsNeededInMix = items;
+            break;
+        case SECTION_NEEDEDINSET:
+            self.itemsNeededInSet = items;
             break;
         case SECTION_OTHERS:
-            self.otherItems = items;
+            self.itemsOthers = items;
             break;
     }
 }
@@ -68,10 +75,12 @@ enum {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case SECTION_MIXABLE:
-            return @"Mixable items";
+        case SECTION_NEEDEDINSET:
+            return @"Needed in sets";
+        case SECTION_NEEDEDINMIX:
+            return @"Needed in mix";
         case SECTION_OTHERS:
-            return @"Other items";
+            return @"Others";
     }
     return @"";
 }
@@ -80,16 +89,20 @@ enum {
 {
     NSArray<dbItemInPlace *> *iips = [dbItemInPlace allItemsInPlace:self.place];
     NSMutableArray<dbItemInPlace *> *m = [NSMutableArray arrayWithCapacity:[iips count]];
+    NSMutableArray<dbItemInPlace *> *s = [NSMutableArray arrayWithCapacity:[iips count]];
     NSMutableArray<dbItemInPlace *> *o = [NSMutableArray arrayWithCapacity:[iips count]];
     [iips enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull iip, NSUInteger idx, BOOL * _Nonnull stop) {
         dbItem *i = [dbItem get:iip.item_id];
-        if ([dbFormula isSourceObject:i] == YES)
+        if ([mixManager isItemNeeded:i] == YES)
+            [s addObject:iip];
+        else if ([mixManager isItemNeededForMixing:i] == YES)
             [m addObject:iip];
         else
             [o addObject:iip];
     }];
-    self.mixableItems = m;
-    self.otherItems = o;
+    self.itemsOthers = o;
+    self.itemsNeededInSet = s;
+    self.itemsNeededInMix = m;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];

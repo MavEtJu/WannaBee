@@ -10,9 +10,9 @@
 
 @interface MixingsTableViewController ()
 
-@property (nonatomic, retain) NSArray *itemsReady;
-@property (nonatomic, retain) NSArray *itemsPossible;
-@property (nonatomic, retain) NSArray *itemsNope;
+@property (nonatomic, retain) NSMutableArray *itemsReady;
+@property (nonatomic, retain) NSMutableArray *itemsPossible;
+@property (nonatomic, retain) NSMutableArray *itemsNope;
 
 @end
 
@@ -63,106 +63,46 @@ enum {
 
 - (void)refreshData
 {
-    NSArray<dbItem *> *allNeeded = [dbItem allNotInASet];
-    NSMutableArray<dbItem *> *allMixable = [NSMutableArray arrayWithCapacity:[allNeeded count]];
+    [mixManager refreshMixData];
 
-    NSLog(@"Items needed: %d", [allNeeded count]);
+    self.itemsReady = [NSMutableArray arrayWithCapacity:1];
+    self.itemsPossible = [NSMutableArray arrayWithCapacity:1];
+    self.itemsNope = [NSMutableArray arrayWithCapacity:1];
 
-    [allNeeded enumerateObjectsUsingBlock:^(dbItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[dbFormula allNeededForItem:item] count] != 0)
-            [allMixable addObject:item];
-    }];
-
-    NSLog(@"Items mixable: %d", [allMixable count]);
-
-    NSMutableDictionary *seen = [NSMutableDictionary dictionaryWithCapacity:20];
-    [allMixable enumerateObjectsUsingBlock:^(dbItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self findSourcesForItem:item seen:seen];
-    }];
-
-    NSMutableArray *ready = [NSMutableArray arrayWithCapacity:[seen count]];
-    NSMutableArray *possible = [NSMutableArray arrayWithCapacity:[seen count]];
-    NSMutableArray *nope = [NSMutableArray arrayWithCapacity:[seen count]];
-    [seen enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, dbItem * _Nonnull item, BOOL * _Nonnull stop) {
-        NSMutableArray *objects = [NSMutableArray arrayWithCapacity:10];
-        [objects addObject:item];
-
-        NSArray<dbFormula *> *formulas = [dbFormula allNeededForItem:item];
-        __block BOOL foundAll = YES;
-        __block BOOL foundNone = YES;
-
-        if ([formulas count] == 0)
-            return;
-
-        [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull formula, NSUInteger idx, BOOL * _Nonnull stop) {
-            [objects addObject:formula];
-            dbItem *i = [dbItem get:formula.source_id];
-            NSArray<dbItemInPouch *> *iipos = [dbItemInPouch allByItem:i];
-            [iipos enumerateObjectsUsingBlock:^(dbItemInPouch * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [objects addObject:obj];
+    [mixManager.itemsMixable enumerateObjectsUsingBlock:^(dbItem * _Nonnull itemNeeded, NSUInteger idx, BOOL * _Nonnull stop) {
+        __block BOOL foundAllitems = YES;
+        __block BOOL foundNoItems = YES;
+        [[dbFormula allNeededForItem:itemNeeded] enumerateObjectsUsingBlock:^(dbFormula * _Nonnull formula, NSUInteger idx, BOOL * _Nonnull ostop) {
+            __block BOOL found = NO;
+            [mixManager.itemsInPouch enumerateObjectsUsingBlock:^(dbItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (item._id == formula.source_id) {
+                    found = YES;
+                    foundNoItems = NO;
+                    *stop = YES;
+                }
             }];
-            NSArray<dbItemInPlace *> *iipls = [dbItemInPlace findThisItem:i];
-            [iipls enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [objects addObject:obj];
+            [mixManager.itemsInPlaces enumerateObjectsUsingBlock:^(dbItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (item._id == formula.source_id) {
+                    found = YES;
+                    foundNoItems = NO;
+                    *stop = YES;
+                }
             }];
-            if ([iipos count] == 0 && [iipls count] == 0) {
-                foundAll = NO;
-            }
-            if ([iipos count] + [iipls count] > 0) {
-                foundNone = NO;
-            }
+            if (found == NO)
+                foundAllitems = NO;
         }];
 
-        if (foundAll == YES)
-            [ready addObject:objects];
-        else if (foundNone == YES)
-            [nope addObject:objects];
+        if (foundAllitems == YES)
+            [self.itemsReady addObject:itemNeeded];
+        else if (foundNoItems == NO)
+            [self.itemsPossible addObject:itemNeeded];
         else
-            [possible addObject:objects];
+            [self.itemsNope addObject:itemNeeded];
     }];
-
-    self.itemsReady = ready;;
-    self.itemsPossible = possible;
-    self.itemsNope = nope;
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.tableView reloadData];
     }];
-}
-
-- (void)findSourcesForItem:(dbItem *)item seen:(NSMutableDictionary *)seen
-{
-    if ([seen objectForKey:[NSNumber numberWithInteger:item._id]] != nil)
-        return;
-
-    NSLog(@"Searching for formula for %d '%@' (Depth: %d)", item._id, item.name, [seen count]);
-    [seen setObject:item forKey:[NSNumber numberWithInteger:item._id]];
-
-    NSArray<dbFormula *> *formulas = [dbFormula allNeededForItem:item];
-    if ([formulas count] == 0) {
-        NSLog(@"No formulas");
-        return;
-    }
-    [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull formula, NSUInteger idx, BOOL * _Nonnull stop) {
-        dbItem *i = [dbItem get:formula.source_id];
-        NSLog(@"Finding item for formula %d '%@'", i._id, i.name);
-
-        NSArray<dbItemInPouch *> *iipo = [dbItemInPouch allByItem:i];
-        NSArray<dbItemInPlace *> *iipl = [dbItemInPlace findThisItem:i];
-        if ([iipo count] != 0) {
-            NSLog(@"Found in pouch");
-            return;
-        }
-        if ([iipl count] != 0) {
-            NSLog(@"Found in places");
-            return;
-        }
-
-        NSLog(@"Not found, finding formula for formula %d '%@'", i._id, i.name);
-        [self findSourcesForItem:i seen:seen];
-    }];
-
-//    [seen removeObjectForKey:[NSNumber numberWithInteger:item._id]];
 }
 
 #pragma mark - Table view data source
@@ -201,62 +141,32 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ITEM forIndexPath:indexPath];
-    NSObject *o;
+    dbItem *item;
     switch (indexPath.section) {
         case SECTION_MIXINGS_READY:
-            o = [self.itemsReady objectAtIndex:indexPath.row];
+            item = [self.itemsReady objectAtIndex:indexPath.row];
             break;
         case SECTION_MIXINGS_POSSIBLE:
-            o = [self.itemsPossible objectAtIndex:indexPath.row];
+            item = [self.itemsPossible objectAtIndex:indexPath.row];
             break;
         case SECTION_MIXINGS_NOPE:
-            o = [self.itemsNope objectAtIndex:indexPath.row];
+            item = [self.itemsNope objectAtIndex:indexPath.row];
             break;
     }
 
-    NSArray *as = (NSArray *)o;
-
-    __block dbItem *item = nil;
-    __block dbSet *set = nil;
-    __block dbPlace *place = nil;
-    __block dbItemInSet *iis = nil;
-    __block dbItemInPlace *iipl = nil;
-    __block dbItemInPouch *iipo = nil;
-    NSMutableArray<dbItemInPouch *> *iipos = [NSMutableArray arrayWithCapacity:2];
-    NSMutableArray<dbItemInPlace *> *iipls = [NSMutableArray arrayWithCapacity:2];
-    NSMutableArray<dbFormula *> *formulas = [NSMutableArray arrayWithCapacity:2];
-
-
-    if ([as isKindOfClass:[dbItem class]] == YES) {
-        item = (dbItem *)as;
-        set = [dbSet get:item.set_id];
-    } else {
-        [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([a isKindOfClass:[dbItem class]] == YES) {
-                item = (dbItem *)a;
-                set = [dbSet get:item.set_id];
-            }
-            if ([a isKindOfClass:[dbSet class]] == YES)
-                set = (dbSet *)a;
-            if ([a isKindOfClass:[dbPlace class]] == YES)
-                place = (dbPlace *)a;
-            if ([a isKindOfClass:[dbItemInSet class]] == YES)
-                iis = (dbItemInSet *)a;
-            if ([a isKindOfClass:[dbItemInPlace class]] == YES) {
-                iipl = (dbItemInPlace *)a;
-                [iipls addObject:iipl];
-            }
-            if ([a isKindOfClass:[dbItemInPouch class]] == YES) {
-                iipo = (dbItemInPouch *)a;
-                [iipos addObject:iipo];
-            }
-            if ([a isKindOfClass:[dbFormula class]] == YES) {
-                dbFormula *f = (dbFormula *)a;
-                [formulas addObject:f];
-            }
+    dbSet *set = [dbSet get:item.set_id];
+    __block NSMutableArray<dbItemInPouch *> *iipos = [NSMutableArray arrayWithCapacity:1];
+    __block NSMutableArray<dbItemInPlace *> *iipls = [NSMutableArray arrayWithCapacity:1];
+    NSArray<dbFormula *> *formulas = [dbFormula allNeededForItem:item];
+    [formulas enumerateObjectsUsingBlock:^(dbFormula * _Nonnull formula, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[dbItemInPouch allByItem:[dbItem get:formula.source_id]] enumerateObjectsUsingBlock:^(dbItemInPouch * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [iipos addObject:obj];
         }];
-    }
-
+        [[dbItemInPlace findThisItem:[dbItem get:formula.source_id]] enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [iipls addObject:obj];
+        }];
+    }];
+    
     cell.itemName.text = @"";
     cell.setName.text = @"";
     cell.placeName.text = @"";
@@ -291,12 +201,9 @@ enum {
         [iipls enumerateObjectsUsingBlock:^(dbItemInPlace * _Nonnull iipl, NSUInteger idx, BOOL * _Nonnull stop) {
             dbItem *i = [dbItem get:iipl.item_id];
             dbPlace *p = [dbPlace get:iipl.place_id];
-            dbSet *s = [dbSet get:item.set_id];
             [numbers appendFormat:@"\n%@ (%@)", i.name, p.name];
         }];
     }
-
-
     cell.mixing.text = numbers;
 
     return cell;
@@ -304,27 +211,18 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSObject *o;
+    dbItem *item = nil;
     switch (indexPath.section) {
         case SECTION_MIXINGS_READY:
-            o = [self.itemsReady objectAtIndex:indexPath.row];
+            item = [self.itemsReady objectAtIndex:indexPath.row];
             break;
         case SECTION_MIXINGS_POSSIBLE:
-            o = [self.itemsPossible objectAtIndex:indexPath.row];
+            item = [self.itemsPossible objectAtIndex:indexPath.row];
             break;
         case SECTION_MIXINGS_NOPE:
-            o = [self.itemsNope objectAtIndex:indexPath.row];
+            item = [self.itemsNope objectAtIndex:indexPath.row];
             break;
     }
-
-    NSArray *as = (NSArray *)o;
-    __block dbItem *item = nil;
-    [as enumerateObjectsUsingBlock:^(NSObject * _Nonnull a, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([a isKindOfClass:[dbItem class]] == YES) {
-            item = (dbItem *)a;
-            *stop = YES;
-        }
-    }];
 
     MixingTableViewController *newController = [[MixingTableViewController alloc] initWithStyle:UITableViewStylePlain];
     [newController showItem:item];

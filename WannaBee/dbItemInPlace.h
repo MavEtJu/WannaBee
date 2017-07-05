@@ -14,6 +14,7 @@
 @property (nonatomic) NSId item_id;
 @property (nonatomic) NSInteger number;
 
++ (NSArray<dbItemInPlace *> *)all;
 + (NSArray<dbItemInPlace *> *)allItemsInPlace:(dbPlace *)place;
 + (NSArray<dbItemInPlace *> *)findThisItem:(dbItem *)item;
 + (dbItemInPlace *)getByItemId:(dbItem *)item place:(dbPlace *)place;
